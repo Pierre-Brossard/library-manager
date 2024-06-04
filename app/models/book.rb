@@ -5,6 +5,8 @@ class Book < ApplicationRecord
   has_many :collections
   has_many :users, through: :collections
 
+  TYPES = ['Roman', 'Manga', 'BD', 'Poesie', 'Manuel', 'Livre illustré']
+
   validates :title, presence: true, uniqueness: true
-  validates :book_type, presence: true
+  validates :book_type, presence: true, inclusion: { in: Book::TYPES }
 end

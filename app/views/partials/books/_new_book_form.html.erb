@@ -1,11 +1,13 @@
 <%= simple_form_for book do |f| %>
-  <%= f.input :type, as: :book_type%>
+  <%= f.input :book_type, collection: Book::TYPES %>
   <%= f.input :title %>
   <%= f.input :author %>
   <%= f.input :illustrator %>
-  <%= f.input :serie %>
+  <%= f.association :serie %>
   <%= f.input :serie_number %>
   <%= f.input :description %>
+  <%= f.input :release %>
+  <%= f.input :edition %>
 
   <%= f.submit 'Ajouter' %>
 <% end %>
