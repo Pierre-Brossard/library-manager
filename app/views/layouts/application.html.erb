@@ -13,7 +13,9 @@
   <body>
     <%= render "shared/navbar" %>
     <%= render "shared/flashes" %>
-    <%= link_to "index serie", series_index_path%>
-    <%= yield %>
+    <div class="container">
+      <%= link_to "index serie", series_index_path%>
+      <%= yield %>
+    </div>
   </body>
 </html>

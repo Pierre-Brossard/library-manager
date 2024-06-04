@@ -1,0 +1,14 @@
+<%= simple_form_for book do |f| %>
+  <%= f.input :book_type, collection: Book::TYPES %>
+  <%= f.input :title %>
+  <%= f.input :author %>
+  <%= f.input :illustrator %>
+  <%= f.association :serie %>
+  <%= f.input :serie_number %>
+  <%= f.input :description %>
+  <%= f.input :release, as: :integer %>
+  <%= f.input :edition %>
+  <%= f.input :cover_img, as: :file %>
+
+  <%= f.submit 'Ajouter' %>
+<% end %>
