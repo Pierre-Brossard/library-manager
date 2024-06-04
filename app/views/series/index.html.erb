@@ -1,0 +1,14 @@
+<ul>
+  <% @user_favorite_series.each do |fav_serie| %>
+    <li>
+      <div>
+        <h3>
+          <%=fav_serie.name %>
+        </h3>
+        <p>
+          Total de tomes: <%= fav_serie.books_total %>
+        </p>
+      </div>
+    </li>
+  <% end %>
+</ul>
