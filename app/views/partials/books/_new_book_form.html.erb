@@ -6,7 +6,7 @@
   <%= f.association :serie %>
   <%= f.input :serie_number %>
   <%= f.input :description %>
-  <%= f.input :release %>
+  <%= f.input :release, as: :integer %>
   <%= f.input :edition %>
 
   <%= f.submit 'Ajouter' %>

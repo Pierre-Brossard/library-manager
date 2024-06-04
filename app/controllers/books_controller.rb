@@ -4,8 +4,19 @@ class BooksController < ApplicationController
   end
 
   def create
-    @book = Book.new(book_params)
-    
+    @book = Book.find_by(title: book_params[:title])
+
+    unless @book
+      @book = Book.new(book_params)
+      render :new, status: :unprocessable_content unless @book.save
+    end
+
+    @collection = Collection.new(user: current_user, book: @book)
+    if @collection.save
+      redirect_to new_book_path
+    else
+      render :new, status: :unprocessable_content
+    end
   end
 
   private
@@ -16,12 +27,11 @@ class BooksController < ApplicationController
       :title,
       :author,
       :illustrator,
-      :serie,
+      :serie_id,
       :serie_number,
       :description,
       :release,
       :edition
     )
   end
-
 end
