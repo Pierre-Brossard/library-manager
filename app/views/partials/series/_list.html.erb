@@ -1,0 +1,14 @@
+<ul>
+  <% series.each do |serie| %>
+    <li>
+      <div>
+        <h3>
+          <%=serie.name %>
+        </h3>
+        <p>
+          Total de tomes: <%= serie.books_total %>
+        </p>
+      </div>
+    </li>
+  <% end %>
+</ul>
