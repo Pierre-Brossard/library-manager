@@ -8,14 +8,18 @@ class BooksController < ApplicationController
 
     unless @book
       @book = Book.new(book_params)
-      render :new, status: :unprocessable_content unless @book.save
+      @book.release = Date.new(book_params[:release].to_i)
+      unless @book.save
+        render :new, status: :unprocessable_entity
+        return
+      end
     end
 
     @collection = Collection.new(user: current_user, book: @book)
     if @collection.save
       redirect_to new_book_path
     else
-      render :new, status: :unprocessable_content
+      render :new, status: :unprocessable_entity
     end
   end
 
@@ -31,7 +35,8 @@ class BooksController < ApplicationController
       :serie_number,
       :description,
       :release,
-      :edition
+      :edition,
+      :cover_img
     )
   end
 end
