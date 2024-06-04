@@ -5,7 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
+    <link
+      href="https://cdn.jsdelivr.net/npm/flatifycss/dist/css/flatify.min.css"
+      rel="stylesheet"
+      crossorigin="anonymous"
+    />
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <link
       href="https://cdn.jsdelivr.net/npm/flatifycss/dist/css/flatify.min.css"
@@ -18,11 +22,14 @@
   <body>
     <%= render "shared/navbar" %>
     <%= render "shared/flashes" %>
+
     <div class="container">
       <%= link_to "index serie", series_index_path%>
       <%= link_to "index book", books_path%>
       <%= yield %>
     </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/flatifycss/dist/js/flatify.min.js" crossorigin="anonymous"></script>
   </body>
 
   <script src="https://cdn.jsdelivr.net/npm/flatifycss/dist/js/flatify.min.js" crossorigin="anonymous"></script>
