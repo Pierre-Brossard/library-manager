@@ -3,7 +3,13 @@
   <%# Partie visible par défaut, Stimulus target bookDefault %>
   <div class="row" data-book-content-target="bookDefault">
     <div class="col-4">
-      <%= cl_image_tag book.cover_url%>
+      <%# si le cover_url contient l'image | ajouté en dur dans les seeds %>
+      <% if book.cover_url %>
+        <%= cl_image_tag book.cover_url%>
+      <%# si le cover_img active storage contient l'image | créé à travers l'action create du controller %>
+      <% elsif book.cover_img %>
+        <%= cl_image_tag book.cover_img.key %>
+      <% end %>
     </div>
     <div class="col-8">
       <h3><%= book.title %></h3>
@@ -21,6 +27,7 @@
     <div class="col-6">
       <p><%= book.serie.name %></p>
       <p><%= book.serie_number %></p>
+      <%= link_to 'Détails', book_path(book), class: 'btn btn-outline-warning' %>
     </div>
   </div>
 </div>
