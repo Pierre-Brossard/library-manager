@@ -16,10 +16,10 @@ Serie.create(name: "Serie 1", books_total: 5, status: "Finished")
 Serie.create(name: "Serie 2", books_total: 5, status: "On going")
 
 10.times{
-  Book.create(
+  Book.create!(
       title: Faker::Book.title,
       serie_number: rand(10),
-      book_type: ["manga", "Bande Dessine", "roman"].sample,
+      book_type: Book::TYPES.sample,
       cover_url: "dz2btx3jhn9pqpvpnolp",
       serie: Serie.all.sample,
       description: Faker::Lorem.sentence(word_count: 15),
