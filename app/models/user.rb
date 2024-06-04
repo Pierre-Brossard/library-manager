@@ -8,6 +8,7 @@ class User < ApplicationRecord
   has_many :favorite_series, dependent: :destroy
   has_many :books, through: :collections
   has_many :series, through: :favorite_series, source: :serie
+  has_many :books_series, through: :books, source: :serie
 
   validates :nickname, presence: true
 end
