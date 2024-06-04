@@ -1,14 +1,30 @@
-<ul>
-  <% @user_favorite_series.each do |fav_serie| %>
+
+<div class="container" data-controller="series-tabs">
+  <ul>
     <li>
-      <div>
-        <h3>
-          <%=fav_serie.name %>
-        </h3>
-        <p>
-          Total de tomes: <%= fav_serie.books_total %>
-        </p>
-      </div>
+      <a href="#" data-action="click->series-tabs#switchTabs" data-series-tabs-target="tab" data-target-id="content-allSeries">All series</a>
     </li>
-  <% end %>
-</ul>
+    <li>
+      <a href="#" data-action="click->series-tabs#switchTabs" data-series-tabs-target="tab" data-target-id="content-userSeries">My series</a>
+    </li>
+    <li>
+      <a href="#" data-action="click->series-tabs#switchTabs" data-series-tabs-target="tab" data-target-id="content-favoritesSeries">Favorites Series</a>
+    </li>
+  </ul>
+  <div data-series-tabs-target="content" id="content-allSeries" style="display: block">
+     <%= render 'partials/series/list', series: @series %>
+  </div>
+
+  <div data-series-tabs-target="content" id="content-userSeries" style="display: none">
+    <% @user_books_series.group(:name).count.keys.each do |key| %>
+      <% @seriesArray = [] %>
+      <% @seriesArray << Serie.find_by(name: key) %>
+      <%= render 'partials/series/list', series: @seriesArray %>
+    <% end %>
+  </div>
+
+  <div data-series-tabs-target="content" id="content-favoritesSeries" style="display: none">
+    <%= render 'partials/series/list', series: @user_favorite_series %>
+  </div>
+
+</div>

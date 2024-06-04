@@ -1,0 +1,28 @@
+<div class="container">
+  <div class="row">
+    <% if @book.cover_url %>
+      <%= cl_image_tag @book.cover_url%>
+    <% elsif @book.cover_img %>
+      <%= cl_image_tag @book.cover_img.key %>
+    <% end %>
+  </div>
+  <div class="row mt-4">
+    <div class="col-9">
+
+      <h2><%= @book.title %></h2>
+    </div>
+    <div class="col-3">
+    <p><%= @book.release.year %></p>
+    </div>
+  </div>
+  <div class="row">
+    <p><%= @book.author %></p>
+    <p><%= @book.illustrator %></p>
+    <p>
+      <%= link_to @book.serie.name, series_path(@book.serie) %>
+      <span><%= @book.serie_number %>/<%= @book.serie.books_total %></span>
+    </p>
+    <p><%= @book.description %></p>
+    <p><%= @book.isbn %></p>
+  </div>
+</div>
