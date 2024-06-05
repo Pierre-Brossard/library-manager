@@ -16,7 +16,14 @@ class BooksController < ApplicationController
     unless @book
       @book = Book.new(book_params)
       @book.release = Date.new(book_params[:release].to_i)
-      unless @book.save
+
+      # je tente de créer la série voulue par l'auteur
+      if serie_params[:name]
+        @serie = Serie.create!(serie_params)
+        @book.serie = @serie
+      end
+
+      unless @book.save!
         render :new, status: :unprocessable_entity
       end
     end
@@ -38,6 +45,10 @@ class BooksController < ApplicationController
 
   def set_book
     @book = Book.find(params[:id])
+  end
+
+  def serie_params
+    params.require(:serie).permit(:name)
   end
 
   def book_params

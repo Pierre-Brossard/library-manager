@@ -3,10 +3,24 @@
   <%= f.input :title %>
   <%= f.input :author %>
   <%= f.input :illustrator %>
-  <%= f.association :serie %>
-  <%= f.input :serie_number %>
+  <%= f.input :release, as: :integer, placeholder: '2000' %>
+  <div data-controller="toggle-visible">
+    <div class="row">
+      <div class="col-7">
+        <%= f.association :serie %>
+      </div>
+      <div class="col-1">
+        <h3 data-action='click->toggle-visible#toggle'>+</h3>
+      </div>
+      <div class="col-4">
+        <%= f.input :serie_number %>
+      </div>
+    </div>
+    <div class="container p-2 d-none" data-toggle-visible-target='hidden'>
+      <input class="form-control string optional" type="text" name="serie[name]">
+    </div>
+  </div>
   <%= f.input :description %>
-  <%= f.input :release, as: :integer %>
   <%= f.input :edition %>
   <%= f.input :cover_img, as: :file %>
 
