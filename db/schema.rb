@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_06_04_090355) do
+ActiveRecord::Schema[7.1].define(version: 2024_06_05_102625) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -63,7 +63,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_04_090355) do
     t.string "illustrator"
     t.string "edition"
     t.string "illustrations"
-    t.bigint "serie_id", null: false
+    t.bigint "serie_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["serie_id"], name: "index_books_on_serie_id"
@@ -123,9 +123,9 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_04_090355) do
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "book_genres", "books"
   add_foreign_key "book_genres", "genres"
-  add_foreign_key "books", "series", column: "serie_id"
+  add_foreign_key "books", "series"
   add_foreign_key "collections", "books"
   add_foreign_key "collections", "users"
-  add_foreign_key "favorite_series", "series", column: "serie_id"
+  add_foreign_key "favorite_series", "series"
   add_foreign_key "favorite_series", "users"
 end
