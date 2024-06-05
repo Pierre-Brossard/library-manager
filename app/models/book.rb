@@ -7,8 +7,7 @@ class Book < ApplicationRecord
 
   has_one_attached :cover_img
 
-  TYPES = ['Roman', 'Manga', 'BD', 'Poesie', 'Manuel', 'Livre illustré']
-
+  TYPES = ['Roman', 'Manga', 'BD', 'Poesie']
 
   validates :title, presence: true, uniqueness: true
   validates :book_type, presence: true, inclusion: { in: Book::TYPES }
