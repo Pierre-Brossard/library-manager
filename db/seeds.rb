@@ -1,5 +1,7 @@
 require 'faker'
 
+puts 'Destroying all instances...'
+
 User.destroy_all
 Book.destroy_all
 Serie.destroy_all
@@ -8,6 +10,11 @@ BookGenre.destroy_all
 Collection.destroy_all
 FavoriteSerie.destroy_all
 
+puts 'Done'
+
+images = ['cityoforange.jpeg', 'dune.jpeg', 'greatgatsby.jpeg', 'lotr.jpeg']
+
+puts 'Creating users and series...'
 
 User.create(nickname: "John", email: "john@gmail.com", password: 123456, public: true)
 User.create(nickname: "Maria", email: "maria@gmail.com", password: 123456)
@@ -15,12 +22,15 @@ User.create(nickname: "Maria", email: "maria@gmail.com", password: 123456)
 Serie.create(name: "Serie 1", books_total: 5, status: "Finished")
 Serie.create(name: "Serie 2", books_total: 5, status: "On going")
 
+puts 'Done'
+
+puts 'Creating books...'
+
 10.times{
-  Book.create!(
+  b = Book.new(
       title: Faker::Book.title,
       serie_number: rand(10),
       book_type: Book::TYPES.sample,
-      cover_url: "dz2btx3jhn9pqpvpnolp",
       serie: Serie.all.sample,
       description: Faker::Lorem.sentence(word_count: 15),
       isbn: "978 - 2 - 7177 - 2113 - 4",
@@ -30,11 +40,18 @@ Serie.create(name: "Serie 2", books_total: 5, status: "On going")
       edition: Faker::Book.publisher,
       illustrations: ["dz2btx3jhn9pqpvpnolp", "dz2btx3jhn9pqpvpnolp", "dz2btx3jhn9pqpvpnolp"]
     )
+  filename = images.sample
+  b.cover_img.attach(io: File.open("app/assets/images/#{filename}"), filename: filename, content_type: "image/jpg")
+  b.save!
 }
 
 3.times {
   Genre.create(name: Faker::Book.genre)
 }
+
+puts 'Done'
+
+puts 'Creating collections...'
 
 Book.all.each do |book|
   BookGenre.create(
