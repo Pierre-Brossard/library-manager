@@ -4,6 +4,18 @@ class BooksController < ApplicationController
   def show
   end
 
+  def index
+    @books = current_user.books
+    if params[:query].present?
+      @books = PgSearch.multisearch(params[:query]).map {|doc| doc.searchable }.reject {|searchable| searchable.instance_of? Serie }
+    end
+
+    respond_to do |format|
+      format.html
+      format.text { render partial: "partials/index_list", locals: {books: @books}, formats: [:html] }
+    end
+  end
+
   def new
     @book = Book.new
   end
@@ -37,9 +49,6 @@ class BooksController < ApplicationController
     end
   end
 
-  def index
-    @books = current_user.books
-  end
 
   private
 
