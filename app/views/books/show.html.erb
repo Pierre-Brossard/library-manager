@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row">
     <% if @book.cover_url %>
-      <%= cl_image_tag @book.cover_url%>
+      <%= cl_image_tag @book.cover_url, height: 300%>
     <% elsif @book.cover_img %>
       <%= cl_image_tag @book.cover_img.key %>
     <% end %>
@@ -24,5 +24,38 @@
     </p>
     <p><%= @book.description %></p>
     <p><%= @book.isbn %></p>
+
+    <% if Collection.find_by(book_id: @book.id).comment %>
+      <div class="comment">
+        <p>
+          <%= Collection.find_by(book_id: @book.id).comment %>
+        </p>
+        <button
+          class="button open-modal"
+          data-modal-target=".my-modal"
+          >
+          Editer le commentaire
+        </button>
+      </div>
+
+    <% else %>
+      <button class="button open-modal">Ajouter un commentaire</button>
+    <% end %>
+
+    <%# modal de l'update / add form du comment de la collection  %>
+    <div class="modal my-modal" tabindex="-1" aria-labelledby="my-modal-title">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="my-modal-title">Commentaire</h5>
+          <button type="button" class="close-modal close-button" data-modal-target=".my-modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <%= render 'partials/collections/collection_form', collection: Collection.find_by(book_id: @book.id) %>
+        </div>
+        <div class="modal-footer">
+          <button class="button size-sm style-danger close-modal">Close</button>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
