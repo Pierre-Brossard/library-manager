@@ -1,0 +1,12 @@
+<div class="container">
+  <h1><%= @serie.name %></h1>
+  <h6><%= @serie.status %></h6>
+  <p> <%= @userBook[@serie.id] %> / <%= @serie.books_total %></p>
+  <div>
+    <% @serie.books.each do |book| %>
+      <%= render 'partials/books/book_card', book: book %>
+    <% end %>
+  </div>
+
+
+</div>
