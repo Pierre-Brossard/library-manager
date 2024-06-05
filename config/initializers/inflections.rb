@@ -17,4 +17,5 @@
 
 ActiveSupport::Inflector.inflections(:en) do |inflect|
   inflect.irregular "favorite_serie", "favorite_series"
+  inflect.irregular "serie", "series"
 end
