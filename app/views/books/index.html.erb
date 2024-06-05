@@ -1,9 +1,4 @@
-<div class="container">
-  <div class="row">
-    <div class="col">
-      <% @books.each do |book| %>
-        <%= render 'partials/books/book_card', book: book%>
-      <% end %>
-    </div>
-  </div>
-</div>
+
+<% @books.each do |book| %>
+  <%= render 'partials/books/book_card', book: book%>
+<% end %>
