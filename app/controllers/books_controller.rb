@@ -17,15 +17,15 @@ class BooksController < ApplicationController
       @book = Book.new(book_params)
       @book.release = Date.new(book_params[:release].to_i)
 
+      # je tente de créer la série voulue par l'auteur
+      if serie_params[:name]
+        @serie = Serie.create!(serie_params)
+        @book.serie = @serie
+      end
+
       unless @book.save!
         render :new, status: :unprocessable_entity
       end
-    end
-
-    # je tente de créer la série voulue par l'auteur
-    if serie_params[:name]
-      @serie = Serie.create(serie_params)
-      @book.serie = @serie
     end
 
     # je crée une nouvelle collection entre l'utilisateur et le book qui vient d'être créer

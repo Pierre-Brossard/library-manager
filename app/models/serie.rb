@@ -5,5 +5,4 @@ class Serie < ApplicationRecord
   STATUS = ['En cours', 'Terminée']
 
   validates :name, presence: true
-  validates :status, inclusion: {in: Serie::STATUS}
 end
