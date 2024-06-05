@@ -1,5 +1,5 @@
 class Book < ApplicationRecord
-  belongs_to :serie
+  belongs_to :serie, optional: true
   has_many :book_genres, dependent: :destroy
   has_many :genres, through: :book_genres
   has_many :collections

@@ -2,7 +2,7 @@
   <div class="row">
     <% if @book.cover_url %>
       <%= cl_image_tag @book.cover_url%>
-    <% elsif @book.cover_img %>
+    <% elsif @book.cover_img.attached? %>
       <%= cl_image_tag @book.cover_img.key %>
     <% end %>
   </div>
@@ -19,7 +19,7 @@
     <p><%= @book.author %></p>
     <p><%= @book.illustrator %></p>
     <p>
-      <%= link_to @book.serie.name, series_path(@book.serie) %>
+      <%= link_to @book.serie.name, serie_path(@book.serie) %>
       <span><%= @book.serie_number %>/<%= @book.serie.books_total %></span>
     </p>
     <p><%= @book.description %></p>
