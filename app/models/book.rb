@@ -15,4 +15,5 @@ class Book < ApplicationRecord
 
   validates :title, presence: true, uniqueness: true
   validates :book_type, presence: true, inclusion: { in: Book::TYPES }
+
 end
