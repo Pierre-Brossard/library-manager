@@ -1,0 +1,30 @@
+/* Styles pour la carte de livre */
+.book-little {
+  margin: 0 20px 0 10px;
+  font-size: 40px;
+  color: $blue;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+/* Styles pour les informations du livre */
+.little-book-series {
+  font-size: 14px;
+  line-height: 0.8em;
+  margin: 5px 0;
+}
+
+.little-badge {
+  background-color: $green;
+}
+
+/* Styles pour les actions */
+.little-book-actions {
+  display: flex;
+  flex-direction: row;
+  gap: 0.8em;
+  align-items: center;
+  justify-content: space-around;
+  margin-left: 20px;
+}

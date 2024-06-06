@@ -1,8 +1,9 @@
 <%# Stimulus controller pour cacher et révéler les infos des bouquins %>
-<div class="row border-bottom p-2" data-controller="book-content" data-action="click->book-content#visible">
-  <%# Partie visible par défaut, Stimulus target bookDefault %>
-  <div class="row" data-book-content-target="bookDefault">
-    <div class="col-4">
+<div class="" data-controller="book-content" data-action="click->book-content#visible">
+  <%# Partie cachée de la carte, Stimulus target bookInfos %>
+  <div class="card-open d-none book-card" data-book-content-target="bookInfos">
+
+    <div alt="<%= book.title %>" class="book-thumbnail">
       <%# si le cover_url contient l'image | ajouté en dur dans les seeds %>
       <% if book.cover_url %>
         <%= cl_image_tag book.cover_url%>
@@ -11,25 +12,53 @@
         <%= cl_image_tag book.cover_img.key %>
       <% end %>
     </div>
-    <div class="col-8">
-      <h3><%= book.title %></h3>
-      <p><%= book.author %></p>
+
+    <div class="book-info">
+        <h2 class="book-title"><%= book.title %></h2>
+        <%# Si série, il y a %>
+        <% if book.serie %>
+          <p class="book-series">n°<%= book.serie_number %> - <%= book.serie.name %></p>
+        <% end %>
+        <hr>
+        <div class="card-details">
+          <small>
+            <i><p class="book-author"><%= book.author %>, <%= book.illustrator %></p></i>
+            <p class="book-details">Date • Editeur</p>
+          </small>
+        </div>
+        <hr>
+        <div class="book-desc">
+          <p><strong>Description :</strong> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin rhoncus leo a nunc ullamcorper, quis facilisis ligula vestibulum. In hac habitasse platea dictumst. Quisque eleifend metus et tincidunt pretium. Phasellus nec interdum sapien, a tempor felis. Mauris ipsum orci, viverra vel rutrum eu, tempus mollis ex. Nunc venenatis viverra risus. Proin lobortis a enim a vehicula.</p>
+        </div>
+
+    </div>
+    <div class="book-genre">
+      <span class="badge big-badge green">Genre1</span>
+      <span class="badge big-badge blue">Genre2</span>
+      <span class="badge big-badge red">Genre3</span>
+    </div>
+    <div class="book-actions">
+        <button class="btn btn-favorite"><i class="fa-regular fa-heart"></i></btn>
+        <button class="btn btn-read"><i class="fa-regular fa-bookmark"></i></button>
     </div>
   </div>
-  <%# Partie cachée de la carte, Stimulus target bookInfos %>
-  <div class="row d-none" data-book-content-target="bookInfos">
-    <div class="col-6">
-      <h3><%= book.title %></h3>
-      <p><%= book.author %></p>
-      <p><%= book.illustrator %></p>
-      <p><%= book.release %></p>
+
+<%# Partie visible par défaut, Stimulus target bookDefault %>
+  <div class="card-close book-card" data-book-content-target="bookDefault">
+    <div class="book-little"><i class="fa-solid fa-book"></i></div>
+    <div class="book-info">
+        <h2 class="book-title"><%= book.title %></h2>
+        <% if book.serie %>
+          <p class="little-book-series">n°<%= book.serie_number %> - <%= book.serie.name %></p>
+        <% end %>
+        <span class="badge big-badge green">Genre1</span>
+        <span class="badge big-badge blue">Genre2</span>
+        <span class="badge big-badge red">Genre3</span>
     </div>
-    <div class="col-6">
-      <% if book.serie %>
-        <p><%= book.serie.name %></p>
-        <p><%= book.serie_number %></p>
-      <% end %>
-      <%= link_to 'Détails', book_path(book), class: 'btn btn-outline-warning' %>
+    <div class="little-book-actions">
+        <button class="btn btn-favorite"><i class="fa-regular fa-heart"></i></button>
+        <button class="btn btn-read"><i class="fa-regular fa-bookmark"></i></button>
     </div>
   </div>
+
 </div>
