@@ -21,6 +21,7 @@ class BooksController < ApplicationController
   end
 
   def create
+    raise
     # je vérifie si le livre existe déjà avec son titre
     @book = Book.find_by(title: book_params[:title])
 

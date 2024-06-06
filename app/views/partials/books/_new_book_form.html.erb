@@ -3,14 +3,12 @@
   <%= f.input :title %>
   <%= f.input :author %>
   <%= f.input :illustrator %>
+  <%= f.association :genres, as: :check_boxes %>
   <%= f.input :release, as: :integer, placeholder: '2000' %>
   <div data-controller="toggle-visible">
     <div class="row">
-      <div class="col-7">
-        <%= f.association :serie %>
-      </div>
-      <div class="col-1">
-        <h3 data-action='click->toggle-visible#toggle'>+</h3>
+      <div class="col-8">
+        <%= f.association :serie, data: { action:'change->toggle-visible#toggle'}%>
       </div>
       <div class="col-4">
         <%= f.input :serie_number %>
