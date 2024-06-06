@@ -19,26 +19,27 @@
         <% if book.serie %>
           <p class="book-series">n°<%= book.serie_number %> - <%= book.serie.name %></p>
         <% end %>
-        <hr>
+        <hr class="hr">
         <div class="card-details">
           <small>
             <i><p class="book-author"><%= book.author %>, <%= book.illustrator %></p></i>
             <p class="book-details">Date • Editeur</p>
           </small>
         </div>
-        <hr>
+        <hr class="hr">
         <div class="book-desc">
           <p><strong>Description :</strong> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin rhoncus leo a nunc ullamcorper, quis facilisis ligula vestibulum. In hac habitasse platea dictumst. Quisque eleifend metus et tincidunt pretium. Phasellus nec interdum sapien, a tempor felis. Mauris ipsum orci, viverra vel rutrum eu, tempus mollis ex. Nunc venenatis viverra risus. Proin lobortis a enim a vehicula.</p>
         </div>
 
     </div>
     <div class="book-genre">
-      <span class="badge big-badge green">Genre1</span>
-      <span class="badge big-badge blue">Genre2</span>
-      <span class="badge big-badge red">Genre3</span>
+      <span class="badge big-badge">Genre1</span>
+      <span class="badge big-badge">Genre2</span>
+      <span class="badge big-badge">Genre3</span>
     </div>
     <div class="book-actions">
-        <button class="btn btn-favorite"><i class="fa-regular fa-heart"></i></btn>
+        <button class="btn btn-details"><i class="fa-solid fa-circle-info"></i></button>
+        <button class="btn btn-favorite"><i class="fa-regular fa-heart"></i></button>
         <button class="btn btn-read"><i class="fa-regular fa-bookmark"></i></button>
     </div>
   </div>
@@ -56,8 +57,9 @@
         <span class="badge big-badge red">Genre3</span>
     </div>
     <div class="little-book-actions">
-        <button class="btn btn-favorite"><i class="fa-regular fa-heart"></i></button>
-        <button class="btn btn-read"><i class="fa-regular fa-bookmark"></i></button>
+      <button class="btn btn-details"><i class="fa-solid fa-circle-info"></i></button>
+      <button class="btn btn-favorite"><i class="fa-regular fa-heart"></i></button>
+      <button class="btn btn-read"><i class="fa-regular fa-bookmark"></i></button>
     </div>
   </div>
 
