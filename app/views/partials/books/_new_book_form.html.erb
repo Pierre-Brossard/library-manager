@@ -3,8 +3,11 @@
   <%= f.input :title %>
   <%= f.input :author %>
   <%= f.input :illustrator %>
-  <%= f.association :genres, as: :check_boxes %>
+
+  <%= f.collection_check_boxes :genres, Genre.all, :id, :name %>
+
   <%= f.input :release, as: :integer, placeholder: '2000' %>
+
   <div data-controller="toggle-visible">
     <div class="row">
       <div class="col-8">
@@ -18,6 +21,7 @@
       <input class="form-control string optional" type="text" name="serie[name]">
     </div>
   </div>
+
   <%= f.input :description %>
   <%= f.input :edition %>
   <%= f.input :cover_img, as: :file %>

@@ -18,10 +18,10 @@ class BooksController < ApplicationController
 
   def new
     @book = Book.new
+    @book.genres.build
   end
 
   def create
-    raise
     # je vérifie si le livre existe déjà avec son titre
     @book = Book.find_by(title: book_params[:title])
 
@@ -31,9 +31,13 @@ class BooksController < ApplicationController
       @book.release = Date.new(book_params[:release].to_i)
 
       # je tente de créer la série voulue par l'auteur
-      if serie_params[:name]
-        @serie = Serie.create!(serie_params)
+      if serie_params[:name] != ''
+        @serie = Serie.create_or_find_by!(serie_params)
         @book.serie = @serie
+      end
+
+      params[:book][:genres][1..].each do |genre_id|
+        BookGenre.create!(book: @book, genre_id: genre_id.to_i)
       end
 
       unless @book.save!
