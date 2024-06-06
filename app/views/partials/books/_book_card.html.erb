@@ -38,9 +38,9 @@
       <% end %>
     </div>
     <div class="book-actions">
-        <button class="btn btn-details"><i class="fa-solid fa-circle-info"></i></button>
-        <button class="btn btn-favorite"><i class="fa-regular fa-heart"></i></button>
-        <button class="btn btn-read"><i class="fa-regular fa-bookmark"></i></button>
+        <button class="btn btn-details" data-action="click->book-content#stop_bubbling"><i class="fa-solid fa-circle-info"></i></button>
+        <button class="btn btn-favorite" data-action="click->book-content#stop_bubbling"><i class="fa-regular fa-heart"></i></button>
+        <button class="btn btn-read" data-action="click->book-content#stop_bubbling"><i class="fa-regular fa-bookmark"></i></button>
     </div>
   </div>
 
@@ -57,9 +57,9 @@
       <% end %>
     </div>
     <div class="little-book-actions">
-      <button class="btn btn-details"><i class="fa-solid fa-circle-info"></i></button>
-      <button class="btn btn-favorite"><i class="fa-regular fa-heart"></i></button>
-      <button class="btn btn-read"><i class="fa-regular fa-bookmark"></i></button>
+      <button class="btn btn-details" data-action="click->book-content#stop_bubbling"><i class="fa-solid fa-circle-info"></i></button>
+      <button class="btn btn-favorite" data-action="click->book-content#stop_bubbling"><i class="fa-regular fa-heart"></i></button>
+      <button class="btn btn-read" data-action="click->book-content#stop_bubbling"><i class="fa-regular fa-bookmark"></i></button>
     </div>
   </div>
 

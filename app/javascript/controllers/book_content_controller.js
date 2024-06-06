@@ -9,4 +9,7 @@ export default class extends Controller {
     this.bookDefaultTarget.classList.toggle("d-none");
   }
 
+  stop_bubbling(event) {
+    event.stopPropagation()
+  }
 }
