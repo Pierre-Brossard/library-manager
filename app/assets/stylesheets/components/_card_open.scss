@@ -36,6 +36,7 @@
 /* Styles pour les informations du livre */
 .book-info {
   flex: 1;
+  min-width: 0;
 }
 
 .book-title {
@@ -43,9 +44,9 @@
   font-weight: 900;
   margin: 0;
   text-transform: uppercase;
-  // text-overflow: ellipsis;
-  // overflow: hidden;
-  // white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
 }
 
 .book-series {
@@ -53,6 +54,9 @@
   font-weight: bold;
   line-height: 0.8em;
   margin: 5px 0;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 
 .book-author,
@@ -60,21 +64,28 @@
   font-size: 14px;
   line-height: 0.8em;
   margin: 5px 0;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 
 .book-desc {
   height: 50px;
   width: 100%;
+  min-width: 0;
   font-size: 14px;
   line-height: 1em;
-  overflow: hidden;
-  // white-space: nowrap;
-  text-overflow: ellipsis;
+
+  p {
+    margin: 0;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
 }
 
 .card-details {
-  display: flex;
-  flex-direction: flex-end;
+  min-width: 0;
 }
 
 .book-genre {
@@ -148,7 +159,7 @@
 
 hr {
   opacity: 0.4;
-  margin: 0.5em 0;
+  margin: 0.2em 0;
 }
 
 .red{
