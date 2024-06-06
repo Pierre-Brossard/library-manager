@@ -12,6 +12,7 @@
   width: 100%;
   box-sizing: border-box;
   position: relative;
+  z-index: 1;
 
   h2 {
     font-size: 1em;
@@ -101,6 +102,7 @@
   gap: 0.5em;
   justify-content: space-around;
   margin: 0 0 20px 10px;
+  z-index: 2;
 }
 
 .btn {
