@@ -2,6 +2,7 @@ class BooksController < ApplicationController
   before_action :set_book, only: [:show]
 
   def show
+    @collection = Collection.find_by(book_id: @book.id)
   end
 
   def new

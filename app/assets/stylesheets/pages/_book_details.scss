@@ -1,0 +1,22 @@
+.card-image {
+  height: auto !important;
+}
+
+.book-details-card {
+  --flatify__card-border-color: none;
+  margin: 0 auto;
+}
+
+.custom-badge {
+  width: 50px;
+}
+
+.comment-title-button {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  h6 {
+    display: block;
+    margin-right: 1em;
+  }
+}
