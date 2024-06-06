@@ -33,9 +33,9 @@
 
     </div>
     <div class="book-genre">
-      <span class="badge big-badge">Genre1</span>
-      <span class="badge big-badge">Genre2</span>
-      <span class="badge big-badge">Genre3</span>
+      <% book.genres.each do |genre| %>
+        <span class="badge big-badge"><%= genre.name %></span>
+      <% end %>
     </div>
     <div class="book-actions">
         <button class="btn btn-details"><i class="fa-solid fa-circle-info"></i></button>
@@ -48,13 +48,13 @@
   <div class="card-close book-card" data-book-content-target="bookDefault">
     <div class="book-little"><i class="fa-solid fa-book"></i></div>
     <div class="book-info">
-        <h2 class="book-title"><%= book.title %></h2>
-        <% if book.serie %>
-          <p class="little-book-series">n°<%= book.serie_number %> - <%= book.serie.name %></p>
-        <% end %>
-        <span class="badge big-badge green">Genre1</span>
-        <span class="badge big-badge blue">Genre2</span>
-        <span class="badge big-badge red">Genre3</span>
+      <h2 class="book-title"><%= book.title %></h2>
+      <% if book.serie %>
+        <p class="little-book-series">n°<%= book.serie_number %> - <%= book.serie.name %></p>
+      <% end %>
+      <% book.genres.each do |genre| %>
+        <span class="badge big-badge"><%= genre.name %></span>
+      <% end %>
     </div>
     <div class="little-book-actions">
       <button class="btn btn-details"><i class="fa-solid fa-circle-info"></i></button>
