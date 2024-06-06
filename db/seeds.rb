@@ -54,10 +54,12 @@ puts 'Done'
 puts 'Creating collections...'
 
 Book.all.each do |book|
-  BookGenre.create(
-    book: book,
-    genre: Genre.all.sample
-  )
+  (1 + rand(2)).times do
+    BookGenre.create(
+      book: book,
+      genre: Genre.all.sample
+    )
+  end
 
   Collection.create(
     comment: Faker::Lorem.sentence(word_count: 15),
