@@ -1,30 +1,74 @@
-<%= simple_form_for book do |f| %>
-  <%= f.input :book_type, collection: Book::TYPES %>
-  <%= f.input :title %>
-  <%= f.input :author %>
-  <%= f.input :illustrator %>
-
-  <%= f.collection_check_boxes :genres, Genre.all, :id, :name %>
-
-  <%= f.input :release, as: :integer, placeholder: '2000' %>
-
-  <div data-controller="toggle-visible">
+<%= simple_form_for book, html: { class: 'new-book-form', data: {controller: 'new-book-form'}} do |f| %>
+  <div class="form-block">
     <div class="row">
       <div class="col-8">
-        <%= f.association :serie, data: { action:'change->toggle-visible#toggle'}%>
+        <%= f.input :book_type,
+          label: 'Type',
+          prompt: 'Choisissez un type..',
+          collection: Book::TYPES,
+          input_html: { data: { action:'change->new-book-form#toggle_illustrator' } }
+        %>
       </div>
       <div class="col-4">
-        <%= f.input :serie_number %>
+        <%= f.input :release,
+          as: :integer,
+          label: 'Sortie',
+          placeholder: '2000',
+          input_html: {value: 2000}
+        %>
       </div>
     </div>
-    <div class="container p-2 d-none" data-toggle-visible-target='hidden'>
-      <input class="form-control string optional" type="text" name="serie[name]">
-    </div>
+
+    <%= f.input :title,
+      label: false,
+      placeholder: 'Titre*'
+    %>
+    <%= f.input :author,
+      label: false,
+      placeholder: 'Auteur.trice'
+    %>
+    <%= f.input :illustrator,
+      label: false,
+      placeholder: 'Illustrateur.trice',
+      wrapper_html: {
+        data: { new_book_form_target: 'illustrator' }
+      }
+    %>
+    <%= f.input :edition, label: false, placeholder: 'Edition' %>
   </div>
 
-  <%= f.input :description %>
-  <%= f.input :edition %>
-  <%= f.input :cover_img, as: :file %>
+  <div class='p-3 form-block'>
+    <%= f.association :genres, as: :check_boxes,
+      input_html: {class: 'book-genre-input-button'},
+      item_wrapper_class: 'genre-wrapper'
+    %>
+  </div>
 
-  <%= f.submit 'Ajouter' %>
+
+  <div class='form-block'>
+    <div class="row">
+      <div class="col-8">
+        <%= f.association :serie,
+          label: 'Série',
+          prompt: 'Ajouter une série...',
+          input_html: { data: { action:'change->new-book-form#toggle_serie' } }
+        %>
+      </div>
+      <div class="col-4">
+        <%= f.input :serie_number, label: 'N°' %>
+      </div>
+    </div>
+    <div class="container p-2" data-new-book-form-target='serie'>
+      <input class="form-control string optional" type="text" name="serie[name]" placeholder="Nom de la série">
+    </div>
+  </div>
+  <div class="form-block">
+    <%= f.input :description, label: false, placeholder: 'Description', input_html: {class: 'mb-0 h-100'} %>
+  </div>
+  <div class="form-block">
+    <%= f.input :cover_img, as: :file, label: 'Image de couverture', input_html: {class: 'mb-0'} %>
+  </div>
+  <div class='d-flex justify-content-end'>
+    <%= f.submit 'Ajouter', class: 'button size-2x style-green' %>
+  </div>
 <% end %>

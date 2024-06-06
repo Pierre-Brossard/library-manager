@@ -17,7 +17,7 @@ class BooksController < ApplicationController
   end
 
   def new
-    @book = Book.new
+    @book = @book || Book.new
     @book.genres.build
   end
 
@@ -36,19 +36,21 @@ class BooksController < ApplicationController
         @book.serie = @serie
       end
 
-      params[:book][:genres][1..].each do |genre_id|
-        BookGenre.create!(book: @book, genre_id: genre_id.to_i)
-      end
-
-      unless @book.save!
-        render :new, status: :unprocessable_entity
-      end
+      # si je ne peux pas enregistrer le livre,
+      @book.save
     end
 
     # je crée une nouvelle collection entre l'utilisateur et le book qui vient d'être créer
-    @collection = Collection.new(user: current_user, book: @book)
-    if @collection.save
-      redirect_to new_book_path
+    if @book.id
+      # je crée les associations livre - genre
+      params[:book][:genre_ids][1..].each do |genre_id|
+        BookGenre.create!(book: @book, genre_id: genre_id.to_i)
+      end
+
+      @collection = Collection.new(user: current_user, book: @book)
+      if @collection.save
+        redirect_to new_book_path
+      end
     else
       render :new, status: :unprocessable_entity
     end
