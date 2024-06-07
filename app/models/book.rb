@@ -11,6 +11,11 @@ class Book < ApplicationRecord
   include PgSearch::Model
   multisearchable against: [:title, :author, :illustrator]
 
+  pg_search_scope :global_search,
+    against: [:title, :author, :illustrator],
+    associated_against: {serie: :name, genres: :name},
+    using: {trigram: {}, tsearch: {prefix: true}}
+
   validates :title, presence: true, uniqueness: true
   validates :book_type, presence: true, inclusion: { in: Book::TYPES }
 
