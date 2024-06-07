@@ -1,0 +1,27 @@
+.title-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: $blue;
+  padding: 2em 2em 5em 2em;
+  border-bottom-left-radius: 2em;
+  border-bottom-right-radius: 2em;
+  box-shadow: 0 5px #4285f4;
+  margin-bottom: 2em;
+
+  .header-icons {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.5em;
+    align-items: center;
+    width: calc(100vw - 3em);
+  }
+
+  h2 {
+    color: #ffff;
+    text-align: center;
+  }
+  i {
+    font-size: 2em;
+  }
+}
