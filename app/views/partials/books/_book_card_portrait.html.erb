@@ -1,0 +1,20 @@
+<div class="portrait">
+  <div class="book-thumbnail">
+    <% if book.cover_url %>
+        <%= cl_image_tag book.cover_url %>
+    <% elsif book.cover_img.attached? %>
+        <%= cl_image_tag book.cover_img.key %>
+    <% end %>
+  </div>
+  <div class="book-info">
+    <h2 class="book-title"><%= book.title %></h2>
+    <% if book.serie %>
+        <p class="book-series">n°<%= book.serie_number %> - <%= book.serie.name %></p>
+    <% end %>
+  </div>
+  <div class="book-actions">
+    <%= link_to book_path(book) do %>
+        <div class="btn btn-details" data-action="click->book-content#stop_bubbling"><i class="fa-solid fa-circle-info"></i></div>
+    <% end %>
+  </div>
+</div>
