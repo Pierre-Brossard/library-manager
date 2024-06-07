@@ -1,7 +1,7 @@
 <nav class="nav" data-controller="navbar">
   <ul class="nav-links">
     <li class="nav-item">
-      <%= link_to user_path(current_user), data: { action: "click->navbar#active", navbar_target: "link" } do %>
+      <%= link_to root_path, data: { action: "click->navbar#active", navbar_target: "link" } do %>
         <i class="fa-solid fa-house"></i>
       <% end %>
     </li>

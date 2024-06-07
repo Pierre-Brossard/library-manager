@@ -12,9 +12,4 @@
         <p class="book-series">n°<%= book.serie_number %> - <%= book.serie.name %></p>
     <% end %>
   </div>
-  <div class="book-actions">
-    <%= link_to book_path(book) do %>
-        <div class="btn btn-details" data-action="click->book-content#stop_bubbling"><i class="fa-solid fa-circle-info"></i></div>
-    <% end %>
-  </div>
 </div>
