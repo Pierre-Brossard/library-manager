@@ -1,49 +1,66 @@
-<div class="container">
-  <div class="row">
-    <% if @book.cover_url %>
-      <%= cl_image_tag @book.cover_url, height:300 %>
-    <% elsif @book.cover_img.attached? %>
-      <%= cl_image_tag @book.cover_img.key, height: 300 %>
+<div class="title-card">
+  <div class="header-icons">
+    <%= link_to '<i class="fa-solid fa-chevron-left" style="color: #ffffff;"></i>'.html_safe, books_path, class: "back-button" %>
+
+    <% if @collection.is_favorited %>
+      <%= link_to '<i class="fa-solid fa-heart" style="color: #c81e26;"></i>'.html_safe, book_path(@book) %>
+    <% else %>
+      <%= link_to '<i class="fa-regular fa-heart" style="color: #ffffff;"></i>'.html_safe, book_path(@book) %>
     <% end %>
   </div>
-  <div class="row mt-4">
-    <div class="col-9">
+    <h2 class="card-title"><%= @book.title %></h2>
+</div>
 
-      <h2><%= @book.title %></h2>
-    </div>
-    <div class="col-3">
-    <p><%= @book.release.year %></p>
-    </div>
-  </div>
-  <div class="row">
-    <p><%= @book.author %></p>
-    <p><%= @book.illustrator %></p>
-    <p>
-      <%= link_to @book.serie.name, serie_path(@book.serie) %>
-      <span><%= @book.serie_number %>/<%= @book.serie.books_total %></span>
-    </p>
-    <p><%= @book.description %></p>
-    <p><%= @book.isbn %></p>
+<div class="container">
+  <article class="card book-details-card" style="min-width: 350px">
+    <header class="card-header">
+      <div class="card-badges">
+        <% if @collection.is_read %>
+          <a href="#" class="badge style-green custom-badge">Lu</a>
+        <% else %>
+          <a href="#" class="badge style-red custom-badge">A lire</a>
+        <% end %>
+      </div>
+      <% if @book.cover_url %>
+        <%= cl_image_tag @book.cover_url, height:300, class: "card-image" %>
+      <% elsif @book.cover_img.attached? %>
+        <%= cl_image_tag @book.cover_img.key, height: 300, class: "card-image" %>
+      <% end %>
+    </header>
+    <div class="card-body">
+      <%# section info du livre %>
+      <div class="outline-box">
+        <div class="row">
+          <h5 class="col-9">
+            <%= @book.author %>
+          </h5>
+          <div class="col-3">
+            <span><%= @book.serie_number %>/<%= @book.serie.books_total %></span>
+          </div>
+        </div>
 
-    <% if Collection.find_by(book_id: @book.id).comment %>
-      <div class="comment">
-        <p>
-          <%= Collection.find_by(book_id: @book.id).comment %>
-        </p>
-        <button
-          class="button open-modal"
-          data-modal-target=".my-modal"
-          >
-          Editer le commentaire
-        </button>
+        <div class="row mt-2">
+          <ul class="col-9">
+            <% @book.genres.each do |genre| %>
+              <li class="badge style-green">
+                <%= genre.name %>
+              </li>
+            <% end %>
+          </ul>
+          <p class="col-3">
+            <%= link_to @book.serie.name, serie_path(@book.serie) %>
+          </p>
+        </div>
+
+        <p><%= @book.release %></p>
+        <hr class="short style-green" />
+        <div class="book-description">
+          <h6>Description</h4>
+          <p><%= @book.description %></p>
+        </div>
       </div>
 
-    <% else %>
-      <button class="button open-modal">Ajouter un commentaire</button>
-    <% end %>
-
-    <%# modal de l'update / add form du comment de la collection  %>
-    <div class="modal my-modal" tabindex="-1" aria-labelledby="my-modal-title">
+      <div class="modal my-modal" tabindex="-1" aria-labelledby="my-modal-title">
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title" id="my-modal-title">Commentaire</h5>
@@ -57,5 +74,31 @@
         </div>
       </div>
     </div>
-  </div>
+
+      <%# section commentaire %>
+      <div class="comment mt-4 outline-box">
+        <% if @collection.comment == "" %>
+          <button
+            class="button open-modal"
+            data-modal-target=".my-modal"
+            >
+            Ajouter un commentaire
+          </button>
+         <% else %>
+          <div class="comment-title-button">
+            <h6>Commentaire</h6>
+            <button
+                class="button open-modal"
+                data-modal-target=".my-modal"
+                >
+                Editer
+            </button>
+          </div>
+          <p>
+            <%= @collection.comment %>
+          </p>
+        <% end %>
+      </div>
+    </div>
+  </article>
 </div>
