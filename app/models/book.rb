@@ -8,7 +8,10 @@ class Book < ApplicationRecord
   has_one_attached :cover_img
 
   TYPES = ['Roman', 'Manga', 'BD', 'Poesie']
+  include PgSearch::Model
+  multisearchable against: [:title, :author, :illustrator]
 
   validates :title, presence: true, uniqueness: true
   validates :book_type, presence: true, inclusion: { in: Book::TYPES }
+
 end

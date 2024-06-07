@@ -1,0 +1,47 @@
+.new-book-form {
+  padding: 1em;
+
+  .genre-wrapper {
+    display: inline-block;
+    color: $white;
+  }
+
+  .book-genre-input-button {
+    position: absolute;
+    transform: scale(0);
+  }
+
+  .book-genre-input-button + label {
+    cursor: pointer;
+    display: inline-block;
+    font-size: 0.7rem;
+    border-radius: 50rem;
+    padding: 0.2rem 0.5rem;
+    background-color: $blue;
+    color: $white;
+    margin-right: 0.6rem;
+    margin-bottom: 0.4rem;
+    font-weight: 600;
+  }
+
+  .form-check-input.is-valid ~ .form-check-label {
+    color: $white;
+  }
+
+  .form-check-input.is-invalid ~ .form-check-label {
+    color: $red;
+    background-color: $red;
+  }
+
+  .book-genre-input-button:checked + label {
+    background-color: $darkgreen;
+  }
+
+  .form-block {
+    width: 100%;
+    border: 2px solid $blue;
+    padding: 1em;
+    border-radius: 2em;
+    margin-bottom: 1em;
+  }
+}

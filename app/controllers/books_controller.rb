@@ -5,8 +5,21 @@ class BooksController < ApplicationController
     @collection = Collection.find_by(book_id: @book.id)
   end
 
+  def index
+    @books = current_user.books
+    if params[:query].present?
+      @books = PgSearch.multisearch(params[:query]).map {|doc| doc.searchable }.reject {|searchable| searchable.instance_of? Serie }
+    end
+
+    respond_to do |format|
+      format.html
+      format.text { render partial: "partials/index_list", locals: {books: @books}, formats: [:html] }
+    end
+  end
+
   def new
-    @book = Book.new
+    @book = @book || Book.new
+    @book.genres.build
   end
 
   def create
@@ -19,28 +32,31 @@ class BooksController < ApplicationController
       @book.release = Date.new(book_params[:release].to_i)
 
       # je tente de créer la série voulue par l'auteur
-      if serie_params[:name]
-        @serie = Serie.create!(serie_params)
+      if serie_params[:name] != ''
+        @serie = Serie.create_or_find_by!(serie_params)
         @book.serie = @serie
       end
 
-      unless @book.save!
-        render :new, status: :unprocessable_entity
-      end
+      # si je ne peux pas enregistrer le livre,
+      @book.save
     end
 
     # je crée une nouvelle collection entre l'utilisateur et le book qui vient d'être créer
-    @collection = Collection.new(user: current_user, book: @book)
-    if @collection.save
-      redirect_to new_book_path
+    if @book.id
+      # je crée les associations livre - genre
+      params[:book][:genre_ids][1..].each do |genre_id|
+        BookGenre.create!(book: @book, genre_id: genre_id.to_i)
+      end
+
+      @collection = Collection.new(user: current_user, book: @book)
+      if @collection.save
+        redirect_to new_book_path
+      end
     else
       render :new, status: :unprocessable_entity
     end
   end
 
-  def index
-    @books = current_user.books
-  end
 
   private
 

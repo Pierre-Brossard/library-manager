@@ -28,7 +28,7 @@ puts 'Creating books...'
 
 10.times{
   b = Book.new(
-      title: Faker::Book.title,
+      title: Faker::Book.unique.title,
       serie_number: rand(10),
       book_type: Book::TYPES.sample,
       serie: Serie.all.sample,
@@ -45,8 +45,8 @@ puts 'Creating books...'
   b.save!
 }
 
-3.times {
-  Genre.create(name: Faker::Book.genre)
+15.times {
+  Genre.create(name: Faker::Book.unique.genre)
 }
 
 puts 'Done'
@@ -54,10 +54,12 @@ puts 'Done'
 puts 'Creating collections...'
 
 Book.all.each do |book|
-  BookGenre.create(
-    book: book,
-    genre: Genre.all.sample
-  )
+  (1 + rand(2)).times do
+    BookGenre.create(
+      book: book,
+      genre: Genre.all.sample
+    )
+  end
 
   Collection.create(
     comment: Faker::Lorem.sentence(word_count: 15),
@@ -74,3 +76,5 @@ User.all.each do |user|
     serie: Serie.all.sample
   )
 end
+
+puts 'Done'
