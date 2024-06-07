@@ -26,6 +26,11 @@
       <% elsif @book.cover_img.attached? %>
         <%= cl_image_tag @book.cover_img.key, height: 300, class: "card-image" %>
       <% end %>
+
+      <%= link_to '<button class="button size-sm style-danger">Supprimer</button>'.html_safe,
+      book_collection_path(@book.collections),
+      data: {turbo_method: :delete, turbo_confirm: "Etez vous sur ?"}
+      %>
     </header>
     <div class="card-body">
       <%# section info du livre %>
@@ -47,9 +52,11 @@
               </li>
             <% end %>
           </ul>
-          <p class="col-3">
-            <%= link_to @book.serie.name, serie_path(@book.serie) %>
-          </p>
+          <% if @book.serie %>
+            <p class="col-3">
+              <%= link_to @book.serie.name, serie_path(@book.serie) %>
+            </p>
+          <% end %>
         </div>
 
         <p><%= @book.release %></p>

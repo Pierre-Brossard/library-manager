@@ -1,5 +1,8 @@
 require 'faker'
 
+INITIAL_GENRES = ['Fantasy', 'Science-fiction', 'Romance', 'Histoire', 'Shonen', 'Seinen', 'Shoujo', 'Jeunesse', 'Fantastique', 'Biographie', 'Thriller', 'Policier', 'Mélo', 'Conte']
+
+
 puts 'Destroying all instances...'
 
 User.destroy_all
@@ -16,11 +19,11 @@ images = ['cityoforange.jpeg', 'dune.jpeg', 'greatgatsby.jpeg', 'lotr.jpeg']
 
 puts 'Creating users and series...'
 
-User.create(nickname: "John", email: "john@gmail.com", password: 123456, public: true)
+john = User.create(nickname: "John", email: "john@gmail.com", password: 123456, public: true)
 User.create(nickname: "Maria", email: "maria@gmail.com", password: 123456)
 
-Serie.create(name: "Serie 1", books_total: 5, status: "Finished")
-Serie.create(name: "Serie 2", books_total: 5, status: "On going")
+Serie.create(name: "Super série", books_total: 7, status: "Terminée")
+Serie.create(name: "Mauvaise série", books_total: 5, status: 'En cours')
 
 puts 'Done'
 
@@ -45,8 +48,8 @@ puts 'Creating books...'
   b.save!
 }
 
-15.times {
-  Genre.create(name: Faker::Book.unique.genre)
+INITIAL_GENRES.each { |name|
+  Genre.create(name: name)
 }
 
 puts 'Done'
@@ -76,5 +79,73 @@ User.all.each do |user|
     serie: Serie.all.sample
   )
 end
+
+puts 'Done'
+
+puts 'other seeds'
+
+croisee_serie = Serie.create(name: "À la croisée des mondes", books_total: 3, status: "Terminée")
+
+cr = Book.new({
+  title: 'Les Royaumes du Nord',
+  serie_number: 1,
+  book_type: 'Roman',
+  serie: croisee_serie,
+  description: "Élevée dans le très austère Jordan College à Oxford, Lyra Belacqua accompagnée de son dæmon Pantalaimon, apprend accidentellement l'existence de la Poussière, une étrange particule élémentaire que le Magisterium (l'organe exécutif de l'Église) pense être la conséquence du Péché originel.",
+  author: 'Philip Pullman',
+  release: Date.new(1998),
+  edition: 'Gallimard'
+})
+cr.cover_img.attach(io: File.open("app/assets/images/croisee1.jpg"), filename: 'croisee1', content_type: "image/jpg")
+cr.save!
+Collection.create(
+    comment: Faker::Lorem.sentence(word_count: 15),
+    is_read: [false, true].sample,
+    is_favorited: [false, true].sample,
+    book: cr,
+    user: john
+  )
+
+cr = Book.create({
+  title: 'La Tour des anges',
+  serie_number: 2,
+  book_type: 'Roman',
+  serie: croisee_serie,
+  description: "Lyra entre dans un autre monde, celui de Cittàgazze, dont les adultes sont absents à cause de créatures mangeuses d'âmes appelées Spectres qui ont pour cibles tous les humains ayant passé la puberté. Ici, Lyra rencontre Will Parry, un garçon de douze ans qui vient de notre monde et qui est arrivé dans celui-ci après avoir tué accidentellement un homme pour protéger sa mère malade.",
+  author: 'Philip Pullman',
+  release: Date.new(2000),
+  edition: 'Gallimard'
+})
+cr.cover_img.attach(io: File.open("app/assets/images/croisee2.jpg"), filename: 'croisee2', content_type: "image/jpg")
+cr.save!
+
+Collection.create(
+    comment: Faker::Lorem.sentence(word_count: 15),
+    is_read: [false, true].sample,
+    is_favorited: [false, true].sample,
+    book: cr,
+    user: john
+  )
+
+cr = Book.create({
+  title: "Le Miroir d'ambre",
+  serie_number: 3,
+  book_type: 'Roman',
+  serie: croisee_serie,
+  description: "Will décide de partir à la recherche de Lyra, qui est retenue prisonnière par sa mère Mme Coulter en Himalaya. Il rencontre au cours de son périple Iorek Byrnison avec qui il va chercher Lyra. Avec l'aide d'une fille de la région, Ama, ils arrachent Lyra des griffes de Mme Coulter, pour ensuite entamer un voyage au royaume des morts. Ils découpent une fenêtre dans ce monde, pour laisser les fantômes des morts s'échapper et faire de nouveau corps avec la nature. ",
+  author: 'Philip Pullman',
+  release: Date.new(2001),
+  edition: 'Gallimard'
+})
+cr.cover_img.attach(io: File.open("app/assets/images/croisee3.jpg"), filename: 'croisee3', content_type: "image/jpg")
+cr.save!
+
+Collection.create(
+    comment: Faker::Lorem.sentence(word_count: 15),
+    is_read: [false, true].sample,
+    is_favorited: [false, true].sample,
+    book: cr,
+    user: john
+  )
 
 puts 'Done'

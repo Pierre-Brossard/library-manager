@@ -70,17 +70,15 @@
 }
 
 .book-desc {
-  width: 100%;
-  min-width: 0;
-
+  min-width: 0px;
   p {
     font-size: 1em;
     line-height: 1.2em;
     margin: 0;
     max-height: 60px;
-    overflow-y: hidden;
     // white-space: nowrap;
     text-overflow: ellipsis;
+    overflow-x: hidden;
   }
 }
 

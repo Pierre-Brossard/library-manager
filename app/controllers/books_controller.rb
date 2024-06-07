@@ -8,7 +8,8 @@ class BooksController < ApplicationController
   def index
     @books = current_user.books
     if params[:query].present?
-      @books = PgSearch.multisearch(params[:query]).map {|doc| doc.searchable }.reject {|searchable| searchable.instance_of? Serie }
+      # @books = PgSearch.multisearch(params[:query]).map {|doc| doc.searchable }.reject {|searchable| searchable.instance_of? Serie }
+      @books = Book.global_search(params[:query])
     end
 
     respond_to do |format|
@@ -56,7 +57,6 @@ class BooksController < ApplicationController
       render :new, status: :unprocessable_entity
     end
   end
-
 
   private
 
