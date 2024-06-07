@@ -1,1 +1,57 @@
-<h1>BookBuddy</h1>
+<div class="title-card">
+  <h1>BookBuddy</h1>
+  <h2><%= current_user.nickname %></h2>
+</div>
+
+<div class="container">
+  <div class="profile">
+    <div class="wishlist">
+      <h2>Wishlist</h2>
+      <div class="wishlist-cards">
+
+      </div>
+    </div>
+    
+    <div class="user">
+      <div class="avatar">
+        <img src="avatar.jpg" alt="Avatar">
+      </div>
+      <div class="user-infos">
+        <h2>Nickname</h2>
+        <p>Email: example@example.com</p>
+        <button class="edit-profile">Editer</button>
+        <button class="delete-profile">Supprimer le profil</button>
+      </div>
+    </div>
+    <div class="stats">
+      <h2>Stats</h2>
+      <div class="stats-grid">
+        <div class="stat-item">Albums: <span>10</span></div>
+        <div class="stat-item">Séries: <span>5</span></div>
+        <div class="stat-item">Séries suivies: <span>3</span></div>
+        <div class="stat-item">Livres en attente: <span>8</span></div>
+      </div>
+    </div>
+    <div class="buttons">
+      <button class="go-to-wishlist">Aller à la wishlist</button>
+      <button class="go-to-favorites">Aller à mes favoris</button>
+    </div>
+    <div class="transactions">
+      <h2>Prêt en cours</h2>
+      <ul class="transaction-list">
+        <li><span class="transaction-type borrowed">Emprunté</span>
+          <ul class="borrowed">
+            <li>Titre du livre emprunté</li>
+          </ul>
+        </li>
+        <li><span class="transaction-type lent">Prêté</span>
+          <ul class="lent">
+            <li>Titre du livre prêté - Pierre</li>
+            <li>Titre du livre prêté - Louis</li>
+            <li>Titre du livre prêté - Renaud</li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
