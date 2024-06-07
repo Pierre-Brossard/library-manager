@@ -19,7 +19,7 @@
       <div class="card-details">
         <small>
           <i><p class="book-author"><%= book.author %>, <%= book.illustrator %></p></i>
-          <p class="book-details">Date • Editeur</p>
+          <p class="book-details"><%= book.release if book.release %> • <%= book.edition if book.edition %></p>
         </small>
       </div>
       <hr class="hr">
