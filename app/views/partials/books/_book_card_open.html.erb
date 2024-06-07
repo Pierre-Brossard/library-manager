@@ -19,14 +19,13 @@
       <div class="card-details">
         <small>
           <i><p class="book-author"><%= book.author %>, <%= book.illustrator %></p></i>
-          <p class="book-details">Date • Editeur</p>
+          <p class="book-details"><%= book.release if book.release %> • <%= book.edition if book.edition %></p>
         </small>
       </div>
       <hr class="hr">
       <div class="book-desc">
-        <p><strong>Description :</strong> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin rhoncus leo a nunc ullamcorper, quis facilisis ligula vestibulum. In hac habitasse platea dictumst. Quisque eleifend metus et tincidunt pretium. Phasellus nec interdum sapien, a tempor felis. Mauris ipsum orci, viverra vel rutrum eu, tempus mollis ex. Nunc venenatis viverra risus. Proin lobortis a enim a vehicula.</p>
+        <p><strong>Description :</strong> <%= book.description %></p>
       </div>
-
   </div>
   <div class="book-genre">
     <% book.genres.each do |genre| %>
