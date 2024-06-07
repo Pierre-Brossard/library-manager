@@ -1,12 +1,14 @@
 <div class="title-card">
+  <div class="header-icons">
     <%= link_to '<i class="fa-solid fa-chevron-left" style="color: #ffffff;"></i>'.html_safe, books_path, class: "back-button" %>
-    <h2 class="card-title"><%= @book.title %></h2>
 
     <% if @collection.is_favorited %>
       <%= link_to '<i class="fa-solid fa-heart" style="color: #c81e26;"></i>'.html_safe, book_path(@book) %>
     <% else %>
       <%= link_to '<i class="fa-regular fa-heart" style="color: #ffffff;"></i>'.html_safe, book_path(@book) %>
     <% end %>
+  </div>
+    <h2 class="card-title"><%= @book.title %></h2>
 </div>
 
 <div class="container">
@@ -58,6 +60,21 @@
         </div>
       </div>
 
+      <div class="modal my-modal" tabindex="-1" aria-labelledby="my-modal-title">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="my-modal-title">Commentaire</h5>
+          <button type="button" class="close-modal close-button" data-modal-target=".my-modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <%= render 'partials/collections/collection_form', collection: Collection.find_by(book_id: @book.id) %>
+        </div>
+        <div class="modal-footer">
+          <button class="button size-sm style-danger close-modal">Close</button>
+        </div>
+      </div>
+    </div>
+
       <%# section commentaire %>
       <div class="comment mt-4 outline-box">
         <% if @collection.comment == "" %>
@@ -70,7 +87,12 @@
          <% else %>
           <div class="comment-title-button">
             <h6>Commentaire</h6>
-            <button class="button open-modal" data-modal-target=".my-modal"><i class="fa-solid fa-pen"></i></button>
+            <button
+                class="button open-modal"
+                data-modal-target=".my-modal"
+                >
+                Editer
+            </button>
           </div>
           <p>
             <%= @collection.comment %>
@@ -79,19 +101,4 @@
       </div>
     </div>
   </article>
-</div>
-
-<div class="modal my-modal" tabindex="-1" aria-labelledby="my-modal-title">
-  <div class="modal-content">
-    <div class="modal-header">
-      <h5 class="modal-title" id="my-modal-title">Commentaire</h5>
-      <button type="button" class="close-modal close-button" data-modal-target=".my-modal" aria-label="Close"></button>
-    </div>
-    <div class="modal-body">
-      <%= render 'partials/collections/collection_form', collection: @collection %>
-    </div>
-    <div class="modal-footer">
-      <button class="button size-sm style-danger close-modal">Close</button>
-    </div>
-  </div>
 </div>
