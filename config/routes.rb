@@ -12,5 +12,6 @@ Rails.application.routes.draw do
   resources :books, only: [:index, :show, :new, :create]
   resources :collections, only: [:update,:destroy]
   resources :series, only: [:show, :index]
-  resources :users, only: [:index, :show]
+  resources :users, only: [:index, :show, :edit, :update, :destroy]
+
 end
