@@ -1,8 +1,8 @@
 <div data-controller="bar-code-reader">
 
   <div>
-    <a class="button" id="startButton">Start</a>
-    <a class="button" id="resetButton">Reset</a>
+    <a class="button" data-action="click->bar-code-reader#start" id="startButton">Start</a>
+    <a class="button" data-action="click->bar-code-reader#reset" id="resetButton">Reset</a>
   </div>
 
   <div>
@@ -16,5 +16,5 @@
   </div>
 
   <label>Result:</label>
-  <pre><code id="result"></code></pre>
+  <pre><code id="result" data-bar-code-reader-target="result" ></code></pre>
 </div>
