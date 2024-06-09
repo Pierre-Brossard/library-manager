@@ -10,13 +10,18 @@ class BooksController < ApplicationController
 
     if params[:query].present?
       @books = Book.global_search(params[:query])
-      end
-
-    unless (params[:all].present? && params[:all] == 'true')
-      @books = @books.with_user_id(current_user.id).all
     end
 
-    @books = @books.includes(:genres)
+    unless (params[:my].present? && params[:my] == 'false')
+      @books = @books.with_user_id(current_user.id)
+    end
+
+    if params[:genres].present? && params[:genres] != ""
+      @books = @books.filtered_by_genre(params[:genres].split(' '))
+    end
+
+    @books = @books.includes(:serie, :cover_img_blob)
+    @genres = Genre.all
     respond_to do |format|
       format.html
       format.text { render partial: "partials/index_list", locals: {books: @books}, formats: [:html] }

@@ -16,7 +16,8 @@ class Book < ApplicationRecord
   validates :book_type, presence: true, inclusion: { in: Book::TYPES }
 
   # Search scopes
-  scope :with_user_id, lambda{ |user_id| joins(:collections, :users).where(users: {id: user_id}) }
+  scope :with_user_id, lambda{ |user_id| joins(:users).where(users: {id: user_id}) }
+  scope :filtered_by_genre, lambda{ |genres| joins(:genres).where(genres: {name: genres}) }
 
   # PGSearch Methods
   include PgSearch::Model
@@ -24,6 +25,6 @@ class Book < ApplicationRecord
 
   pg_search_scope :global_search,
     against: [:title, :author, :illustrator],
-    associated_against: {serie: :name, genres: :name},
+    associated_against: {serie: :name},
     using: {trigram: {}, tsearch: {prefix: true}}
 end
