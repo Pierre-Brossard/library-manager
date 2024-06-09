@@ -6,7 +6,8 @@ class CollectionsController < ApplicationController
   end
 
   def create
-    raise
+    @book = Book.find(params[:book_id])
+    Collection.create(book: @book, user: current_user)
   end
 
   def destroy

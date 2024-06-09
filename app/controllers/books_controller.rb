@@ -52,7 +52,7 @@ class BooksController < ApplicationController
     respond_to do |format|
       format.html
       format.text { render partial: "partials/books/book_card_choice",
-        locals: {book: @book, collection: Collection.new(user: current_user, book: @book)},
+        locals: {book: @book, collection: Collection.new},
         formats: [:html] }
     end
 
