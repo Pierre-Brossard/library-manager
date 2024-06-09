@@ -1,4 +1,8 @@
 class Book < ApplicationRecord
+
+  TYPES = ['Roman', 'Manga', 'BD', 'Poesie']
+
+  # Active Records Associations
   belongs_to :serie, optional: true
   has_many :book_genres, dependent: :destroy
   has_many :genres, through: :book_genres
@@ -7,7 +11,14 @@ class Book < ApplicationRecord
 
   has_one_attached :cover_img
 
-  TYPES = ['Roman', 'Manga', 'BD', 'Poesie']
+  # ActiveRecords Validations
+  validates :title, presence: true, uniqueness: true
+  validates :book_type, presence: true, inclusion: { in: Book::TYPES }
+
+  # Search scopes
+  scope :with_user_id, lambda{ |user_id| joins(:collections, :users).where(users: {id: user_id}) }
+
+  # PGSearch Methods
   include PgSearch::Model
   multisearchable against: [:title, :author, :illustrator]
 
@@ -15,8 +26,4 @@ class Book < ApplicationRecord
     against: [:title, :author, :illustrator],
     associated_against: {serie: :name, genres: :name},
     using: {trigram: {}, tsearch: {prefix: true}}
-
-  validates :title, presence: true, uniqueness: true
-  validates :book_type, presence: true, inclusion: { in: Book::TYPES }
-
 end

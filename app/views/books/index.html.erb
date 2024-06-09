@@ -2,15 +2,18 @@
 <div data-controller='index-search'>
   <div class="title-card">
     <h2 class="card-title">Mes livres</h2>
-    <div class="search-bar">
-      <div class="">
-          <input  type="text"
-                  name="query"
-                  class="form-control"
-                  placeholder="Entrez un mot"
-                  data-index-search-target='input'
-                  data-action='input->index-search#search'>
+    <div class="filter-box">
+      <div class="search-bar">
+        <input
+          type="text"
+          name="query"
+          class="form-control"
+          placeholder="1Q84 or Chattam or fantasy..."
+          data-index-search-target='input'
+          data-action='input->index-search#search'>
       </div>
+      <input type='checkbox' name='all' data-index-search-target='all' data-action='input->index-search#search'>
+
     </div>
   </div>
   <div class='container'>

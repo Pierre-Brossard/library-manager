@@ -6,12 +6,17 @@ class BooksController < ApplicationController
   end
 
   def index
-    @books = current_user.books
+    @books = Book.all
+
     if params[:query].present?
-      # @books = PgSearch.multisearch(params[:query]).map {|doc| doc.searchable }.reject {|searchable| searchable.instance_of? Serie }
       @books = Book.global_search(params[:query])
+      end
+
+    unless (params[:all].present? && params[:all] == 'true')
+      @books = @books.with_user_id(current_user.id).all
     end
 
+    @books = @books.includes(:genres)
     respond_to do |format|
       format.html
       format.text { render partial: "partials/index_list", locals: {books: @books}, formats: [:html] }
