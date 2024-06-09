@@ -1,4 +1,4 @@
-<div class="card-open d-none book-card" data-book-content-target="bookInfos">
+<div class="card-open book-card">
   <div alt="<%= book.title %>" class="book-thumbnail">
     <%# si le cover_url contient l'image | ajouté en dur dans les seeds %>
     <% if book.cover_url %>
@@ -13,13 +13,13 @@
       <h2 class="book-title"><%= book.title %></h2>
       <%# Si série, il y a %>
       <% if book.serie %>
-        <p class="book-series">n°<%= book.serie_number %> - <%= book.serie.name %></p>
+        <p class="book-series">N°<%= book.serie_number %> - <%= book.serie.name %></p>
       <% end %>
       <hr class="hr">
       <div class="card-details">
         <small>
           <i><p class="book-author"><%= book.author %>, <%= book.illustrator %></p></i>
-          <p class="book-details"><%= book.release if book.release %> • <%= book.edition if book.edition %></p>
+          <p class="book-details"><%= book.release.strftime('Y') if book.release %> • <%= book.edition if book.edition %></p>
         </small>
       </div>
       <hr class="hr">
@@ -33,10 +33,9 @@
     <% end %>
   </div>
   <div class="book-actions">
-    <%= link_to book_path(book) do %>
-      <div class="btn btn-details" data-action="click->book-content#stop_bubbling"><i class="fa-solid fa-circle-info"></i></div>
+    <%= simple_form_for collection do |f| %>
+      <%= f.submit 'Ajouter à ma collection'%>
     <% end %>
-      <div class="btn btn-favorite" data-action="click->book-content#stop_bubbling"><i class="fa-regular fa-heart"></i></div>
-      <div class="btn btn-read" data-action="click->book-content#stop_bubbling"><i class="fa-regular fa-bookmark"></i></div>
+    <%# <button data-action="bar-code-reader#addToCollection">Ajouter à ma collection</button> %>
   </div>
 </div>

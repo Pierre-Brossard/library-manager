@@ -4,7 +4,7 @@ import "@zxing/library";
 
 // Connects to data-controller="bar-code-reader"
 export default class extends Controller {
-  static targets = ['sourceSelect', 'sourceSelectPanel', 'result']
+  static targets = ['sourceSelect', 'sourceSelectPanel', "start", "reset", "videoWrapper", "tempBook"]
 
   connect() {
     let selectedDeviceId;
@@ -13,8 +13,8 @@ export default class extends Controller {
     this.codeReader
       .getVideoInputDevices()
       .then((videoInputDevices) => {
-        selectedDeviceId = videoInputDevices[0].deviceId;
-        if (videoInputDevices.length >= 1) {
+        this.selectedDeviceId = videoInputDevices[0].deviceId;
+        if (videoInputDevices.length > 1) {
           videoInputDevices.forEach((element) => {
             const sourceOption = document.createElement("option");
             sourceOption.text = element.label;
@@ -32,35 +32,106 @@ export default class extends Controller {
         }
       })
       .catch((err) => {
-        console.error(err); 
+        console.error(err);
       });
   }
   start(){
-    this.codeReader.decodeFromVideoDevice(
-      this.selectedDeviceId,
-      "video",
-      (result, err) => {
-        if (result) {
-          console.log(result);
-          this.resultTarget.textContent = result.text;
+    if (this.codeReader) {
+      this.videoWrapperTarget.classList.remove("d-none");
+      this.codeReader.decodeFromVideoDevice(
+        this.selectedDeviceId,
+        "barcode-video",
+        (result, err) => {
+          if (result) {
+            console.log(result.text)
+            this.reset()
+            this.#getBookDetails(result.text)
+          }
+          if (err && !(err instanceof ZXing.NotFoundException)) {
+            console.error(err);
+          }
         }
-        if (err && !(err instanceof ZXing.NotFoundException)) {
-          console.error(err);
-          this.resultTarget.textContent = err;
-        }
-      }
-    );
-    console.log(
-      `Started continous decode from camera with id ${this.selectedDeviceId}`
-    );
-
+      );
+      console.log(
+        `Started continous decode from camera with id ${this.selectedDeviceId}`
+      );
+      this.startTarget.classList.add('d-none');
+      this.resetTarget.classList.remove("d-none");
+    }
   }
 
   reset(){
     if (this.codeReader) {
       this.codeReader.reset();
-      this.resultTarget.textContent = "";
-      console.log("Reset.");
+      this.startTarget.classList.remove("d-none");
+      this.resetTarget.classList.add("d-none");
+      this.videoWrapperTarget.classList.add("d-none");
     }
   }
+
+  addToCollection(){
+
+  }
+
+  #getBookDetails(isbn){
+    const url = `https://openlibrary.org/isbn/${isbn}.json`;
+    fetch(url)
+      .then(res => res.json())
+      .then(data => {
+        console.log(data)
+        if (data.error) {
+          console.error("Book not found")
+          this.reset()
+        }
+        if (!data.by_statement) {
+          fetch(`https://openlibrary.org${data.authors[0].key}.json`)
+            .then((response) => response.json())
+            .then((authorData) => {
+              data.author = authorData.name;
+              const bookData = this.#deserializeFromOpenLibrary(isbn, data)
+              this.#getBookCard(bookData)
+          });
+        } else {
+          const bookData = this.#deserializeFromOpenLibrary(isbn, data);
+          this.#getBookCard(bookData);
+        }
+
+
+      })
+      .catch(error => {
+        console.error(error.message)
+        this.reset()
+    })
+  }
+
+  #deserializeFromOpenLibrary(isbn, apiBookData){
+    const bookData = {
+      title: apiBookData.title,
+      author: apiBookData.author || apiBookData.by_statement.slice(0, -1),
+      isbn: isbn,
+      release: apiBookData.publish_date,
+      serieNames: apiBookData.series,
+      cover_url: `https://covers.openlibrary.org/b/isbn/${isbn}-M.jpg`,
+    };
+    if (apiBookData.genres) bookData.genres = apiBookData.genres.map(genre => genre.slice(0, -1))
+    if (apiBookData.publishers) bookData.edition = apiBookData.publishers[0]
+
+      return bookData
+  }
+
+  #getBookCard(bookData) {
+    const urlParams = new URLSearchParams(bookData)
+    console.log(urlParams)
+    const url = `/books/new?${urlParams}`
+    fetch(url, {headers: {"Accept": "text/plain"}})
+      .then(response => response.text())
+      .then((data) => {
+        console.log(data)
+        
+        this.tempBookTarget.innerHTML = data
+        this.tempBookTarget
+      })
+    }
+
+
 }

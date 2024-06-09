@@ -5,6 +5,10 @@ class CollectionsController < ApplicationController
     redirect_to book_path(params[:id])
   end
 
+  def create
+    raise
+  end
+
   def destroy
     @collection = Collection.find_by(book_id: params[:id], user_id: current_user)
     @collection.destroy
