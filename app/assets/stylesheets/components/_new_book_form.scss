@@ -1,4 +1,4 @@
-.new-book-form, .genre-checkboxes {
+.new-book-form, .genre-checkboxes, #tempbook-container {
   padding: 1em;
 
   .genre-wrapper {
@@ -17,24 +17,29 @@
     font-size: 1rem;
     border-radius: 50rem;
     padding: 0.2rem 0.5rem;
-    background-color: $blue;
-    color: $white;
+    background-color: $white;
+    color: $blue;
+    border: 2px solid $blue;
     margin-right: 0.6rem;
     margin-bottom: 0.4rem;
     font-weight: 600;
   }
 
   .form-check-input.is-valid ~ .form-check-label {
+    color: $blue;
+  }
+  .form-check-input.is-valid:checked ~ .form-check-label {
     color: $white;
   }
 
   .form-check-input.is-invalid ~ .form-check-label {
-    color: $red;
+    color: $blue;
     background-color: $red;
   }
 
   .book-genre-input-button:checked + label {
-    background-color: $darkgreen;
+    background-color: $blue;
+    color: $white;
   }
 
   .form-block {
