@@ -1,7 +1,7 @@
 require 'open-uri'
 
 class BooksController < ApplicationController
-  before_action :set_book, only: [:show]
+  before_action :set_book, only: [:show, :update]
 
   def show
     @collection = Collection.find_by(book_id: @book.id)
@@ -66,11 +66,17 @@ class BooksController < ApplicationController
         locals: {book: @book, collection: Collection.new},
         formats: [:html] }
     end
+  end
 
+  def update
+    if @book.update(book_params)
+      params[:book][:genre_ids][1..].each do |genre_id|
+        BookGenre.create(book: @book, genre_id: genre_id.to_i)
+      end
+    end
   end
 
   def create
-    raise
     # je vérifie si le livre existe déjà avec son titre
     @book = Book.find_by(title: book_params[:title])
 

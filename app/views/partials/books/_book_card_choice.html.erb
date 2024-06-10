@@ -35,6 +35,28 @@
 
   <%# <button data-action="bar-code-reader#addToCollection">Ajouter à ma collection</button> %>
 </div>
+
+<%= simple_form_for book, method: :patch do |f| %>
+  <%= f.input :book_type,
+    label: 'Type',
+    prompt: 'Choisissez un type..',
+    collection: Book::TYPES,
+    input_html: { data: { action:'change->new-book-form#toggle_illustrator' } }
+  %>
+
+  <div class="form-block">
+    <%= f.input :description, label: false, placeholder: 'Description', input_html: {class: 'mb-0 h-100'} %>
+  </div>
+
+  <div class='p-3 form-block'>
+    <%= f.association :genres, as: :check_boxes,
+      input_html: {class: 'book-genre-input-button'},
+      item_wrapper_class: 'genre-wrapper'
+    %>
+  </div>
+  <%= f.submit 'Mettre à jour'%>
+<% end %>
+
 <%= simple_form_for [book, collection] do |f| %>
   <%= f.submit 'Ajouter à ma collection'%>
 <% end %>
