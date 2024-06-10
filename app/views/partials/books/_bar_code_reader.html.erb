@@ -1,0 +1,25 @@
+<div id="bar-code-reader" data-controller="bar-code-reader">
+  <div class="d-flex justify-content-end">
+    <a class="btn btn-codebar" data-action="click->bar-code-reader#start" data-bar-code-reader-target="start"><i class="fa-solid fa-barcode"></i></a>
+    <a class="btn btn-codebar d-none" data-action="click->bar-code-reader#reset" data-bar-code-reader-target="reset">Reset</a>
+  </div>
+
+  <div class="barcode-video-wrapper d-none" data-bar-code-reader-target="videoWrapper">
+    <video id="barcode-video"></video>
+  </div>
+
+  <div data-bar-code-reader-target="tempBook">
+  </div>
+
+  <div class="alert alert-warning alert-dismissible fade show m-1 d-none" role="alert" data-bar-code-reader-target='alert'>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
+    </button>
+  </div>
+
+
+  <div id="sourceSelectPanel" data-bar-code-reader-target="sourceSelectPanel" style="display:none">
+    <label for="sourceSelect">Change video source:</label>
+    <select id="sourceSelect" data-bar-code-reader-target="sourceSelect" style="max-width:400px">
+    </select>
+  </div>
+</div>
