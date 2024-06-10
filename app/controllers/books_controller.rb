@@ -37,8 +37,7 @@ class BooksController < ApplicationController
           cover_url: params[:cover_url]
         )
         @book.serie = Serie.create_or_find_by!(name: params[:serieNames][0])
-        image = open(params[:cover_url])
-        @book.cover_img.attach(io: image, filename: "#{params[:title]}_cover_image", content_type: "image/jpg")
+        
         # Un seul genre est ajouté pour l'instant, ne sachant pas le format de genres multiples
         genre = Genre.find_or_create_by!(name: params[:genres])
         BookGenre.create!(book: @book, genre: genre)
