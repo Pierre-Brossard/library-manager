@@ -42,7 +42,6 @@ export default class extends Controller {
         "barcode-video",
         (result, err) => {
           if (result) {
-            console.log(result.text)
             this.reset()
             this.#getBookDetails(result.text)
           }
@@ -74,7 +73,6 @@ export default class extends Controller {
     fetch(url)
       .then(res => res.json())
       .then(data => {
-        console.log(data)
         if (data.error) {
           console.error("Book not found")
           this.reset()
@@ -118,12 +116,10 @@ export default class extends Controller {
 
   #getBookCard(bookData) {
     const urlParams = new URLSearchParams(bookData)
-    console.log(urlParams)
     const url = `/books/new?${urlParams}`
     fetch(url, {headers: {"Accept": "text/plain"}})
       .then(response => response.text())
       .then((data) => {
-        console.log(data)
 
         this.tempBookTarget.innerHTML = data
         this.tempBookTarget.classList.remove('d-none')
@@ -136,7 +132,6 @@ export default class extends Controller {
     fetch(url, { headers: { Accept: "text/plain" } })
       .then((response) => response.text())
       .then((data) => {
-        console.log(data);
 
         this.tempBookTarget.innerHTML = data;
         this.tempBookTarget.classList.remove("d-none");
