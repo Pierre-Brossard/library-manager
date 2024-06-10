@@ -1,0 +1,49 @@
+.show-book-cover {
+  position: relative;
+  width: 100%;
+  height: 400px;
+  overflow: hidden;
+  background-color: $white;
+  border-radius: 0 0 1em 1em;
+  box-shadow: 0 4px $white;
+  margin-bottom: 0.8em;
+}
+
+.background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.blur-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: blur(5px);
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.show-book-image {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 1em;
+  box-shadow: 0 4px $white;
+  border: 2px solid $white;
+}
+
+.show-image {
+  object-fit: cover;
+  border-radius: 1em;
+}

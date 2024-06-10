@@ -1,28 +1,32 @@
 <div class="show-book-cover">
-  <% if @book.cover_url %>
-    <%= cl_image_tag @book.cover_url, class: "card-image" %>
-  <% elsif @book.cover_img.attached? %>
-    <%= cl_image_tag @book.cover_img.key, class: "card-image" %>
-  <% end %>
+  <div class="background">
+    <% if @book.cover_url %>
+      <%= image_tag @book.cover_url, class: "show-image blur-image" %>
+    <% elsif @book.cover_img.attached? %>
+      <%= cl_image_tag @book.cover_img.key, class: "show-image blur-image" %>
+    <% end %>
+    <div class="overlay"></div>
+  </div>
+  <div class="show-book-image">
+    <% if @book.cover_url %>
+      <%= image_tag @book.cover_url, class: "show-image" %>
+    <% elsif @book.cover_img.attached? %>
+      <%= cl_image_tag @book.cover_img.key, class: "show-image" %>
+    <% end %>
+  </div>
 </div>
-
-<div class="title-card">
-    <h2 class="card-title"><%= @book.title %></h2>
-</div>
-
-
-
-<div class="container">
 
   <div class="header-icons">
     <%= link_to '<i class="fa-solid fa-chevron-left" style="color: #ffffff;"></i>'.html_safe, books_path, class: "back-button" %>
-
     <% if @collection.is_favorited %>
       <%= link_to '<i class="fa-solid fa-heart" style="color: #c81e26;"></i>'.html_safe, book_path(@book) %>
     <% else %>
       <%= link_to '<i class="fa-regular fa-heart" style="color: #ffffff;"></i>'.html_safe, book_path(@book) %>
     <% end %>
   </div>
+  
+<div class="container">
+  <h2 class="card-title"><%= @book.title %></h2>
 
   <article class="card book-details-card" style="min-width: 350px">
     <header class="card-header">
@@ -33,11 +37,6 @@
           <a href="#" class="badge style-red custom-badge">A lire</a>
         <% end %>
       </div>
-      <% if @book.cover_url %>
-        <%= image_tag @book.cover_url, height:300, class: "card-image" %>
-      <% elsif @book.cover_img.attached? %>
-        <%= cl_image_tag @book.cover_img.key, height: 300, class: "card-image" %>
-      <% end %>
 
       <%= link_to '<button class="button size-sm style-danger">Supprimer</button>'.html_safe,
       book_collection_path(@book.collections),
