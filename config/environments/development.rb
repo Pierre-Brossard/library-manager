@@ -76,6 +76,6 @@ Rails.application.configure do
   config.action_controller.raise_on_missing_callback_actions = true
 
   # add ngrok endpoints to allow testing
-  config.hosts << "2070-2a01-cb05-8956-ac00-901d-9f3f-e366-6614.ngrok-free.app"
-  config.hosts << "2070-2a01-cb05-8956-ac00-901d-9f3f-e366-6614.ngrok-free.app"
+
+  config.hosts.clear
 end
