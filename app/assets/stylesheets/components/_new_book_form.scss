@@ -1,4 +1,6 @@
-.new-book-form {
+.new-book-form, .genre-checkboxes {
+  padding: 1em;
+
   .genre-wrapper {
     display: inline-block;
     color: $white;
@@ -12,7 +14,7 @@
   .book-genre-input-button + label {
     cursor: pointer;
     display: inline-block;
-    font-size: 0.7rem;
+    font-size: 1rem;
     border-radius: 50rem;
     padding: 0.2rem 0.5rem;
     background-color: $blue;

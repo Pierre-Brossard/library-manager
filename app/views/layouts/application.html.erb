@@ -16,12 +16,14 @@
 
   <body>
     <%= render "shared/flashes" %>
-    <%# <%= link_to "index serie", series_path%>
-    <%# <%= link_to "index book", books_path%>
-    <%= yield %>
-    <% if user_signed_in? %>
-      <%= render "shared/navbar" %>
-    <% end %>
+    <div data-controller="manga-api-connect">
+      <%# <%= link_to "index serie", series_path%>
+      <%# <%= link_to "index book", books_path%>
+      <%= yield %>
+      <% if user_signed_in? %>
+        <%= render "shared/navbar" %>
+      <% end %>
+    </div>
   </body>
 
   <script src="https://cdn.jsdelivr.net/npm/flatifycss/dist/js/flatify.min.js" crossorigin="anonymous"></script>

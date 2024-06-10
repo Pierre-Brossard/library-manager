@@ -1,8 +1,9 @@
 class CollectionsController < ApplicationController
 
   def update
-    Collection.update(collection_params)
-    redirect_to book_path(params[:id])
+    @collection = Collection.find(params[:id])
+    @collection.update(collection_params)
+    redirect_to book_path(@collection.book)
   end
 
   def create
