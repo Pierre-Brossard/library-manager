@@ -1,14 +1,15 @@
 <div class="card-close book-card" data-book-content-target="bookDefault">
-  <div class="book-close-img"><i class="fa-solid fa-book"></i></div>
+  <div class="book-img-close"><i class="fa-solid fa-book"></i></div>
   <div class="book-info">
     <p class="book-title"><%= book.title %></p>
     <% if book.serie %>
-      <p class="close-book-series">n°<%= book.serie_number %> - <%= book.serie.name %></p>
+      <p class="book-series-close">n°<%= book.serie_number %> - <%= book.serie.name %></p>
     <% end %>
   </div>
-  <div class="close-book-actions">
-    <%= link_to book_path(book) do %>
-      <div class="btn btn-details" data-action="click->book-content#stop_bubbling"><i class="fa-solid fa-circle-info"></i></div>
-    <% end %>
+  <div class="book-actions-close">
+    <%# <%= link_to book_path(book) do %>
+      <%# <div class="btn btn-details" data-action="click->book-content#stop_bubbling"><i class="fa-solid fa-circle-info"></i></div> %>
+    <%# <% end %>
+    <div class="btn btn-favorite" data-action="click->book-content#stop_bubbling"><i class="fa-regular fa-heart"></i></div>
   </div>
 </div>

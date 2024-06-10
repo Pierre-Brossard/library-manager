@@ -1,9 +1,13 @@
 .card-close {
   display: flex;
   flex-direction: row;
+
+  .book-info {
+    margin-top: 0;
+  }
 }
 
-.book-close-img {
+.book-img-close {
   font-size: 2em;
   color: $blue;
   display: flex;
@@ -11,16 +15,9 @@
   justify-content: space-around;
 }
 
-.close-book-series {
-  font-size: 1em;
+.book-series-close {
+  font-size: 0.9em;
   line-height: 0.85em;
   margin: 5px 0;
-}
-
-.close-book-actions {
-  // display: flex;
-  // flex-direction: row;
-  // gap: 0.6em;
-  // align-items: center;
-  // justify-content: space-around;
+  color: $black;
 }
