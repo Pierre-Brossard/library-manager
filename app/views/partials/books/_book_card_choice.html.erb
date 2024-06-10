@@ -27,12 +27,6 @@
         <p><strong>Description :</strong> <%= book.description %></p>
       </div>
   </div>
-  <div class="book-genre">
-    <% book.genres.each do |genre| %>
-      <span class="badge big-badge"><%= genre.name %></span>
-    <% end %>
-  </div>
-
   <%# <button data-action="bar-code-reader#addToCollection">Ajouter à ma collection</button> %>
 </div>
 
@@ -44,12 +38,12 @@
     input_html: { data: { action:'change->new-book-form#toggle_illustrator' } }
   %>
 
-  <div class="form-block">
-    <%= f.input :description, label: false, placeholder: 'Description', input_html: {class: 'mb-0 h-100'} %>
+  <div class="">
+    <%= f.input :description, label: 'Description:', placeholder: '...', input_html: {class: 'mb-0 h-100'} %>
   </div>
 
-  <div class='p-3 form-block'>
-    <%= f.association :genres, as: :check_boxes,
+  <div class='p-2'>
+    <%= f.association :genres, as: :check_boxes, label: 'Genres:',
       input_html: {class: 'book-genre-input-button'},
       item_wrapper_class: 'genre-wrapper'
     %>
