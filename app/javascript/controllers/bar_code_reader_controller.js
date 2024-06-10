@@ -4,7 +4,7 @@ import "@zxing/library";
 
 // Connects to data-controller="bar-code-reader"
 export default class extends Controller {
-  static targets = ['sourceSelect', 'sourceSelectPanel', "start", "reset", "videoWrapper", "tempBook", 'alert']
+  static targets = ['sourceSelect', 'sourceSelectPanel', "start", "reset", "videoWrapper", "tempBook", 'alert', 'search']
 
   connect() {
     this.codeReader = new ZXing.BrowserMultiFormatReader();
@@ -126,9 +126,23 @@ export default class extends Controller {
         console.log(data)
 
         this.tempBookTarget.innerHTML = data
-        this.tempBookTarget
-      })
-    }
+        this.tempBookTarget.classList.remove('d-none')
+    })
+  }
+
+  fetchBooks(event) {
+    event.preventDefault()
+    const url = `/books?query=${this.searchTarget.value}`
+    fetch(url, { headers: { Accept: "text/plain" } })
+      .then((response) => response.text())
+      .then((data) => {
+        console.log(data);
+
+        this.tempBookTarget.innerHTML = data;
+        this.tempBookTarget.classList.remove("d-none");
+      });
+
+  }
 
 
 }

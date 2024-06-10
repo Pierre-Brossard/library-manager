@@ -1,10 +1,19 @@
-require 'open-uri'
-
 class BooksController < ApplicationController
   before_action :set_book, only: [:show, :update]
 
   def show
     @collection = Collection.find_by(book_id: @book.id)
+
+    respond_to do |format|
+      format.html
+      format.text do
+        @book = @book.find_by(book_params)
+        raise
+        render partial: "partials/books/book_card_choice",
+          locals: {book: @book, collection: Collection.new},
+          formats: [:html]
+      end
+    end
   end
 
   def index
@@ -53,10 +62,6 @@ class BooksController < ApplicationController
           genre = Genre.find_or_create_by!(name: params[:genres])
           BookGenre.create!(book: @book, genre: genre)
         end
-        # params[:genres].each do |genre_name|
-        #   genre = Genre.find_or_create_by!(name: genre_name)
-        #   BookGenre.create!(book: @book, genre: genre)
-        # end
       end
     end
 
@@ -91,7 +96,6 @@ class BooksController < ApplicationController
         @book.serie = @serie
       end
 
-      # si je ne peux pas enregistrer le livre,
       @book.save
     end
 
@@ -132,7 +136,8 @@ class BooksController < ApplicationController
       :description,
       :release,
       :edition,
-      :cover_img
+      :cover_img,
+      :isbn
     )
   end
 end
