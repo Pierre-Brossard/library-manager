@@ -3,36 +3,24 @@
 }
 
 body {
-  background-color: $white;
-}
-
-.home-content {
-  background-color: transparent;
-
-  h2 {
-    font-size: 1em;
-    text-transform: uppercase;
-    font-weight: 900;
-  }
-}
-
-.logo {
-  display: inline-block;
+  background-color: #F3F4F4;
 }
 
 .last-books {
-  padding: 1em;
-  margin-bottom: 1em;
-  border-radius: 1em;
-  border: 2px solid $lightgrey;
-  box-shadow: 0 3px 0px $lightgrey;
-  overflow: hidden;
+  padding: 0.8em;
+  height: 400px;
+}
+
+.last-books h2 {
+  text-transform: uppercase;
+  color: $black;
+  font-size: 1.5em;
+  font-weight: bold;
 }
 
 .last-books-cards {
   display: flex;
-  flex-direction: row;
+  flex-wrap: nowrap;
+  gap: 0.8em;
   overflow-x: auto;
-  overflow-y: hidden;
-  white-space: nowrap;
 }

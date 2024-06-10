@@ -1,15 +1,15 @@
 /* Styles pour la navbar */
 .nav {
   position: fixed;
-  bottom: 1em;
+  bottom: 0.8em;
   left: 50%;
-  transform: translateX(-51%);
+  transform: translateX(-50%);
   background-color: #ffffff;
   width: 90%;
   max-width: 500px;
   padding: 0.8em;
   border: 2px solid #e5e5e5;
-  border-radius: 1em;
+  border-radius: 3em;
   box-shadow: inset 0 -3px 0px #e5e5e5;
   z-index: 3;
 }
@@ -35,24 +35,16 @@
 }
 
 .nav-item a {
-  color: $lightgrey;
+  color: $grey;
   text-decoration: none;
-  font-size: 1.5em;
+  font-size: 1.2em;
   display: block;
-  padding: 0.4em 1em;
-  border-radius: 10px;
-  border: 2px solid $lightgrey;
-  box-shadow: inset 0 -2px 0px $lightgrey;
-  transition: background-color 0.3s ease, color 0.3s ease, border 0.3s ease;
 }
 
-.nav-item a:hover,
 .nav-item.active a {
   color: $green;
-  border: 2px solid $green;
-  box-shadow: inset 0 -2px 0px $green;
 }
 
-.nav-item a i {
-  vertical-align: middle;
-}
+// .nav-item a i {
+//   vertical-align: middle;
+// }

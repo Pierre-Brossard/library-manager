@@ -1,5 +1,5 @@
 <div class="card-open d-none book-card" data-book-content-target="bookInfos">
-  <div alt="<%= book.title %>" class="book-thumbnail">
+  <div class="book-thumbnail">
     <%# si le cover_url contient l'image | ajouté en dur dans les seeds %>
     <% if book.cover_url %>
       <%= cl_image_tag book.cover_url%>
@@ -7,10 +7,17 @@
     <% elsif book.cover_img.attached? %>
       <%= cl_image_tag book.cover_img.key %>
     <% end %>
+    <div class="book-actions">
+      <%= link_to book_path(book) do %>
+        <div class="btn btn-details" data-action="click->book-content#stop_bubbling"><i class="fa-solid fa-circle-info"></i></div>
+      <% end %>
+        <div class="btn btn-favorite" data-action="click->book-content#stop_bubbling"><i class="fa-regular fa-heart"></i></div>
+        <div class="btn btn-read" data-action="click->book-content#stop_bubbling"><i class="fa-regular fa-bookmark"></i></div>
+    </div>
   </div>
 
   <div class="book-info">
-      <h2 class="book-title"><%= book.title %></h2>
+      <p class="book-title"><%= book.title %></p>
       <%# Si série, il y a %>
       <% if book.serie %>
         <p class="book-series">n°<%= book.serie_number %> - <%= book.serie.name %></p>
@@ -31,12 +38,5 @@
     <% book.genres.each do |genre| %>
       <span class="badge big-badge"><%= genre.name %></span>
     <% end %>
-  </div>
-  <div class="book-actions">
-    <%= link_to book_path(book) do %>
-      <div class="btn btn-details" data-action="click->book-content#stop_bubbling"><i class="fa-solid fa-circle-info"></i></div>
-    <% end %>
-      <div class="btn btn-favorite" data-action="click->book-content#stop_bubbling"><i class="fa-regular fa-heart"></i></div>
-      <div class="btn btn-read" data-action="click->book-content#stop_bubbling"><i class="fa-regular fa-bookmark"></i></div>
   </div>
 </div>

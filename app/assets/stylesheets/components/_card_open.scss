@@ -1,6 +1,4 @@
-/* Styles pour la carte de livre */
 .book-card {
-  display: flex;
   gap: 1em;
   background-color: $white;
   padding: 0.8em;
@@ -13,16 +11,11 @@
   box-sizing: border-box;
   position: relative;
   z-index: 1;
-
-  h2 {
-    font-size: 1em;
-  }
 }
 
-/* Styles pour la vignette du livre */
 .book-thumbnail {
-  width: 100px;
-  height: 100%;
+  display: flex;
+  flex-direction: row;
 
   img {
     background-size: cover;
@@ -32,10 +25,10 @@
   }
 }
 
-/* Styles pour les informations du livre */
 .book-info {
   flex: 1;
   min-width: 0;
+  margin: 0;
 }
 
 .book-title {
