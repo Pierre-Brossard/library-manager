@@ -1,4 +1,19 @@
+<div class="show-book-cover">
+  <% if @book.cover_url %>
+    <%= cl_image_tag @book.cover_url, class: "card-image" %>
+  <% elsif @book.cover_img.attached? %>
+    <%= cl_image_tag @book.cover_img.key, class: "card-image" %>
+  <% end %>
+</div>
+
 <div class="title-card">
+    <h2 class="card-title"><%= @book.title %></h2>
+</div>
+
+
+
+<div class="container">
+
   <div class="header-icons">
     <%= link_to '<i class="fa-solid fa-chevron-left" style="color: #ffffff;"></i>'.html_safe, books_path, class: "back-button" %>
 
@@ -8,10 +23,7 @@
       <%= link_to '<i class="fa-regular fa-heart" style="color: #ffffff;"></i>'.html_safe, book_path(@book) %>
     <% end %>
   </div>
-    <h2 class="card-title"><%= @book.title %></h2>
-</div>
 
-<div class="container">
   <article class="card book-details-card" style="min-width: 350px">
     <header class="card-header">
       <div class="card-badges">
