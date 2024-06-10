@@ -6,6 +6,11 @@ class CollectionsController < ApplicationController
     redirect_to book_path(@collection.book)
   end
 
+  def create
+    @book = Book.find(params[:book_id])
+    Collection.create(book: @book, user: current_user)
+  end
+
   def destroy
     @collection = Collection.find_by(book_id: params[:id], user_id: current_user)
     @collection.destroy

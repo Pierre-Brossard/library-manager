@@ -2,7 +2,7 @@
   <div class="book-thumbnail">
     <%# si le cover_url contient l'image | ajouté en dur dans les seeds %>
     <% if book.cover_url %>
-      <%= cl_image_tag book.cover_url%>
+      <%= image_tag book.cover_url%>
     <%# si le cover_img active storage contient l'image | créé à travers l'action create du controller %>
     <% elsif book.cover_img.attached? %>
       <%= cl_image_tag book.cover_img.key %>

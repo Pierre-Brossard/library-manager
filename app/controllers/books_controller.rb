@@ -1,5 +1,7 @@
+require 'open-uri'
+
 class BooksController < ApplicationController
-  before_action :set_book, only: [:show]
+  before_action :set_book, only: [:show, :update]
 
   def show
     @collection = Collection.find_by(book_id: @book.id)
@@ -29,8 +31,49 @@ class BooksController < ApplicationController
   end
 
   def new
-    @book = @book || Book.new
-    @book.genres.build
+    unless params[:title]
+      @book = @book || Book.new
+      @book.genres.build
+    else
+      @book = Book.find_by(isbn: params[:isbn])
+      unless @book
+        @book = Book.create!(
+          book_type: 'Roman',
+          title: params[:title],
+          author: params[:author],
+          release: Date.parse(params[:release]),
+          edition: params[:edition],
+          isbn: params[:isbn],
+          cover_url: params[:cover_url]
+        )
+        @book.serie = Serie.create_or_find_by!(name: params[:serieNames][0]) if params[:serieNames].present?
+
+        # Un seul genre est ajouté pour l'instant, ne sachant pas le format de genres multiples
+        if params[:genres].present?
+          genre = Genre.find_or_create_by!(name: params[:genres])
+          BookGenre.create!(book: @book, genre: genre)
+        end
+        # params[:genres].each do |genre_name|
+        #   genre = Genre.find_or_create_by!(name: genre_name)
+        #   BookGenre.create!(book: @book, genre: genre)
+        # end
+      end
+    end
+
+    respond_to do |format|
+      format.html
+      format.text { render partial: "partials/books/book_card_choice",
+        locals: {book: @book, collection: Collection.new},
+        formats: [:html] }
+    end
+  end
+
+  def update
+    if @book.update(book_params)
+      params[:book][:genre_ids][1..].each do |genre_id|
+        BookGenre.create(book: @book, genre_id: genre_id.to_i)
+      end
+    end
   end
 
   def create

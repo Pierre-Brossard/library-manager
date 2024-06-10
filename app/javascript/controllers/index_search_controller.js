@@ -1,4 +1,4 @@
-import { Controller } from "@hotwired/stimulus"
+import { Controller } from '@hotwired/stimulus';
 
 // Connects to data-controller="index-search"
 export default class extends Controller {
@@ -31,7 +31,7 @@ export default class extends Controller {
     fetch(url, {headers: {"Accept": "text/plain"}})
       .then(response => response.text())
       .then((data) => {
-        this.listTarget.innerHTML = data
-      })
-    }
+        this.listTarget.innerHTML = data;
+      });
+  }
 }

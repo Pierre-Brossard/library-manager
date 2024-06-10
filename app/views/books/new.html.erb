@@ -1,18 +1,9 @@
 <div class="title-card">
   <h2 class="card-title">Nouveau livre</h2>
 </div>
-<div class="container">
+<div class="book-form-choices">
   <h4>Cherchez un livre...</h4>
-    <div class="search-bar">
-      <div class="">
-          <input  type="text"
-                  name="query"
-                  class="form-control"
-                  placeholder="Entrez un mot"
-                  data-index-search-target='input'
-                  data-action='input->index-search#search'>
-      </div>
-    </div>
+    <%= render 'partials/books/bar_code_reader' %>
   <h4>...ou rajoutez-le manuellement</h4>
     <%= render 'partials/books/new_book_form', book: @book %>
 </div>
