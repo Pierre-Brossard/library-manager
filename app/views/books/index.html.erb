@@ -1,16 +1,48 @@
-<div>
-  <div class="row justify-content-center">
-    <div class="col-sm-8 my-3">
-        <input  type="text"
-                name="query"
-                class="form-control"
-                placeholder="Entrez un mot"
-                data-index-search-target='input'
-                data-action='input->index-search#search'>
-    </div>
+<div data-controller='index-search'>
+  <div class="title-card">
+    <h2 class="card-title">Mes livres</h2>
   </div>
-  <div class="row">
-    <div class="col" data-index-search-target='list'>
+  <div class="filter-box container">
+    <div class="search-bar">
+      <input
+        type="text"
+        name="query"
+        class="form-control"
+        placeholder="1Q84 or Chattam or fantasy..."
+        data-index-search-target='input'
+        data-action='input->index-search#search'>
+    </div>
+    <div class="d-flex gap-2">
+      <label class="toggle-wrapper">
+        <input type="checkbox" name='my' data-index-search-target='my' data-action='input->index-search#search' role="switch" checked/>
+        <span class="check"></span>
+        Ma collection
+      </label>
+      <label class="toggle-wrapper">
+        <input type="checkbox" name='genre-switch' data-action='input->index-search#showGenres' role="switch"/>
+        <span class="check"></span>
+        Genres
+      </label>
+    </div>
+    <div class="genre-checkboxes d-none" data-index-search-target='genresBox'>
+      <% @genres.each do |genre| %>
+        <div class="genre-wrapper">
+            <input
+              type="checkbox"
+              value="<%= genre.name %>"
+              id="<%= genre.name %>-checkbox"
+              class="book-genre-input-button"
+              data-index-search-target="genre"
+              data-action='input->index-search#updateGenres'
+            />
+            <label for="<%= genre.name %>-checkbox"><%= genre.name %></label>
+        </div>
+      <% end %>
+    </div>
+
+  </div>
+  <div class='container'>
+    <div data-index-search-target='list'>
         <%= render 'partials/index_list', books: @books%>
     </div>
   </div>

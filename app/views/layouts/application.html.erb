@@ -2,7 +2,7 @@
 <html>
   <head>
     <title>LibraryManager</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximun-scale=1, shrink-to-fit=no">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <link
@@ -11,25 +11,19 @@
       crossorigin="anonymous"
     />
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
-    <link
-      href="https://cdn.jsdelivr.net/npm/flatifycss/dist/css/flatify.min.css"
-      rel="stylesheet"
-      crossorigin="anonymous"
-    />
     <%= javascript_importmap_tags %>
   </head>
 
   <body>
-    <%= render "shared/navbar" %>
     <%= render "shared/flashes" %>
-
-    <div class="container" data-controller="manga-api-connect">
-      <%= link_to "index serie", series_path%>
-      <%= link_to "index book", books_path%>
+    <div data-controller="manga-api-connect">
+      <%# <%= link_to "index serie", series_path%>
+      <%# <%= link_to "index book", books_path%>
       <%= yield %>
+      <% if user_signed_in? %>
+        <%= render "shared/navbar" %>
+      <% end %>
     </div>
-
-  <script src="https://cdn.jsdelivr.net/npm/flatifycss/dist/js/flatify.min.js" crossorigin="anonymous"></script>
   </body>
 
   <script src="https://cdn.jsdelivr.net/npm/flatifycss/dist/js/flatify.min.js" crossorigin="anonymous"></script>

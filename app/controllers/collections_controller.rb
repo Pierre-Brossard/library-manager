@@ -1,8 +1,15 @@
 class CollectionsController < ApplicationController
 
   def update
-    Collection.update(collection_params)
-    redirect_to book_path(params[:id])
+    @collection = Collection.find(params[:id])
+    @collection.update(collection_params)
+    redirect_to book_path(@collection.book)
+  end
+
+  def destroy
+    @collection = Collection.find_by(book_id: params[:id], user_id: current_user)
+    @collection.destroy
+    redirect_to books_path
   end
 
   private

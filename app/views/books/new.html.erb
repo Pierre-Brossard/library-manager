@@ -1,1 +1,18 @@
-<%= render 'partials/books/new_book_form', book: @book %>
+<div class="title-card">
+  <h2 class="card-title">Nouveau livre</h2>
+</div>
+<div class="container">
+  <h4>Cherchez un livre...</h4>
+    <div class="search-bar">
+      <div class="">
+          <input  type="text"
+                  name="query"
+                  class="form-control"
+                  placeholder="Entrez un mot"
+                  data-index-search-target='input'
+                  data-action='input->index-search#search'>
+      </div>
+    </div>
+  <h4>...ou rajoutez-le manuellement</h4>
+    <%= render 'partials/books/new_book_form', book: @book %>
+</div>

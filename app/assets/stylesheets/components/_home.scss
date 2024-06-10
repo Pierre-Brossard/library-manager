@@ -1,0 +1,38 @@
+* {
+  // outline: 1px solid green;
+}
+
+body {
+  background-color: $white;
+}
+
+.home-content {
+  background-color: transparent;
+
+  h2 {
+    font-size: 1em;
+    text-transform: uppercase;
+    font-weight: 900;
+  }
+}
+
+.logo {
+  display: inline-block;
+}
+
+.last-books {
+  padding: 1em;
+  margin-bottom: 1em;
+  border-radius: 1em;
+  border: 2px solid $lightgrey;
+  box-shadow: 0 3px 0px $lightgrey;
+  overflow: hidden;
+}
+
+.last-books-cards {
+  display: flex;
+  flex-direction: row;
+  overflow-x: auto;
+  overflow-y: hidden;
+  white-space: nowrap;
+}
