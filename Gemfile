@@ -54,6 +54,7 @@ gem "cloudinary"
 gem 'faker'
 
 gem "pg_search"
+gem 'rack-cors', '~> 2.0', '>= 2.0.2'
 
 group :development, :test do
   gem "dotenv-rails"

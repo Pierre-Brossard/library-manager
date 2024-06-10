@@ -13,17 +13,43 @@ export default class extends Controller {
   url =
     'https://auth.mangadex.org/realms/mangadex/protocol/openid-connect/token';
 
-  connect() {}
+  mangaDexConnection;
 
-  testLogApi() {
+  //? wrapp app.erb avec ce controller et stocker les donnee piur ne pas request token a chaque chargement de la page
+  connect() {
+    if (this.mangaDexConnection) {
+      console.log('conecter');
+    } else {
+      this.mangaDexConnection = this.#testLogApi();
+    }
+  }
+
+  #testLogApi() {
+    const formBody = Object.keys(this.creds)
+      .map(
+        (key) =>
+          encodeURIComponent(key) + '=' + encodeURIComponent(this.creds[key])
+      )
+      .join('&');
+
     fetch(this.url, {
       method: 'POST',
-      mode: 'cors',
       headers: {
         'User-Agent': navigator.userAgent,
         'Content-type': 'application/x-www-form-urlencoded',
       },
-      body: this.creds,
-    }).then((response) => console.log(response));
+      body: formBody,
+    }).then((response) =>
+      response.json().then((data) => {
+        console.log(data);
+
+        return {
+          access_token: data.access_token,
+          access_expire: data.expires_in,
+          refresh_token: data.refresh_token,
+          refresh_expire: data.refresh_expires_in,
+        };
+      })
+    );
   }
 }
