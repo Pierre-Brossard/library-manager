@@ -104,7 +104,8 @@ class BooksController < ApplicationController
     if @book.id
       # je crée les associations livre - genre
       params[:book][:genre_ids][1..].each do |genre_id|
-        BookGenre.create!(book: @book, genre_id: genre_id.to_i)
+        genre = Genre.find(genre_id)
+        @book.genres << genre unless @book.genres.include?(genre)
       end
 
       @collection = Collection.new(user: current_user, book: @book)
