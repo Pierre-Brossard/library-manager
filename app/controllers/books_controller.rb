@@ -31,16 +31,18 @@ class BooksController < ApplicationController
           book_type: 'Roman',
           title: params[:title],
           author: params[:author],
-          release: Date.new(params[:release].to_i),
+          release: Date.parse(params[:release]),
           edition: params[:edition],
           isbn: params[:isbn],
           cover_url: params[:cover_url]
         )
-        @book.serie = Serie.create_or_find_by!(name: params[:serieNames][0])
-        
+        @book.serie = Serie.create_or_find_by!(name: params[:serieNames][0]) if params[:serieNames].present?
+
         # Un seul genre est ajouté pour l'instant, ne sachant pas le format de genres multiples
-        genre = Genre.find_or_create_by!(name: params[:genres])
-        BookGenre.create!(book: @book, genre: genre)
+        if params[:genres].present?
+          genre = Genre.find_or_create_by!(name: params[:genres])
+          BookGenre.create!(book: @book, genre: genre)
+        end
         # params[:genres].each do |genre_name|
         #   genre = Genre.find_or_create_by!(name: genre_name)
         #   BookGenre.create!(book: @book, genre: genre)

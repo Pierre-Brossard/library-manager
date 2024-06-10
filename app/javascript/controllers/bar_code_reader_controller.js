@@ -4,10 +4,9 @@ import "@zxing/library";
 
 // Connects to data-controller="bar-code-reader"
 export default class extends Controller {
-  static targets = ['sourceSelect', 'sourceSelectPanel', "start", "reset", "videoWrapper", "tempBook"]
+  static targets = ['sourceSelect', 'sourceSelectPanel', "start", "reset", "videoWrapper", "tempBook", 'alert']
 
   connect() {
-    let selectedDeviceId;
     this.codeReader = new ZXing.BrowserMultiFormatReader();
     console.log("ZXing code reader initialized");
     this.codeReader
@@ -49,6 +48,7 @@ export default class extends Controller {
           }
           if (err && !(err instanceof ZXing.NotFoundException)) {
             console.error(err);
+
           }
         }
       );
@@ -67,10 +67,6 @@ export default class extends Controller {
       this.resetTarget.classList.add("d-none");
       this.videoWrapperTarget.classList.add("d-none");
     }
-  }
-
-  addToCollection(){
-
   }
 
   #getBookDetails(isbn){
@@ -100,6 +96,7 @@ export default class extends Controller {
       })
       .catch(error => {
         console.error(error.message)
+        window.alert(`Erreur: le livre à l'isbn ${isbn} n'a pas été trouvé`)
         this.reset()
     })
   }
@@ -109,14 +106,14 @@ export default class extends Controller {
       title: apiBookData.title,
       author: apiBookData.author || apiBookData.by_statement.slice(0, -1),
       isbn: isbn,
-      release: apiBookData.publish_date,
-      serieNames: apiBookData.series,
-      cover_url: `https://covers.openlibrary.org/b/isbn/${isbn}-M.jpg`,
     };
     if (apiBookData.genres) bookData.genres = apiBookData.genres.map(genre => genre.slice(0, -1))
     if (apiBookData.publishers) bookData.edition = apiBookData.publishers[0]
+    if (apiBookData.publish_date) bookData.release = apiBookData.publish_date
+    if (apiBookData.series) bookData.serieNames = apiBookData.series
+    if (apiBookData.covers) bookData.cover_url = `https://covers.openlibrary.org/b/id/${apiBookData.covers[0]}-M.jpg`;
 
-      return bookData
+    return bookData
   }
 
   #getBookCard(bookData) {
@@ -127,7 +124,7 @@ export default class extends Controller {
       .then(response => response.text())
       .then((data) => {
         console.log(data)
-        
+
         this.tempBookTarget.innerHTML = data
         this.tempBookTarget
       })
