@@ -5,6 +5,11 @@
 .card {
 }
 
+h5 {
+  display: inline-block;
+  margin-right: 2em;
+}
+
 .book-details-card {
   --flatify__card-border-color: none;
   --flatify__card-bg-color: $white !important;

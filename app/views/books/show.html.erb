@@ -27,42 +27,35 @@
         <%= cl_image_tag @book.cover_img.key, height: 300, class: "card-image" %>
       <% end %>
 
-      <%= link_to '<button class="button size-sm style-danger">Supprimer</button>'.html_safe,
-      book_collection_path(@book.collections),
-      data: {turbo_method: :delete, turbo_confirm: "Etez vous sur ?"}
-      %>
+      <ul class="col-9">
+        <% @book.genres.each do |genre| %>
+          <li class="badge style-green">
+            <%= genre.name %>
+          </li>
+        <% end %>
+      </ul>
     </header>
     <div class="card-body">
       <%# section info du livre %>
-      <div class="outline-box">
-        <div class="row">
-          <h5 class="col-9">
+      <div>
+        <div class="blue-container">
+          <h5 class="text-center">
             <%= @book.author %>
           </h5>
-          <div class="col-3">
-            <span><%= @book.serie_number %>/<%= @book.serie.books_total %></span>
-          </div>
+          <span><%= @book.release %></span>
         </div>
+
 
         <div class="row mt-2">
-          <ul class="col-9">
-            <% @book.genres.each do |genre| %>
-              <li class="badge style-green">
-                <%= genre.name %>
-              </li>
-            <% end %>
-          </ul>
           <% if @book.serie %>
-            <p class="col-3">
+            <p class="col-9">
               <%= link_to @book.serie.name, serie_path(@book.serie) %>
             </p>
+            <p class="col-3"><%= @book.serie_number %>/<%= @book.serie.books_total %></p>
           <% end %>
         </div>
-
-        <p><%= @book.release %></p>
-        <hr class="short style-green" />
-        <div class="book-description">
-          <h6>Description</h4>
+        <div class="book-description blue-container">
+          <h5>Description</h5>
           <p><%= @book.description %></p>
         </div>
       </div>
@@ -83,7 +76,7 @@
     </div>
 
       <%# section commentaire %>
-      <div class="comment mt-4 outline-box">
+      <div class="comment mt-4 green-container">
         <% if @collection.comment == "" %>
           <button
             class="button open-modal"
@@ -106,6 +99,10 @@
           </p>
         <% end %>
       </div>
+      <%= link_to '<button class="button size-sm style-danger">Supprimer</button>'.html_safe,
+        book_collection_path(@book.collections),
+        data: {turbo_method: :delete, turbo_confirm: "Etez vous sur ?"}
+      %>
     </div>
   </article>
 </div>
