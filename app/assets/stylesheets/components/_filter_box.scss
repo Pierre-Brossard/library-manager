@@ -11,7 +11,7 @@
     display: block;
     width: 100%;
     padding: 0.5em 1em;
-    font-size: 1em;
+    font-size: 1.2em;
     font-weight: normal;
     line-height: 1.5;
     color: $black;
@@ -70,5 +70,11 @@
     background-position: center;
     background-size: contain;
     border: 2px solid $lightgrey;
+  }
+
+  .form-check-label {
+    font-size: 1.1em;
+    color: $grey;
+    font-weight: 500;
   }
 }

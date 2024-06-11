@@ -48,9 +48,9 @@
 }
 
 .book-title {
-  font-size: 1.1em;
+  font-size: 1.3em;
   line-height: 1em;
-  font-weight: 900;
+  font-weight: 800;
   margin: 0;
   color: $black;
   text-transform: uppercase;
@@ -60,10 +60,10 @@
 }
 
 .book-series {
-  font-size: 0.9em;
+  font-size: 1.1em;
   color: $black;
-  line-height: 0.85em;
-  font-weight: bold;
+  line-height: 0.8em;
+  font-weight: 400;
   margin: 5px 0;
   overflow: hidden;
   white-space: nowrap;
@@ -73,12 +73,18 @@
 .book-author,
 .book-details {
   color: $black;
-  font-size: 1em;
-  line-height: 0.85em;
+  font-size: 1.1em;
+  font-weight: 500;
+  color: $black;
+  line-height: 0.8em;
   margin: 5px 0;
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
+}
+
+.book-details {
+  color: $grey;
 }
 
 .book-desc {
