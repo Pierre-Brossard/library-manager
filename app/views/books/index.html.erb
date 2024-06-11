@@ -17,7 +17,7 @@
     <div class="filter-box-checkbox">
 
       <div class="form-check form-switch">
-        <label class="form-check-label">Ma collection</label>
+        <label for="my" class="form-check-label">Ma collection</label>
           <input  class="form-check-input"
                   name='my'
                   data-index-search-target='my'
@@ -26,8 +26,20 @@
                   role="switch"
                   checked>
       </div>
+
       <div class="form-check form-switch">
-        <label class="form-check-label">Genres</label>
+        <label for="favorite" class="form-check-label">Favoris</label>
+        <input  class="form-check-input"
+                  name='favorite'
+                  data-index-search-target='favorite'
+                  data-action='input->index-search#search'
+                  type="checkbox"
+                  role="switch"
+                  checked>
+      </div>
+
+      <div class="form-check form-switch">
+        <label for="genre-switch" class="form-check-label">Genres</label>
           <input  class="form-check-input"
                   name='genre-switch'
                   data-action='input->index-search#showGenres'

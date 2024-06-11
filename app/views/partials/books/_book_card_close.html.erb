@@ -10,7 +10,7 @@
     <%# <%= link_to book_path(book) do %>
       <%# <div class="btn btn-details" data-action="click->book-content#stop_bubbling"><i class="fa-solid fa-circle-info"></i></div> %>
     <%# <% end %>
-    <% if collection %>
+    <% if collection && collection.id %>
         <button
           value="<%= favorite_collection_path(collection) %>"
           data-turbo-method="patch"
