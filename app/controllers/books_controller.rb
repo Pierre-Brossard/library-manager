@@ -27,6 +27,10 @@ class BooksController < ApplicationController
       @books = @books.with_user_id(current_user.id)
     end
 
+    unless (params[:favorite].present? && params[:favorite] == 'false')
+      @books = @books.favorite_books(params[:favorite], current_user.id)
+    end
+
     if params[:genres].present? && params[:genres] != ""
       @books = @books.filtered_by_genre(params[:genres].split(' '))
     end
