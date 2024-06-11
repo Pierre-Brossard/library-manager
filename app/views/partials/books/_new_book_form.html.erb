@@ -1,7 +1,8 @@
 <%= simple_form_for book, html: { class: 'new-book-form', data: {controller: 'new-book-form'}} do |f| %>
+<hr>
   <div class="form-block">
-    <div class="row">
-      <div class="col-8">
+    <div class="form-row">
+      <div class="form-col-8">
         <%= f.input :book_type,
           label: 'Type',
           prompt: 'Choisissez un type..',
@@ -9,7 +10,7 @@
           input_html: { data: { action:'change->new-book-form#toggle_illustrator' } }
         %>
       </div>
-      <div class="col-4">
+      <div class="form-col-4">
         <%= f.input :release,
           as: :integer,
           label: 'Sortie',
@@ -21,7 +22,7 @@
 
     <%= f.input :title,
       label: false,
-      placeholder: 'Titre*'
+      placeholder: 'Titre'
     %>
     <%= f.input :author,
       label: false,
@@ -36,39 +37,41 @@
     %>
     <%= f.input :edition, label: false, placeholder: 'Edition' %>
   </div>
-
-  <div class='p-3 form-block'>
-    <%= f.association :genres, as: :check_boxes,
-      input_html: {class: 'book-genre-input-button'},
-      item_wrapper_class: 'genre-wrapper'
-    %>
+<hr>
+  <div class="form-block-description">
+    <%= f.input :description, label: false, placeholder: 'Description', input_html: {class: 'mb-0 w-100 hello'} %>
   </div>
-
-
+<hr>
   <div class='form-block'>
-    <div class="row">
-      <div class="col-8">
+    <div class="form-row">
+      <div class="form-col-8">
         <%= f.association :serie,
           label: 'Série',
           prompt: 'Ajouter une série...',
           input_html: { data: { action:'change->new-book-form#toggle_serie' } }
         %>
       </div>
-      <div class="col-4">
+      <div class="form-col-4">
         <%= f.input :serie_number, label: 'N°' %>
       </div>
     </div>
-    <div class="container p-2" data-new-book-form-target='serie'>
+    <div class="form-container" data-new-book-form-target='serie'>
       <input class="form-control string optional" type="text" name="serie[name]" placeholder="Nom de la série">
     </div>
   </div>
-  <div class="form-block">
-    <%= f.input :description, label: false, placeholder: 'Description', input_html: {class: 'mb-0 h-100'} %>
+<hr>
+  <div class='genre-block'>
+    <%= f.association :genres, as: :check_boxes,
+      input_html: {class: 'book-genre-input-button'},
+      item_wrapper_class: 'genre-wrapper'
+    %>
   </div>
+<hr>
   <div class="form-block">
     <%= f.input :cover_img, as: :file, label: 'Image de couverture', input_html: {class: 'mb-0'} %>
   </div>
-  <div class='d-flex justify-content-end'>
-    <%= f.submit 'Ajouter', class: 'button size-2x style-green' %>
+<hr>
+  <div class='add-btn'>
+    <%= f.submit 'Ajouter', class:'add-book' %>
   </div>
 <% end %>
