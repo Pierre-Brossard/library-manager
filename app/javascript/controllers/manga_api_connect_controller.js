@@ -20,9 +20,6 @@ export default class extends Controller {
   url =
     'https://auth.mangadex.org/realms/mangadex/protocol/openid-connect/token';
 
-  //? wrapp app.erb avec ce controller et stocker les donnee piur ne pas request token a chaque chargement de la page
-  //? foutre les donne de co dans le cahce et les ? pour savoir si fecth ou pas?
-
   connect() {
     this.#get_conection_token(() => {
       this.refreshCreds.refresh_token = localStorage.getItem('refresh_token');

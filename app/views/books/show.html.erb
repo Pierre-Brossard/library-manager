@@ -72,14 +72,14 @@
     <p><%= @book.description %></p>
   </div>
 
-  <!-- Actions Section -->
+  <!-- Actions -->
   <div class="actions">
     <%= link_to '<button class="button size-sm style-danger">Supprimer</button>'.html_safe,
     book_collection_path(@book.collections),
     data: { turbo_method: :delete, turbo_confirm: "Êtes-vous sûr?" } %>
   </div>
 
-  <!-- Comment Section -->
+  <!-- Avis -->
   <div class="comment">
     <% if @collection.comment == "" %>
       <button class="button open-modal" data-modal-target=".my-modal">Ajouter un commentaire</button>
@@ -93,7 +93,7 @@
   </div>
 </div>
 
-<!-- Modal for Comment Form -->
+<!-- Avis Form -->
 <div class="modal my-modal" tabindex="-1" aria-labelledby="my-modal-title">
   <div class="modal-content">
     <div class="modal-header">
