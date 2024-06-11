@@ -1,34 +1,4 @@
-<div class="card-open book-card">
-  <div alt="<%= book.title %>" class="book-thumbnail">
-    <%# si le cover_url contient l'image | ajouté en dur dans les seeds %>
-    <% if book.cover_url %>
-      <%= image_tag book.cover_url%>
-    <%# si le cover_img active storage contient l'image | créé à travers l'action create du controller %>
-    <% elsif book.cover_img.attached? %>
-      <%= cl_image_tag book.cover_img.key %>
-    <% end %>
-  </div>
-
-  <div class="book-info">
-      <h2 class="book-title"><%= book.title %></h2>
-      <%# Si série, il y a %>
-      <% if book.serie %>
-        <p class="book-series">N°<%= book.serie_number %> - <%= book.serie.name %></p>
-      <% end %>
-      <hr class="hr">
-      <div class="card-details">
-        <small>
-          <i><p class="book-author"><%= book.author %>, <%= book.illustrator %></p></i>
-          <p class="book-details"><%= book.release.strftime('%Y') if book.release %> • <%= book.edition if book.edition %></p>
-        </small>
-      </div>
-      <hr class="hr">
-      <div class="book-desc">
-        <p><strong>Description :</strong> <%= book.description %></p>
-      </div>
-  </div>
-  <%# <button data-action="bar-code-reader#addToCollection">Ajouter à ma collection</button> %>
-</div>
+<%= render 'partials/books/book_card', book: book, collection: collection %>
 
 <%= simple_form_for book, method: :patch do |f| %>
   <%= f.input :book_type,

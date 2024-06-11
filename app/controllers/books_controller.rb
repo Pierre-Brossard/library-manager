@@ -45,12 +45,13 @@ class BooksController < ApplicationController
       @book.genres.build
     else
       @book = Book.find_by(isbn: params[:isbn])
+
       unless @book
         @book = Book.create!(
           book_type: 'Roman',
           title: params[:title],
           author: params[:author],
-          release: Date.parse(params[:release]),
+          release: params[:release].size == 4 ? Date.new(params[:release].to_i) : Date.parse(params[:release]),
           edition: params[:edition],
           isbn: params[:isbn],
           cover_url: params[:cover_url]
@@ -67,9 +68,11 @@ class BooksController < ApplicationController
 
     respond_to do |format|
       format.html
-      format.text { render partial: "partials/books/book_card_choice",
-        locals: {book: @book, collection: Collection.new},
-        formats: [:html] }
+      format.text do
+          render partial: "partials/books/book_card_choice",
+            locals: {book: @book, collection: Collection.new},
+            formats: [:html]
+      end
     end
   end
 
