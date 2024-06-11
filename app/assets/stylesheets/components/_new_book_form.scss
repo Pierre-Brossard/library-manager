@@ -16,24 +16,34 @@
     font-size: 1.2rem;
     border-radius: 50rem;
     padding: 0.2em 1em;
-    color: $white;
-    border: 2px solid $white;
+    color: $darkgreen;
+    background-color: $white;
+    border: 2px solid $darkgreen;
+    box-shadow: 0 4px 0 $darkgreen;
     margin-right: 0.6rem;
     margin-bottom: 0.4rem;
     font-weight: 600;
+
+    }
+
+  .book-genre-input-button + label:checked {
+    color: $white;
+    background-color: $red;
+    border: 2px solid $darkgreen;
+    box-shadow: none;
   }
 
   .form-check-input.is-valid ~ .form-check-label {
     color: $darkgreen;
+    background-color: $white;
     border: 2px solid $darkgreen;
     box-shadow: 0 4px 0 $darkgreen;
-    background-color: $white;
   }
 
   .form-check-input.is-valid:checked ~ .form-check-label {
     color: $white;
-    border: 2px solid $darkgreen;
     background-color: $green;
+    border: 2px solid $darkgreen;
   }
 
   .form-check-input.is-invalid ~ .form-check-label {
@@ -42,8 +52,8 @@
   }
 
   .book-genre-input-button:checked + label {
-    background-color: $darkgreen;
     color: $white;
+    background-color: $darkgreen;
   }
 
   .form-block {

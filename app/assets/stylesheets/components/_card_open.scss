@@ -1,16 +1,35 @@
 .book-card {
-  gap: 1em;
-  background-color: $white;
+  // display: flex;
+  // flex-direction: row;
+  // justify-content: flex-start;
+  // gap: 0.5em;
+  // background-color: $white;
+  // padding: 0.8em;
+  // margin-bottom: 5px;
+  // border: 2px solid $lightgrey;
+  // border-radius: 15px;
+  // box-shadow: inset 0 -3px 0px $lightgrey;
+  // height: auto;
+  // width: 100%;
+  // box-sizing: border-box;
+  // position: relative;
+  // z-index: 1;
+
+  display: flex;
+  gap: 0.8em;
+  background-color: #ffffff;
   padding: 0.8em;
   margin-bottom: 5px;
-  border: 2px solid $lightgrey;
+  border: 2px solid #e5e5e5;
   border-radius: 15px;
-  box-shadow: inset 0 -3px 0px $lightgrey;
+  box-shadow: 0 3px 0px #e5e5e5;
   height: auto;
   width: 100%;
   box-sizing: border-box;
   position: relative;
   z-index: 1;
+  align-content: center;
+  align-items: center;
 
   .owned-by-current-user {
     border: 2px solid $green;
@@ -19,21 +38,35 @@
 }
 
 .book-thumbnail {
+  // height: 230px;
+  // width: 160px;
+  // display: flex;
+  // flex-direction: row;
+  // align-items: flex-start;
+  // justify-content: center;
+  // align-items: center;
+  // margin-left: 6.5em;
+
   height: 230px;
-  width: 160px;
-  display: flex;
-  flex-direction: row;
-  align-items: flex-start;
-  justify-content: center;
-  align-items: center;
-  margin-left: 6.5em;
+  width: 150px;
+  border-radius: 15px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+
 
   img {
+    // background-size: cover;
+    // border: 2px solid $lightgrey;
+    // box-shadow: 0 3px 0px $lightgrey;
+    // border-radius: 0.5em;
+    // margin-left: 3em;
+    // height: 100%;
+    // width: 100%;
+    // object-fit: cover;
+
     background-size: cover;
-    border: 2px solid $lightgrey;
-    box-shadow: 0 3px 0px $lightgrey;
+    border: 2px solid #e5e5e5;
+    box-shadow: inset 0 -3px 0px #e5e5e5;
     border-radius: 0.5em;
-    margin-left: 3em;
     height: 100%;
     width: 100%;
     object-fit: cover;
@@ -41,22 +74,39 @@
 }
 
 .book-info {
+  // flex: 1;
+  // min-width: 0;
+  // margin: 0;
+  // margin-top: 1em;
+
+  display: flex;
   flex: 1;
   min-width: 0;
   margin: 0;
-  margin-top: 1em;
+  margin-top: 2em;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  min-height: 200px;
 }
 
 .book-title {
+  // font-size: 1.3em;
+  // line-height: 1em;
+  // font-weight: 800;
+  // margin: 0;
+  // color: $black;
+  // text-transform: uppercase;
+  // text-overflow: ellipsis;
+  // overflow: hidden;
+  // white-space: nowrap;
+
   font-size: 1.3em;
   line-height: 1em;
   font-weight: 800;
   margin: 0;
-  color: $black;
+  color: #4b4b4b;
   text-transform: uppercase;
-  text-overflow: ellipsis;
-  overflow: hidden;
-  white-space: nowrap;
 }
 
 .book-series {
@@ -72,12 +122,20 @@
 
 .book-author,
 .book-details {
-  color: $black;
+  // color: $black;
+  // font-size: 1.1em;
+  // font-weight: 500;
+  // line-height: 0.8em;
+  // margin: 5px 0;
+  // overflow: hidden;
+  // white-space: nowrap;
+  // text-overflow: ellipsis;
+
   font-size: 1.1em;
   font-weight: 500;
-  color: $black;
-  line-height: 0.8em;
-  margin: 5px 0;
+  color: #4b4b4b;
+  line-height: 1.1em;
+  margin: 0;
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
@@ -104,20 +162,31 @@
 }
 
 .book-genre {
+  // display: inline-block;
+  // position: absolute;
+  // bottom: 10px;
+  // right: 5px;
+
   display: inline-block;
   position: absolute;
-  bottom: 10px;
-  right: 5px;
+  right: 10px;
+  top: 10px;
 }
 
 /* Styles pour les actions */
 .book-actions {
+  // display: flex;
+  // flex-direction: column;
+  // gap: 0.6em;
+  // justify-content: space-around;
+  // margin-left: 1em;
+  // z-index: 2;
+
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   gap: 0.6em;
   justify-content: space-around;
-  margin-left: 1em;
-  z-index: 2;
+  margin-top: 1em;
 }
 
 .btn-favorite {

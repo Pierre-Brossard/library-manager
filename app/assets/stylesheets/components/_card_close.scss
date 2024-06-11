@@ -6,6 +6,19 @@
 
   .book-info {
     margin-top: 0;
+    min-height: 0;
+  }
+
+  .book-title {
+    font-size: 1.3em;
+    line-height: 1em;
+    font-weight: 800;
+    margin: 0;
+    color: $black;
+    text-transform: uppercase;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
   }
 }
 
