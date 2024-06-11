@@ -130,6 +130,13 @@
   }
 }
 
+.btn-favorite-active {
+  color: $white;
+  background-color: $red;
+  border: 2px solid $red;
+  box-shadow: inset 0 -2px 0px $red;
+}
+
 .btn-details {
   z-index: 1;
   color: $lightgrey;
