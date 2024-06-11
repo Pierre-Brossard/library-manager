@@ -11,33 +11,26 @@
       <%# <div class="btn btn-details" data-action="click->book-content#stop_bubbling"><i class="fa-solid fa-circle-info"></i></div> %>
     <%# <% end %>
     <% if collection %>
-      <form method="patch" action="<%= favorite_collection_path(collection)%>"">
         <button
-          data-turbo-method="patch"²
+          value="<%= favorite_collection_path(collection) %>"
+          data-turbo-method="patch"
           type="submit"
           class="btn btn-favorite"
-          data-action="click->book-content#stop_bubbling">
+          data-action="click->book-content#stop_bubbling click->book-content#addFavorite">
             <% if collection.is_favorited %>
               <i class="fa-solid fa-heart"></i>
             <% else %>
               <i class="fa-regular fa-heart"></i>
             <% end %>
         </button>
-      </form>
     <% else %>
-      <form method="post" action="<%= "#{collections_path}?book_id=#{book.id}" %>"">
         <button
-          data-turbo-method="patch"²
+          value="<%= book_collections_path(book) %>"
           type="submit"
           class="btn btn-favorite"
-          data-action="click->book-content#stop_bubbling">
-            <% if collection.is_favorited %>
-              <i class="fa-solid fa-heart"></i>
-            <% else %>
-              <i class="fa-regular fa-heart"></i>
-            <% end %>
+          data-action="click->book-content#stop_bubbling click->book-content#addCollection">
+          <i class="fa-solid fa-plus"></i>
         </button>
-      </form>
     <% end %>
   </div>
 </div>

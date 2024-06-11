@@ -16,5 +16,6 @@ Rails.application.routes.draw do
   resources :series, only: [:show, :index]
   resources :users, only: [:index, :show, :edit, :update, :destroy]
 
-  patch '/collections/:id/favorite', to: "collections#favorite", as: :favorite_collection
+  get '/collections/:id/favorite', to: "collections#favorite", as: :favorite_collection
+  
 end
