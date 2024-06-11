@@ -20,7 +20,7 @@ class Book < ApplicationRecord
   scope :filtered_by_genre, lambda{ |genres| joins(:genres).where(genres: {name: genres}) }
   scope :favorite_books, lambda{ |favorite, user_id| joins(:collections).where(collections: {
     is_favorited: favorite,
-    user: user_id
+    user_id: user_id
   })}
 
   # PGSearch Methods
