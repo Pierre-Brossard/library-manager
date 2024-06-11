@@ -1,34 +1,44 @@
 <div id="search-barcode-reader" data-controller="bar-code-reader">
+  <form class="search-bar"
+        action=""
+        data-action="submit->bar-code-reader#fetchBooks">
+    <input  type="search"
+            data-bar-code-reader-target="search"
+            placeholder="Rechercher dans votre collection..." />
+    <button type="submit"
+            class="search-button"
+            aria-label="Search">
+      <i class="fa-solid fa-magnifying-glass"></i>
+    </button>
+  </form>
 
-  <div class="d-flex justify-content-between align-items-center gap-3 pb-1 pt-1">
-    <div class="search-bar flex-grow-1">
-      <form data-action="submit->bar-code-reader#fetchBooks">
-        <input type="search" data-bar-code-reader-target="search" placeholder="naruto ou 1Q84 ou..." />
-        <button type="submit" class="search-button" aria-label="Search"></button>
-      </form>
-    </div>
-    <a class="btn btn-codebar" data-action="click->bar-code-reader#start" data-bar-code-reader-target="start"><i class="fa-solid fa-barcode"></i></a>
-    <a class="btn btn-codebar d-none" data-action="click->bar-code-reader#reset" data-bar-code-reader-target="reset">Reset</a>
-  </div>
+  <a  class="btn btn-codebar"
+      data-action="click->bar-code-reader#start"
+      data-bar-code-reader-target="start">
 
+    <i class="fa-solid fa-barcode"></i></a>
 
+  <a  class="btn btn-codebar d-none"
+      data-action="click->bar-code-reader#reset"
+      data-bar-code-reader-target="reset">Reset</a>
 
   <div class="barcode-video-wrapper d-none" data-bar-code-reader-target="videoWrapper">
     <video id="barcode-video"></video>
   </div>
 
-  <div id="tempbook-container" data-bar-code-reader-target="tempBook">
+  <div id="tempbook-container" data-bar-code-reader-target="tempBook"></div>
+
+  <div  class="alert alert-warning alert-dismissible fade show d-none"
+        role="alert"
+        data-bar-code-reader-target="alert">
+    <button type="button"
+            class="btn-close"
+            data-bs-dismiss="alert"
+            aria-label="Close"></button>
   </div>
 
-  <div class="alert alert-warning alert-dismissible fade show m-1 d-none" role="alert" data-bar-code-reader-target='alert'>
-    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
-    </button>
-  </div>
-
-
-  <div id="sourceSelectPanel" data-bar-code-reader-target="sourceSelectPanel" style="display:none">
+  <div id="sourceSelectPanel" data-bar-code-reader-target="sourceSelectPanel">
     <label for="sourceSelect">Change video source:</label>
-    <select id="sourceSelect" data-bar-code-reader-target="sourceSelect" style="max-width:400px">
-    </select>
+    <select id="sourceSelect" data-bar-code-reader-target="sourceSelect"></select>
   </div>
 </div>
