@@ -26,6 +26,10 @@ class BooksController < ApplicationController
       @books = @books.with_user_id(current_user.id)
     end
 
+    if (params[:favorite].present? && params[:favorite] == 'true')
+      @books = @books.favorite_books(params[:favorite], current_user.id)
+    end
+
     if params[:genres].present? && params[:genres] != ""
       @books = @books.filtered_by_genre(params[:genres].split(' '))
     end
@@ -44,12 +48,13 @@ class BooksController < ApplicationController
       @book.genres.build
     else
       @book = Book.find_by(isbn: params[:isbn])
+
       unless @book
         @book = Book.create!(
           book_type: 'Roman',
           title: params[:title],
           author: params[:author],
-          release: Date.parse(params[:release]),
+          release: params[:release].size == 4 ? Date.new(params[:release].to_i) : Date.parse(params[:release]),
           edition: params[:edition],
           isbn: params[:isbn],
           cover_url: params[:cover_url]
@@ -66,9 +71,11 @@ class BooksController < ApplicationController
 
     respond_to do |format|
       format.html
-      format.text { render partial: "partials/books/book_card_choice",
-                    locals: {book: @book, collection: Collection.new},
-                    formats: [:html] }
+      format.text do
+          render partial: "partials/books/book_card_choice",
+            locals: {book: @book, collection: Collection.new},
+            formats: [:html]
+      end
     end
   end
 
