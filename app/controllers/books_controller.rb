@@ -27,7 +27,7 @@ class BooksController < ApplicationController
       @books = @books.with_user_id(current_user.id)
     end
 
-    unless (params[:favorite].present? && params[:favorite] == 'false')
+    if (params[:favorite].present? && params[:favorite] == 'false')
       @books = @books.favorite_books(params[:favorite], current_user.id)
     end
 
