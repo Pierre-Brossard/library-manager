@@ -6,52 +6,24 @@
   <h4>Hello <%= current_user.nickname %>!</h2>
 </div>
 
-<div class="container">
-  <div class="home-content">
-    <div class="last-books">
-      <h2>Derniers Ajouts</h2>
-      <div class="last-books-cards">
-        <% current_user.books.each do |book| %>
-          <%= link_to book_path(book) do %>
-            <%= render 'partials/books/book_card_portrait', book: book %>
-          <% end %>
-        <% end %>
-      </div>
-    </div>
+<div class="last-books">
+  <h2>Derniers Ajouts</h2>
+  <div class="last-books-cards">
+    <% current_user.books.each do |book| %>
+      <%= link_to book_path(book) do %>
+        <%= render 'partials/books/book_card_portrait', book: book %>
+      <% end %>
+    <% end %>
+  </div>
+</div>
 
-    <div class="last-books">
-      <h2>Favoris</h2>
-      <div class="last-books-cards">
-        <% current_user.books.each do |book| %>
-          <%= link_to book_path(book) do %>
-            <%= render 'partials/books/book_card_portrait', book: book %>
-          <% end %>
-        <% end %>
-      </div>
-    </div>
-
-    <div class="last-books">
-      <h2>Wishlist</h2>
-      <div class="last-books-cards">
-        <% current_user.books.each do |book| %>
-          <%= link_to book_path(book) do %>
-            <%= render 'partials/books/book_card_portrait', book: book %>
-          <% end %>
-        <% end %>
-      </div>
-    </div>
-
-     <div class="last-books">
-      <h2>Livres prétés</h2>
-      <div class="last-books-cards">
-        <% current_user.books.each do |book| %>
-          <%= link_to book_path(book) do %>
-            <%= render 'partials/books/book_card_portrait', book: book %>
-          <% end %>
-        <% end %>
-      </div>
-    </div>
-
-
+<div class="last-books">
+  <h2>Derniers Ajouts</h2>
+  <div class="last-books-cards">
+    <% current_user.books.each do |book| %>
+      <%= link_to book_path(book) do %>
+        <%= render 'partials/books/book_card_portrait', book: book %>
+      <% end %>
+    <% end %>
   </div>
 </div>

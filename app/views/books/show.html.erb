@@ -1,111 +1,110 @@
-<div class="title-card">
-  <div class="header-icons">
-    <%= link_to '<i class="fa-solid fa-chevron-left" style="color: #ffffff;"></i>'.html_safe, books_path, class: "back-button" %>
+<div class="show-book-cover">
+  <%= link_to books_path do %>
+    <div class="btn btn-back-show">
+      <i class="fa-solid fa-arrow-left-long"></i>
+    </div>
+  <% end %>
+  <% if @collection.is_read %>
+    <div class="btn btn-read-show">
+      <i class="fa-solid fa-book-open"></i>
+    </div>
+  <% else %>
+    <div class="btn btn-not-read-show not-read">
+      <i class="fa-solid fa-book-open"></i>
+    </div>
+  <% end %>
 
+  <div class="btn btn-favorite-show">
     <% if @collection.is_favorited %>
-      <%= link_to '<i class="fa-solid fa-heart" style="color: #c81e26;"></i>'.html_safe, book_path(@book) %>
+      <%= link_to book_path(@book) do %>
+        <i class="fa-solid fa-heart"></i>
+      <% end %>
     <% else %>
-      <%= link_to '<i class="fa-regular fa-heart" style="color: #ffffff;"></i>'.html_safe, book_path(@book) %>
+      <%= link_to book_path(@book) do %>
+        <i class="fa-regular fa-heart"></i>
+      <% end %>
     <% end %>
   </div>
-    <h2 class="card-title"><%= @book.title %></h2>
+
+  <div class="background">
+    <% if @book.cover_url %>
+      <%= image_tag @book.cover_url, class: "show-image blur-image" %>
+    <% elsif @book.cover_img.attached? %>
+      <%= cl_image_tag @book.cover_img.key, class: "show-image blur-image" %>
+    <% end %>
+    <div class="overlay"></div>
+  </div>
+  <div class="show-book-image">
+    <% if @book.cover_url %>
+      <%= image_tag @book.cover_url, class: "show-image" %>
+    <% elsif @book.cover_img.attached? %>
+      <%= cl_image_tag @book.cover_img.key, class: "show-image" %>
+    <% end %>
+  </div>
 </div>
 
 <div class="container">
-  <article class="card book-details-card" style="min-width: 350px">
-    <header class="card-header">
-      <div class="card-badges">
-        <% if @collection.is_read %>
-          <a href="#" class="badge style-green custom-badge">Lu</a>
-        <% else %>
-          <a href="#" class="badge style-red custom-badge">A lire</a>
-        <% end %>
-      </div>
-      <% if @book.cover_url %>
-        <%= image_tag @book.cover_url, height:300, class: "card-image" %>
-      <% elsif @book.cover_img.attached? %>
-        <%= cl_image_tag @book.cover_img.key, height: 300, class: "card-image" %>
+  <h2 class="card-title"><%= @book.title %></h2>
+
+  <div class="row">
+    <h5 class="col-9">Auteur : <%= @book.author %></h5>
+    <div class="col-3">
+      <span><%= @book.serie_number %>/<%= @book.serie.books_total %></span>
+    </div>
+  </div>
+
+  <div class="row">
+    <ul class="col-9">
+      <% @book.genres.each do |genre| %>
+        <li class="badge style-green"><%= genre.name %></li>
       <% end %>
+    </ul>
+    <% if @book.serie %>
+      <p class="col-3"><%= link_to @book.serie.name, serie_path(@book.serie) %></p>
+    <% end %>
+  </div>
 
-      <%= link_to '<button class="button size-sm style-danger">Supprimer</button>'.html_safe,
-      book_collection_path(@book.collections),
-      data: {turbo_method: :delete, turbo_confirm: "Etez vous sur ?"}
-      %>
-    </header>
-    <div class="card-body">
-      <%# section info du livre %>
-      <div class="outline-box">
-        <div class="row">
-          <h5 class="col-9">
-            <%= @book.author %>
-          </h5>
-          <div class="col-3">
-            <span><%= @book.serie_number %>/<%= @book.serie.books_total %></span>
-          </div>
-        </div>
+  <p>Date de sortie : <%= @book.release %></p>
+  <hr class="short style-green" />
 
-        <div class="row mt-2">
-          <ul class="col-9">
-            <% @book.genres.each do |genre| %>
-              <li class="badge style-green">
-                <%= genre.name %>
-              </li>
-            <% end %>
-          </ul>
-          <% if @book.serie %>
-            <p class="col-3">
-              <%= link_to @book.serie.name, serie_path(@book.serie) %>
-            </p>
-          <% end %>
-        </div>
+  <div class="book-description">
+    <h6>Description</h6>
+    <p><%= @book.description %></p>
+  </div>
 
-        <p><%= @book.release %></p>
-        <hr class="short style-green" />
-        <div class="book-description">
-          <h6>Description</h4>
-          <p><%= @book.description %></p>
-        </div>
+  <!-- Actions -->
+  <div class="actions">
+    <%= link_to '<button class="button size-sm style-danger">Supprimer</button>'.html_safe,
+    book_collection_path(@book.collections),
+    data: { turbo_method: :delete, turbo_confirm: "Êtes-vous sûr?" } %>
+  </div>
+
+  <!-- Avis -->
+  <div class="comment">
+    <% if @collection.comment == "" %>
+      <button class="button open-modal" data-modal-target=".my-modal">Ajouter un commentaire</button>
+    <% else %>
+      <div class="comment-title-button">
+        <h6>Commentaire</h6>
+        <button class="button open-modal" data-modal-target=".my-modal">Editer</button>
       </div>
+      <p><%= @collection.comment %></p>
+    <% end %>
+  </div>
+</div>
 
-      <div class="modal my-modal" tabindex="-1" aria-labelledby="my-modal-title">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="my-modal-title">Commentaire</h5>
-          <button type="button" class="close-modal close-button" data-modal-target=".my-modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          <%= render 'partials/collections/collection_form', collection: Collection.find_by(book_id: @book.id) %>
-        </div>
-        <div class="modal-footer">
-          <button class="button size-sm style-danger close-modal">Close</button>
-        </div>
-      </div>
+<!-- Avis Form -->
+<div class="modal my-modal" tabindex="-1" aria-labelledby="my-modal-title">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h5 class="modal-title" id="my-modal-title">Commentaire</h5>
+      <button type="button" class="close-modal close-button" data-modal-target=".my-modal" aria-label="Close">&times;</button>
     </div>
-
-      <%# section commentaire %>
-      <div class="comment mt-4 outline-box">
-        <% if @collection.comment == "" %>
-          <button
-            class="button open-modal"
-            data-modal-target=".my-modal"
-            >
-            Ajouter un commentaire
-          </button>
-         <% else %>
-          <div class="comment-title-button">
-            <h6>Commentaire</h6>
-            <button
-                class="button open-modal"
-                data-modal-target=".my-modal"
-                >
-                Editer
-            </button>
-          </div>
-          <p>
-            <%= @collection.comment %>
-          </p>
-        <% end %>
-      </div>
+    <div class="modal-body">
+      <%= render 'partials/collections/collection_form', collection: Collection.find_by(book_id: @book.id) %>
     </div>
-  </article>
+    <div class="modal-footer">
+      <button class="button size-sm style-danger close-modal">Close</button>
+    </div>
+  </div>
 </div>

@@ -1,10 +1,8 @@
-/* Styles pour la carte de livre */
 .book-card {
-  display: flex;
   gap: 1em;
   background-color: $white;
   padding: 0.8em;
-  margin-bottom: 10px;
+  margin-bottom: 5px;
   border: 2px solid $lightgrey;
   border-radius: 15px;
   box-shadow: inset 0 -3px 0px $lightgrey;
@@ -14,35 +12,47 @@
   position: relative;
   z-index: 1;
 
-  h2 {
-    font-size: 1em;
+  .owned-by-current-user {
+    border: 2px solid $green;
+    box-shadow: inset 0 -3px 0px $green;
   }
 }
 
-/* Styles pour la vignette du livre */
 .book-thumbnail {
-  width: 100px;
-  height: 100%;
+  height: 230px;
+  width: 160px;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: center;
+  align-items: center;
+  margin-left: 6.5em;
 
   img {
     background-size: cover;
     border: 2px solid $lightgrey;
     box-shadow: 0 3px 0px $lightgrey;
     border-radius: 0.5em;
+    margin-left: 3em;
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
   }
 }
 
-/* Styles pour les informations du livre */
 .book-info {
   flex: 1;
   min-width: 0;
+  margin: 0;
+  margin-top: 1em;
 }
 
 .book-title {
-  font-size: 1em;
-  line-height: 0.85em;
+  font-size: 1.1em;
+  line-height: 1em;
   font-weight: 900;
   margin: 0;
+  color: $black;
   text-transform: uppercase;
   text-overflow: ellipsis;
   overflow: hidden;
@@ -50,7 +60,8 @@
 }
 
 .book-series {
-  font-size: 1em;
+  font-size: 0.9em;
+  color: $black;
   line-height: 0.85em;
   font-weight: bold;
   margin: 5px 0;
@@ -61,6 +72,7 @@
 
 .book-author,
 .book-details {
+  color: $black;
   font-size: 1em;
   line-height: 0.85em;
   margin: 5px 0;
@@ -97,9 +109,9 @@
 .book-actions {
   display: flex;
   flex-direction: column;
-  gap: 0.5em;
+  gap: 0.6em;
   justify-content: space-around;
-  margin: 0 0 20px 10px;
+  margin-left: 1em;
   z-index: 2;
 }
 
