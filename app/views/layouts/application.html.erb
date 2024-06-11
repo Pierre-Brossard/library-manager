@@ -24,7 +24,6 @@
       <%# <%= link_to "index serie", series_path%>
       <%# <%= link_to "index book", books_path%>
       <%= yield %>
-      <% puts root_url%>
       <% if user_signed_in? && request.original_url != root_url%>
         <%= render "shared/navbar" %>
       <% end %>
