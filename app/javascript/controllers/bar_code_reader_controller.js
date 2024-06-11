@@ -82,11 +82,11 @@ export default class extends Controller {
             .then((response) => response.json())
             .then((authorData) => {
               data.author = authorData.name;
-              const bookData = this.#deserializeFromOpenLibrary(isbn, data)
+              const bookData = this.#deserializeISBNFromOpenLibrary(data, isbn)
               this.#getBookCard(bookData)
           });
         } else {
-          const bookData = this.#deserializeFromOpenLibrary(isbn, data);
+          const bookData = this.#deserializeISBNFromOpenLibrary(data, isbn);
           this.#getBookCard(bookData);
         }
 
@@ -99,7 +99,7 @@ export default class extends Controller {
     })
   }
 
-  #deserializeFromOpenLibrary(isbn, apiBookData){
+  #deserializeISBNFromOpenLibrary(apiBookData, isbn){
     const bookData = {
       title: apiBookData.title,
       author: apiBookData.author || apiBookData.by_statement.slice(0, -1),
@@ -120,24 +120,64 @@ export default class extends Controller {
     fetch(url, {headers: {"Accept": "text/plain"}})
       .then(response => response.text())
       .then((data) => {
-
-        this.tempBookTarget.innerHTML = data
-        this.tempBookTarget.classList.remove('d-none')
+        if (data != '') {
+          this.tempBookTarget.insertAdjacentHTML('beforeend', data)
+          this.tempBookTarget.classList.remove('d-none')
+        }
+        return data;
     })
+
   }
 
-  fetchBooks(event) {
+  fetchDbBooks(event) {
     event.preventDefault()
-    const url = `/books?query=${this.searchTarget.value}`
+    const url = `/books?query=${this.searchTarget.value}&my=false`
     fetch(url, { headers: { Accept: "text/plain" } })
       .then((response) => response.text())
       .then((data) => {
+        if (data === ""){
+          this.fetchApiBooks()
+        } else {
+          this.tempBookTarget.classList.remove("d-none");
+          this.tempBookTarget.innerHTML = data;
+        }
 
-        this.tempBookTarget.innerHTML = data;
-        this.tempBookTarget.classList.remove("d-none");
       });
-
   }
 
+  fetchApiBooks(){
+    const fields = "fields=title,first_sentence,author_name,cover_i,first_publish_year,publisher,isbn"
+    const limit = "limit=3"
+    const url = `https://openlibrary.org/search.json?q=${this.searchTarget.value.replace(/\s/g, '+')}&lang=fr&${limit}&${fields}`;
+    fetch(url, { headers: { Accept: "application/json" } })
+      .then((response) => response.json())
+      .then((data) => {
+        if (data === "") {
+        } else {
+          this.tempBookTarget.innerHTML = "";
+          const booksData = data.docs
+            .filter((doc) => doc.cover_i)
+            .map((doc) => this.#deserializeFromOpenLibrary(doc));
+          console.log(booksData);
+          booksData.forEach((bookData) => this.#getBookCard(bookData))
+        }
+      });
+  }
 
+  #deserializeFromOpenLibrary(doc) {
+    const bookData = { title: doc.title,
+      cover_url: doc.cover_i ? `https://covers.openlibrary.org/b/id/${doc.cover_i}-M.jpg`: undefined
+    }
+    console.log(doc)
+
+    if (bookData.title) {
+      if (doc.first_sentence) bookData.description = doc.first_sentence[0]
+      if (doc.author_name) bookData.author = doc.author_name[0];
+      if (doc.first_publish_year) bookData.release = doc.first_publish_year
+      if (doc.publisher) bookData.edition = doc.publisher[0]
+      if (doc.isbn) bookData.isbn = doc.isbn[1] || doc.isbn[0]
+    }
+
+    return bookData
+  }
 }
