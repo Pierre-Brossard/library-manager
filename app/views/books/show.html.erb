@@ -1,18 +1,4 @@
 <div class="show-book-cover">
-  <%= link_to books_path do %>
-    <div class="btn btn-back-show">
-      <i class="fa-solid fa-arrow-left-long"></i>
-    </div>
-  <% end %>
-  <% if @collection.is_read %>
-    <div class="btn btn-read-show">
-      <i class="fa-solid fa-book-open"></i>
-    </div>
-  <% else %>
-    <div class="btn btn-not-read-show not-read">
-      <i class="fa-solid fa-book-open"></i>
-    </div>
-  <% end %>
 
   <div class="btn btn-favorite-show">
     <% if @collection.is_favorited %>
