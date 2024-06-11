@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   devise_for :users
-  root to: "pages#home"
+  root to: "pages#splash_screen"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
@@ -18,4 +18,5 @@ Rails.application.routes.draw do
 
   get '/collections/:id/favorite', to: "collections#favorite", as: :favorite_collection
   get '/collections/:id/read', to: "collections#read", as: :read_collection
+  get '/home', to: 'pages#home'
 end
