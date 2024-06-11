@@ -5,23 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-    <%# <link
-      href="https://cdn.jsdelivr.net/npm/flatifycss/dist/css/flatify.min.css"
-      rel="stylesheet"
-      crossorigin="anonymous"
-    /> %>
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="mobile-web-app-capable" content="yes">
-    <link rel="manifest" crossorigin="use-credentials" href="<%= asset_path 'manifest.json' %>">
+    <link rel="manifest" crossorigin="use-credentials" href="<%= asset_path 'manifest.json' %>" />
     <%= render 'shared/ios_pwa_links' %>
     <%= favicon_link_tag %>
 
     <meta property="og:title" content="BookBudy" />
     <meta property="og:type" content="webapplication" />
     <meta property="og:url" content="https://www.bookbudy.ink/" />
-    <meta property="og:image" content="<%= image_tag "BookBuddy.svg", size: "1200x630" %>" />
+    <meta property="og:image" content=<%= image_tag "BookBuddy.svg", size: "1200x630" %>
     <meta property="og:description" content="Decouvrez le meilleur gestionaire de bibliotheque" />
 
   </head>
@@ -36,6 +31,4 @@
       <% end %>
     <%# </div> %>
   </body>
-
-  <%# <script src="https://cdn.jsdelivr.net/npm/flatifycss/dist/js/flatify.min.js" crossorigin="anonymous"></script> %>
 </html>
