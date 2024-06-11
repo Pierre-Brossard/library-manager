@@ -1,14 +1,16 @@
-<div class="container">
+<div class="container d-flex flex-column justify-content-center align-items-evenly">
   <div class="logo">
-      <img src="BookBuddy_logo.svg" alt="Logo BookBuddy" class="book">
-      <img src="BookBuddy.svg" alt="BookBuddy" class="text">
+      <%= image_tag "BookBuddy_logo.svg", alt: "Logo BookBuddy", class: "book"%>
+      <%= image_tag "BookBuddy.svg", alt: "BookBuddy", class:"text" %>
   </div>
   <div class="description">
       <p>
-          Découvrez et gérez votre collection de livres en toute simplicité. <br>
+          Parcourez et gérez votre collection de livres en toute simplicité. <br>
           Ajoutez de nouveaux titres, suivez les emprunts,
           marquez vos favoris et bien plus encore avec BookBuddy
       </p>
   </div>
-  <button class="go">Commencer votre collection</button>
+  <%= link_to home_path, class: 'go-wrapper' do %>
+    <button class="go">Visiter ma bibliothèque</button>
+  <% end %>
 </div>
