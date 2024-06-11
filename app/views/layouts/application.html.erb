@@ -22,11 +22,15 @@
   </head>
 
   <body>
+<<<<<<< splash-screen-mais-pas-vraiment
+
+=======
+>>>>>>> master
     <%# <div data-controller="manga-api-connect"> %>
       <%# <%= link_to "index serie", series_path%>
       <%# <%= link_to "index book", books_path%>
       <%= yield %>
-      <% if user_signed_in? %>
+      <% if user_signed_in? && request.original_url != root_url%>
         <%= render "shared/navbar" %>
       <% end %>
     <%# </div> %>
