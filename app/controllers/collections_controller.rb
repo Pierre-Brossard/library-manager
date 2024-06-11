@@ -1,5 +1,5 @@
 class CollectionsController < ApplicationController
-  before_action :set_collection, only: [:update, :favorite]
+  before_action :set_collection, only: [:update, :favorite, :read]
   skip_before_action :verify_authenticity_token, only: [:create]
 
   def update
@@ -24,6 +24,20 @@ class CollectionsController < ApplicationController
 
   def favorite
     @collection.is_favorited = !@collection.is_favorited
+    if @collection.save
+      respond_to do |format|
+        format.html do
+          render json: {message: 'The favorite status has been updated'}, status: :accepted
+        end
+        format.text { render partial: 'partials/books/book_card', locals: {book: @collection.book, collection: @collection}, formats: [:html] }
+      end
+    else
+      render json: {error: 'temporary error message'}, status: :unprocessable_entity
+    end
+  end
+
+  def read
+    @collection.is_read = !@collection.is_read
     if @collection.save
       respond_to do |format|
         format.html do

@@ -17,5 +17,5 @@ Rails.application.routes.draw do
   resources :users, only: [:index, :show, :edit, :update, :destroy]
 
   get '/collections/:id/favorite', to: "collections#favorite", as: :favorite_collection
-  
+  get '/collections/:id/read', to: "collections#read", as: :read_collection
 end

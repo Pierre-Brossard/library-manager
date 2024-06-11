@@ -25,6 +25,14 @@ export default class extends Controller {
   })
   }
 
+  addAsRead(event){
+    fetch(event.currentTarget.value, { headers: {"Accept": "text/plain"} })
+      .then((res) => res.text())
+      .then((data) => {
+        this.element.outerHTML = data
+  })
+  }
+
   stop_bubbling(event) {
     event.stopPropagation()
   }
