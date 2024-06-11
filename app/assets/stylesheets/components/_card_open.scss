@@ -130,6 +130,13 @@
   }
 }
 
+.btn-favorite-active {
+  color: $white;
+  background-color: $red;
+  border: 2px solid $red;
+  box-shadow: inset 0 -2px 0px $red;
+}
+
 .btn-details {
   z-index: 1;
   color: $lightgrey;
@@ -159,10 +166,15 @@
   }
 }
 
-.hr {
-  opacity: 0.2;
-  margin: 0.5em 0;
+.is-read {
+  color: $white;
+  background-color: $green;
 }
+
+  .hr {
+    opacity: 0.2;
+    margin: 0.5em 0;
+    }
 
 .red{
   background-color: $red;
