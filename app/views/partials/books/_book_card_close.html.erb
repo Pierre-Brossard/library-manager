@@ -1,5 +1,5 @@
 <div class="card-close book-card" data-book-content-target="bookDefault">
-  <div class="book-img-close"><i class="fa-solid fa-book"></i></div>
+  <div class="book-img-close"><i class="fa-solid fa-book <%= book.book_type.downcase %>-icon"></i></div>
   <div class="book-info">
     <p class="book-title"><%= book.title %></p>
     <% if book.serie %>
@@ -7,9 +7,6 @@
     <% end %>
   </div>
   <div class="book-actions-close">
-    <%# <%= link_to book_path(book) do %>
-      <%# <div class="btn btn-details" data-action="click->book-content#stop_bubbling"><i class="fa-solid fa-circle-info"></i></div> %>
-    <%# <% end %>
     <% if collection && collection.id %>
         <button
           value="<%= favorite_collection_path(collection) %>"
