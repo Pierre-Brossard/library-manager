@@ -11,24 +11,24 @@ class CollectionsController < ApplicationController
     @book = Book.find(params[:book_id])
     @collection = Collection.create(book: @book, user: current_user)
     respond_to do |format|
-      format.html
+      format.html { redirect_to book_path(@book)}
       format.text { render partial: 'partials/books/book_card', locals: {book: @book, collection: @collection}, formats: [:html] }
     end
   end
 
   def destroy
-    @collection = Collection.find_by(book_id: params[:id], user_id: current_user)
+    @book = Book.find(params[:id])
+    @collection = Collection.find_by(book: @book, user_id: current_user)
     @collection.destroy
-    redirect_to books_path
+    redirect_to book_path(@book)
   end
 
   def favorite
+    @book = @collection.book
     @collection.is_favorited = !@collection.is_favorited
     if @collection.save
       respond_to do |format|
-        format.html do
-          render json: {message: 'The favorite status has been updated'}, status: :accepted
-        end
+        format.html { redirect_to book_path(@book)}
         format.text { render partial: 'partials/books/book_card', locals: {book: @collection.book, collection: @collection}, formats: [:html] }
       end
     else

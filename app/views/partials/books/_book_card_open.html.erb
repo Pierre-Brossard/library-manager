@@ -1,4 +1,4 @@
-<div class="card-open d-none book-card" data-book-content-target="bookInfos">
+<div class="card-open d-none book-card <%= book.book_type.downcase %>-border" data-book-content-target="bookInfos">
   <div class="book-thumbnail">
     <%# si le cover_url contient l'image | ajouté en dur dans les seeds %>
     <% if book.cover_url %>
