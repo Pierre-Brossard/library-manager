@@ -1,8 +1,6 @@
 <div class="user-log-out">
-  <%= link_to users_path, data: { action: "click->navbar#active", navbar_target: "link" } do %>
-    <i class="fa-solid fa-right-from-bracket"></i>
-  <% end %>
-  <%= link_to users_path, data: { action: "click->navbar#active", navbar_target: "link" } do %>
+  <%= button_to '<i class="fa-solid fa-right-from-bracket"></i>'.html_safe, destroy_user_session_path, method: :delete %>
+  <%= link_to users_path do %>
     <i class="fa-solid fa-user"></i>
   <% end %>
 </div>
