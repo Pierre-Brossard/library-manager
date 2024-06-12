@@ -90,7 +90,7 @@ export default class extends Controller {
       })
       .catch(error => {
         console.error(error.message)
-        window.alert(`Erreur: le livre à l'isbn ${isbn} n'a pas été trouvé`)
+        window.alert(`Erreur: ISBN N°${isbn} n'a pas été trouvé`)
         this.reset()
     })
   }

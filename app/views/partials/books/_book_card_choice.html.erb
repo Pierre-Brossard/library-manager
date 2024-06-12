@@ -1,8 +1,8 @@
 <%= render 'partials/books/book_card', book: book, collection: collection %>
 <div data-controller='update-book'>
   <div class='d-flex justify-content-end'>
-    <button class='add-book' data-update-book-target='button' data-action='click->update-book#toggleForm'>
-      Mettre à jour
+    <button class='edit-book' data-update-book-target='button' data-action='click->update-book#toggleForm'>
+      <i class="fa-solid fa-pen"></i>
     </button>
   </div>
   <div class='d-none' data-update-book-target='form'>
@@ -25,7 +25,7 @@
       </div>
       <hr>
       <div class='add-btn' data-action='click->update-book#toggleForm'>
-        <%= f.submit 'OK', class:'add-book'%>
+        <%= f.submit "OK", class:'add-book'%>
       </div>
     <% end %>
   </div>

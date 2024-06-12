@@ -3,12 +3,15 @@
     <%= image_tag "BookBuddy_logo.svg", alt: "Logo BookBuddy", class: "book"%>
     <%= image_tag "BookBuddy.svg", alt: "BookBuddy", class:"text" %>
   </div>
+  <div class="header-user">
+    <i class="fa-solid fa-user"></i>
+  </div>
 </div>
 
 <div class="home-card">
   <h4>Hello <strong><%= current_user.nickname %></strong>, bienvenue !</h4>
   <%# ___________searh___________ %>
-  <%= link_to  do %>
+  <%= link_to new_book_path do %>
     <div class="home-card-search">
       <div class="input-search">Rechercher un livre à ajouter...</div>
       <div class="search-button"><i class="fa-solid fa-magnifying-glass"></i></div>
@@ -19,7 +22,11 @@
 </div>
 
 <div class="last-books">
-  <h2>Derniers Ajouts</h2>
+  <h2><i class="fa-solid fa-book-bookmark home-icon-book"></i> <span style="text-decoration: underline;
+                        text-decoration-style: solid;
+                        text-decoration-color: #89E219;
+                        text-decoration-thickness: 0.4rem;
+                        text-underline-offset: 0.1rem;">Derniers Ajouts</span></h2>
   <div class="last-books-cards">
     <% current_user.books.reverse.each do |book| %>
       <%= link_to book_path(book) do %>
@@ -30,7 +37,11 @@
 </div>
 
 <div class="last-books">
-  <h2>Livres favoris</h2>
+  <h2><i class="fa-solid fa-heart home-icon-heart"></i></i> <span style="text-decoration: underline;
+                        text-decoration-style: solid;
+                        text-decoration-color: #FF6359;
+                        text-decoration-thickness: 0.4rem;
+                        text-underline-offset: 0.1rem;">Livres Favoris</span></h2>
   <div class="last-books-cards">
     <% current_user.books.favorite_books('true', current_user).each do |book| %>
       <%= link_to book_path(book) do %>
