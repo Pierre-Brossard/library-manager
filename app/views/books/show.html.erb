@@ -72,16 +72,17 @@
   Auteur : <strong><%= @book.author %></strong></h5>
   <div class="row">
     <div class="col-9">
+    <% if @book.serie %>
       <h5 class="card-serie">
       <%# <i class="fa-solid fa-book"></i> %>
       Série : <strong><%= @book.serie.name %></strong></h5>
     </div>
     <div class="col-2 card-book-serie-number">
-      <% if @book.serie %>
+
         <h5 class="card-serie-number"><%= @book.serie_number %></h5>
         <h5 class="card-serie-tiret">/</h5>
         <h5 class="card-serie-total"><%= @book.serie.books_total %></h5>
-      <% end %>
+    <% end %>
     </div>
   </div>
   <%# <h6>Date de sortie : <%= @book.release </h6> %>
@@ -96,7 +97,7 @@
   <% if @collection %>
     <!-- Actions -->
     <div class="actions">
-      <%= link_to '<div class="btn btn-delete">Supprimer</div>'.html_safe,
+      <%= link_to '<div class="btn btn-delete">Supprimer de ma collection</div>'.html_safe,
       book_collection_path(@book.collections),
       data: { turbo_method: :delete, turbo_confirm: "Êtes-vous sûr?" } %>
     </div>
@@ -120,7 +121,7 @@
 <%# <% if @collection  %>
 
   <!-- Avis Form -->
-  <div class="modal my-modal" tabindex="-1" aria-labelledby="my-modal-title">
+  <%# <div class="modal my-modal" tabindex="-1" aria-labelledby="my-modal-title">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="my-modal-title">Commentaire</h5>
@@ -128,11 +129,11 @@
       </div>
       <div class="modal-body">
         <%= render 'partials/collections/collection_form', collection: Collection.find_by(book_id: @book.id) %>
-      </div>
-      <div class="modal-footer">
-        <button class="button size-sm style-danger close-modal">Close</button>
-      </div>
-    </div>
-  </div>
+      <%# </div> %>
+      <%# <div class="modal-footer"> %>
+        <%# <button class="button size-sm style-danger close-modal">Close</button> %>
+      <%# </div> %>
+    <%# </div> %>
+  <%# </div> %>
 
 <%# <% end %>
