@@ -62,7 +62,7 @@
     margin-bottom: 1em;
 
     input, textarea, select {
-      background-color: white;
+      background-color: $white;
       border-radius: 15px;
       border: 2px solid $grey;
       color: $grey;
@@ -149,7 +149,7 @@
   .button.size-2x.style-green {
     padding: 0.5rem 1rem;
     background-color: $green;
-    color: white;
+    color: $white;
     border: none;
     cursor: pointer;
   }

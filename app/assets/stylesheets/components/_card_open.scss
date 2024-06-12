@@ -17,11 +17,12 @@
 
   display: flex;
   gap: 0.8em;
-  background-color: #ffffff;
+  background-color: $white;
   padding: 0.8em;
-  margin-bottom: 5px;
+  margin-bottom: 10px;
   border-radius: 15px;
-  box-shadow: 0 3px 0px #e5e5e5;
+  border: 2px solid $lightgrey;
+  box-shadow: 0 3px 0px $lightgrey;
   height: auto;
   width: 100%;
   box-sizing: border-box;
@@ -62,8 +63,8 @@
     // object-fit: cover;
 
     background-size: cover;
-    border: 2px solid #e5e5e5;
-    box-shadow: inset 0 -3px 0px #e5e5e5;
+    border: 2px solid $lightgrey;
+    box-shadow: inset 0 -3px 0px $lightgrey;
     border-radius: 0.5em;
     height: 100%;
     width: 100%;
@@ -103,7 +104,7 @@
   line-height: 1em;
   font-weight: 800;
   margin: 0;
-  color: #4b4b4b;
+  color: $black;
   text-transform: uppercase;
 }
 
@@ -131,7 +132,7 @@
 
   font-size: 1.1em;
   font-weight: 500;
-  color: #4b4b4b;
+  color: $black;
   line-height: 1.1em;
   margin: 0;
   overflow: hidden;
@@ -197,8 +198,8 @@
   &:hover {
     background-color: $red;
     color: $white;
-    border: 2px solid darkred;
-    box-shadow: inset 0 -2px 0px darkred;
+    border: 2px solid $darkred;
+    box-shadow: inset 0 -2px 0px $darkred;
   }
 }
 
@@ -232,7 +233,7 @@
 
   &:hover {
     background-color: $green;
-    color: white;
+    color: $white;
     border: 2px solid $green;
     box-shadow: inset 0 -2px 0px $green;
   }

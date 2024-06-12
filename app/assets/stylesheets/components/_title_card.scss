@@ -4,7 +4,7 @@
   background-color: $white;
   border-radius: 0 0 1em 1em;
   box-shadow: 0 4px $green;
-  margin-bottom: 0.8em;
+  margin-bottom: 1em;
   padding-top: 1em;
   position: relative;
 
@@ -49,9 +49,9 @@
       font-weight: normal;
       line-height: 1.5;
       color: #4b4b4b;
-      background-color: #ffffff;
+      background-color: $white;
       background-clip: padding-box;
-      border: 2px solid #e5e5e5;
+      border: 2px solid $lightgrey;
       border-radius: 5em;
       transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
     }
