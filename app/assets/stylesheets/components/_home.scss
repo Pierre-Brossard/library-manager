@@ -26,6 +26,32 @@
   background-color: $white;
   padding: 1em;
   margin: 0.8em;
+  position: relative;
+}
+
+.home-card:before {
+	content: ' ';
+	position: absolute;
+	width: 0;
+	height: 0;
+	left: 40px;
+  right: auto;
+  bottom: auto;
+	top: -23px;
+	border: 11px solid;
+	border-color:  transparent transparent$lightgrey$lightgrey;
+}
+.home-card:after{
+	content: ' ';
+	position: absolute;
+	width: 0;
+	height: 0;
+	left: 42px;
+  right: auto;
+  top: -18px;
+	bottom: auto;
+	border: 10px solid;
+	border-color: transparent transparent $white $white;
 }
 
 .last-books {
