@@ -1,0 +1,19 @@
+.serie-card-images {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  overflow-x: scroll;
+  gap: 5px;
+  padding: 3px;
+}
+
+.serie-card-image {
+  object-fit: cover;
+  height: 115px;
+  width: 75px;
+  box-shadow: 2px 2px 3px $grey;
+}
+
+.serie-card-image-not-owned {
+  opacity: 0.5;
+}
