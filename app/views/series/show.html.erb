@@ -4,7 +4,7 @@
   <p> <%= @userBook[@serie.id] %> / <%= @serie.books_total %></p>
   <div>
     <% @serie.books.each do |book| %>
-      <%= render 'partials/books/book_card', book: book %>
+      <%= render 'partials/books/book_card', book: book, collection: Collection.find_by(book: book, user: current_user) %>
     <% end %>
   </div>
 
