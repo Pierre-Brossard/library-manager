@@ -23,7 +23,7 @@
 <div class="last-books">
   <h2>Livres favoris</h2>
   <div class="last-books-cards">
-    <% current_user.books.favorite_books(true, current_user).each do |book| %>
+    <% current_user.books.favorite_books('true', current_user).each do |book| %>
       <%= link_to book_path(book) do %>
         <%= render 'partials/books/book_card_portrait', book: book %>
       <% end %>
