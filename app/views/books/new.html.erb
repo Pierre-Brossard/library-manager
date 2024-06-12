@@ -1,9 +1,10 @@
 <div class="title-card">
-  <h2 class="card-title">Ajouter un livre !</h2>
-</div>
-<div class="book-form-choices">
-  <h4>Cherchez un livre...</h4>
+  <h2 class="card-title">Ajouter un livre</h2>
     <%= render 'partials/books/new_book_search' %>
-  <h4>...ou rajoutez-le manuellement</h4>
-    <%= render 'partials/books/new_book_form', book: @book %>
+</div>
+<div class="container">
+  <h4>Ajoute-le manuellement :</h4>
+  <div class="book-form-choices">
+      <%= render 'partials/books/new_book_form', book: @book %>
+  </div>
 </div>

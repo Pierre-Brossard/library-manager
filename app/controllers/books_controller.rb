@@ -8,10 +8,9 @@ class BooksController < ApplicationController
       format.html
       format.text do
         @book = @book.find_by(book_params)
-        raise
         render partial: "partials/books/book_card_choice",
-          locals: {book: @book, collection: Collection.new},
-          formats: [:html]
+        locals: {book: @book, collection: Collection.new},
+        formats: [:html]
       end
     end
   end

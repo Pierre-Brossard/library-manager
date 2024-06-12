@@ -1,20 +1,12 @@
-<div class="title-card">
-  <div class="logo">
-    <i class="fa-solid fa-book"></i>
-    <h2>BookBuddy</h2>
+<div class="header-home">
+  <div class="header-logo">
+    <%= image_tag "BookBuddy_logo.svg", alt: "Logo BookBuddy", class: "book"%>
+    <%= image_tag "BookBuddy.svg", alt: "BookBuddy", class:"text" %>
   </div>
-  <h4>Hello <%= current_user.nickname %>!</h2>
 </div>
 
-<div class="last-books">
-  <h2>Derniers Ajouts</h2>
-  <div class="last-books-cards">
-    <% current_user.books.each do |book| %>
-      <%= link_to book_path(book) do %>
-        <%= render 'partials/books/book_card_portrait', book: book %>
-      <% end %>
-    <% end %>
-  </div>
+<div class="home-card">
+  <h4>Hello <%= current_user.nickname %>!</h2>
 </div>
 
 <div class="last-books">
