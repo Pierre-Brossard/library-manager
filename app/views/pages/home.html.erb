@@ -6,7 +6,16 @@
 </div>
 
 <div class="home-card">
-  <h4>Hello <%= current_user.nickname %>!</h2>
+  <h4>Hello <strong><%= current_user.nickname %></strong>, bienvenue !</h4>
+  <%# ___________searh___________ %>
+  <%= link_to  do %>
+    <div class="home-card-search">
+      <div class="input-search">Rechercher un livre à ajouter...</div>
+      <div class="search-button"><i class="fa-solid fa-magnifying-glass"></i></div>
+      <div class="btn btn-codebar"><i class="fa-solid fa-barcode"></i></div>
+    </div>
+  <% end %>
+  <%# ___________searh___________ %>
 </div>
 
 <div class="last-books">
