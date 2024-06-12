@@ -1,12 +1,14 @@
+<div class="title-card">
+  <%= image_tag "BookBuddy_logo.svg", alt: "Logo BookBuddy", class: "book"%>
+  <h2 class="card-title"><%= @serie.name %></h2>
+</div>
+
 <div class="container">
-  <h1><%= @serie.name %></h1>
   <h6><%= @serie.status %></h6>
   <p> <%= @userBook[@serie.id] %> / <%= @serie.books_total %></p>
   <div>
-    <% @serie.books.each do |book| %>
+    <% @serie.books.order(:serie_number).each do |book| %>
       <%= render 'partials/books/book_card', book: book, collection: Collection.find_by(book: book, user: current_user) %>
     <% end %>
   </div>
-
-
 </div>
