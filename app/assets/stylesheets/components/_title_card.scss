@@ -1,12 +1,30 @@
 .title-card {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  background-color: $blue;
+  background-color: $white;
   border-radius: 0 0 1em 1em;
-  box-shadow: 0 4px $lightgrey;
-  margin-bottom: 0.8em;
-  color: $white;
+  box-shadow: 0 4px $green;
+  margin-bottom: 1em;
+  padding-top: 1em;
+  position: relative;
+
+  h2 {
+    font-family: 'Poppins';
+    color: #3A5C26;
+    font-size: 1.53em;
+    font-weight: 900;
+    letter-spacing: -0.05em;
+    word-spacing: 0.1em;
+    text-transform: none;
+    margin: 0.6em 1em 1em 3.4em;
+  }
+
+  .book {
+    position: absolute;
+    top: 1.1em;
+    left: 1em;
+    height: 60px;
+  }
 
   .header-icons {
     display: flex;
@@ -31,9 +49,9 @@
       font-weight: normal;
       line-height: 1.5;
       color: #4b4b4b;
-      background-color: #ffffff;
+      background-color: $white;
       background-clip: padding-box;
-      border: 2px solid #e5e5e5;
+      border: 2px solid $lightgrey;
       border-radius: 5em;
       transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
     }

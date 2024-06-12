@@ -33,7 +33,7 @@ hr {
       font-size: 1.2em;
       line-height: 1.1em;
       font-weight: 500;
-      color: #3A5C26;
+      color: $dark;
       text-align: center;
   }
 }
@@ -47,14 +47,14 @@ hr {
     margin: 1em;
     font-size: 1em;
     font-weight: 700;
-    color: #3A5C26;
+    color: $dark;
     background-color: $green;
     box-shadow: 0 4px 0 $darkgreen;
     border: 2px solid $darkgreen;
 
     // background-color: #8EBE21;
-    // box-shadow: 0 4px 0 #3A5C26;
-    // border: 2px solid #3A5C26;
+    // box-shadow: 0 4px 0 $dark;
+    // border: 2px solid $dark;
 
     border-radius: 10px;
     cursor: pointer;
@@ -62,6 +62,6 @@ hr {
   }
 
   .go:hover {
-    background-color: #3A5C26;
+    background-color: $dark;
   }
 }

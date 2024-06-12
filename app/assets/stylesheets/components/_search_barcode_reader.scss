@@ -40,8 +40,11 @@
   }
 
   #tempbook-container {
-    max-height: 40vh;
+    margin: 1em 0;
+    padding: 1em 0.2e;
+    max-height: 50vh;
+    border-bottom: 4px solid $lightgrey;
+    border-top: 4px solid $lightgrey;
     overflow-y: scroll;
-    box-shadow: inset 5px 10px rgba(0, 0, 0, 0.4);
   }
 }

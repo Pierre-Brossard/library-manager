@@ -1,6 +1,6 @@
 .profile {
   margin: 0 auto;
-  background-color: #fff;
+  background-color: $white;
 
   h2 {
     font-size: 1em;
@@ -102,9 +102,9 @@
 }
 
 .transaction-list li .transaction-type {
-  color: #007bff;
+  color: $blue;
 }
 
 .transaction-list li .transaction-type.borrowed {
-  color: #dc3545;
+  color: $red;
 }
