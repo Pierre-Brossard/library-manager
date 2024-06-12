@@ -8,7 +8,6 @@ export default class extends Controller {
 
   connect() {
     this.codeReader = new ZXing.BrowserMultiFormatReader();
-    console.log("ZXing code reader initialized");
     this.codeReader
       .getVideoInputDevices()
       .then((videoInputDevices) => {
@@ -50,9 +49,6 @@ export default class extends Controller {
 
           }
         }
-      );
-      console.log(
-        `Started continous decode from camera with id ${this.selectedDeviceId}`
       );
       this.startTarget.classList.add('d-none');
       this.resetTarget.classList.remove("d-none");
@@ -147,7 +143,7 @@ export default class extends Controller {
 
   fetchApiBooks(){
     const fields = "fields=title,first_sentence,author_name,cover_i,first_publish_year,publisher,isbn"
-    const limit = "limit=3"
+    const limit = "limit=5"
     const url = `https://openlibrary.org/search.json?q=${this.searchTarget.value.replace(/\s/g, '+')}&lang=fr&${limit}&${fields}`;
     fetch(url, { headers: { Accept: "application/json" } })
       .then((response) => response.json())
@@ -168,7 +164,6 @@ export default class extends Controller {
     const bookData = { title: doc.title,
       cover_url: doc.cover_i ? `https://covers.openlibrary.org/b/id/${doc.cover_i}-M.jpg`: undefined
     }
-    console.log(doc)
 
     if (bookData.title) {
       if (doc.first_sentence) bookData.description = doc.first_sentence[0]

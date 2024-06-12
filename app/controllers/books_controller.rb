@@ -80,7 +80,7 @@ class BooksController < ApplicationController
   end
 
   def update
-    if @book.update(book_params)
+    if @book.update(book_params) && params[:book][:genre_ids]
       params[:book][:genre_ids][1..].each do |genre_id|
         genre = Genre.find(genre_id)
         @book.genres << genre unless @book.genres.include?(genre)

@@ -2,10 +2,9 @@ import { Controller } from "@hotwired/stimulus"
 
 // Connects to data-controller="new-book-form"
 export default class extends Controller {
-  static targets = ['serie', 'illustrator']
+  static targets = ['serie', 'illustrator', 'form']
 
   connect() {
-    console.log(this.illustratorTarget)
   }
 
   toggle_illustrator(event) {
@@ -16,13 +15,24 @@ export default class extends Controller {
     }
   }
 
-
-
   toggle_serie(event) {
     if (event.target.value == '') {
       this.serieTarget.classList.remove('d-none')
     } else {
       this.serieTarget.classList.add("d-none");
+    }
+  }
+
+  toggle_form(event) {
+    event.preventDefault()
+    if (this.formTarget.classList.contains('d-none')) {
+      this.formTarget.classList.remove('d-none')
+      event.currentTarget.innerText = 'Cacher le formulaire'
+      event.currentTarget.classList.remove('mt-5')
+    } else {
+      this.formTarget.classList.add("d-none");
+      event.currentTarget.innerText = "Ajouter manuellement";
+      event.currentTarget.classList.add("mt-5");
     }
   }
 }
