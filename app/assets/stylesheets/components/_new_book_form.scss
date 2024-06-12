@@ -159,14 +159,14 @@
     justify-content: flex-end;
   }
 
-  .add-book {
-    padding: 0.2em 1em;
-    border-radius: 15px;
-    font-size: 1.3em;
-    font-weight: bold;
-    color: $white;
-    border: 2px solid $darkgreen;
-    box-shadow: 0 4px 0 $darkgreen;
-    background-color: $green
   }
+.add-book {
+  padding: 0.2em 1em;
+  border-radius: 15px;
+  font-size: 1.3em;
+  font-weight: bold;
+  color: $white;
+  border: 2px solid $darkgreen;
+  box-shadow: 0 4px 0 $darkgreen;
+  background-color: $green
 }
