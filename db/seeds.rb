@@ -2,7 +2,6 @@ require 'faker'
 
 INITIAL_GENRES = ['Fantasy', 'Science-fiction', 'Romance', 'Histoire', 'Shonen', 'Seinen', 'Shoujo', 'Jeunesse', 'Fantastique', 'Biographie', 'Thriller', 'Policier', 'Mélo', 'Conte']
 
-
 puts 'Destroying all instances...'
 
 User.destroy_all
@@ -19,34 +18,36 @@ images = ['cityoforange.jpeg', 'dune.jpeg', 'greatgatsby.jpeg', 'lotr.jpeg']
 
 puts 'Creating users and series...'
 
-john = User.create(nickname: "John", email: "john@gmail.com", password: 123456, public: true)
-User.create(nickname: "Maria", email: "maria@gmail.com", password: 123456)
+pierre = User.create(nickname: "Pierre", email: "pierre@gmail.com", password: 123456, public: true)
+User.create(nickname: "John", email: "john@gmail.com", password: 123456)
 
-Serie.create(name: "Super série", books_total: 7, status: "Terminée")
-Serie.create(name: "Mauvaise série", books_total: 5, status: 'En cours')
+# Serie.create(name: "Super série", books_total: 7, status: "Terminée")
+# Serie.create(name: "Mauvaise série", books_total: 5, status: 'En cours')
 
 puts 'Done'
 
 puts 'Creating books...'
 
-10.times{
-  b = Book.new(
-      title: Faker::Book.unique.title,
-      serie_number: rand(10),
-      book_type: Book::TYPES.sample,
-      serie: Serie.all.sample,
-      description: Faker::Lorem.sentence(word_count: 15),
-      isbn: "978 - 2 - 7177 - 2113 - 4",
-      release: Date.today-rand(10000),
-      author: Faker::Book.author,
-      illustrator: Faker::Book.author,
-      edition: Faker::Book.publisher,
-      illustrations: ["dz2btx3jhn9pqpvpnolp", "dz2btx3jhn9pqpvpnolp", "dz2btx3jhn9pqpvpnolp"]
-    )
-  filename = images.sample
-  b.cover_img.attach(io: File.open("app/assets/images/#{filename}"), filename: filename, content_type: "image/jpg")
-  b.save!
-}
+# 10.times{
+#   b = Book.new(
+#       title: Faker::Book.unique.title,
+#       serie_number: rand(10),
+#       book_type: Book::TYPES.sample,
+#       serie: Serie.all.sample,
+#       description: Faker::Lorem.sentence(word_count: 15),
+#       isbn: "978 - 2 - 7177 - 2113 - 4",
+#       release: Date.today-rand(10000),
+#       author: Faker::Book.author,
+#       illustrator: Faker::Book.author,
+#       edition: Faker::Book.publisher,
+#       illustrations: ["dz2btx3jhn9pqpvpnolp", "dz2btx3jhn9pqpvpnolp", "dz2btx3jhn9pqpvpnolp"]
+#     )
+#   filename = images.sample
+#   b.cover_img.attach(io: File.open("app/assets/images/#{filename}"), filename: filename, content_type: "image/jpg")
+#   b.save!
+# }
+
+
 
 INITIAL_GENRES.each { |name|
   Genre.create(name: name)
@@ -56,22 +57,22 @@ puts 'Done'
 
 puts 'Creating collections...'
 
-Book.all.each do |book|
-  (1 + rand(2)).times do
-    BookGenre.create(
-      book: book,
-      genre: Genre.all.sample
-    )
-  end
+# Book.all.each do |book|
+#   (1 + rand(2)).times do
+#     BookGenre.create(
+#       book: book,
+#       genre: Genre.all.sample
+#     )
+#   end
 
-  Collection.create(
-    comment: Faker::Lorem.sentence(word_count: 15),
-    is_read: [false, true].sample,
-    is_favorited: [false, true].sample,
-    book: book,
-    user: User.all.sample
-  )
-end
+#   Collection.create(
+#     comment: Faker::Lorem.sentence(word_count: 15),
+#     is_read: [false, true].sample,
+#     is_favorited: [false, true].sample,
+#     book: book,
+#     user: User.all.sample
+#   )
+# end
 
 User.all.each do |user|
   FavoriteSerie.create(
@@ -85,7 +86,11 @@ puts 'Done'
 puts 'other seeds'
 
 croisee_serie = Serie.create(name: "À la croisée des mondes", books_total: 3, status: "Terminée")
+oneira_serie = Serie.create(name: "Oneira", books_total: 4, status: "En cour")
 
+# creer les livre de la croisee des mondes
+
+puts "crees croise des mondes"
 cr = Book.new({
   title: 'Les Royaumes du Nord',
   serie_number: 1,
@@ -147,5 +152,30 @@ Collection.create(
     book: cr,
     user: john
   )
+
+puts "Cree oneira"
+
+on = Book.create({
+  title: "Oneira",
+  serie_number: 1,
+  book_type: "Manga",
+  serie: oneira_serie,
+  description: "Sortis des tréfonds de nos esprits, les cauchemars ont pris vie. Animés par leur seul désir d'éliminer leurs hôtes, ces monstres, aux multiples formes, sont devenus un fléau à éradiquer. Devant cette menace grandissante, la caste des Épeires s'est vu ériger en bras armé de l'Église afin de se dresser contre les créatures des songes. Arane Heos, la tristement célèbre « Croque-mitaine », est l'une de ces Épeires. Tout en affrontant les cauchemars, elle devra faire face au tumulte grandissant au sein de l'Église et de sa caste, lequel menace désormais le secret qui entoure son enfant.",
+  author: "Federica Di Meo",
+  # genre:  Action - Fantasy - Horreur - Thriller
+  release: Date.new(2022, 06, 17),
+  edition: "Kana"
+})
+
+on.cover_img.attach(io: File.open("app/assets/images/seeds/oneira-t1.png"), filename: "oneira-t1", content_type: "image/png")
+on.save!
+
+Collection.create({
+  comment: "",
+  is_read: true,
+  is_favorited: true,
+  book: on,
+  user: pierre
+})
 
 puts 'Done'
