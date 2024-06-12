@@ -1,15 +1,31 @@
-.roman {
-  background-color: $red;
+.roman-icon {
+  color: $red;
 }
 
-.bd{
-  background-color: $green;
+.bd-icon {
+  color: $green;
 }
 
-.manga{
-  background-color: $blue;
+.manga-icon {
+  color: $blue;
 }
 
-.poesie{
-  background-color: pink;
+.poesie-icon {
+  color: $pink;
+}
+
+.roman-border {
+  border: 2px solid $red;
+}
+
+.bd-border {
+  border: 2px solid $green;
+}
+
+.manga-border {
+  border: 2px solid $blue;
+}
+
+.poesie-border {
+  border: 2px solid $pink;
 }
