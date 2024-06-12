@@ -1,21 +1,4 @@
 <div class="show-book-cover">
-    <div class="btn btn-favorite-show">
-      <% if @collection %>
-        <% if @collection.is_favorited %>
-          <%= link_to favorite_collection_path(@collection) do %>
-            <i class="fa-solid fa-heart"></i>
-          <% end %>
-        <% else %>
-          <%= link_to favorite_collection_path(@collection) do %>
-            <i class="fa-regular fa-heart"></i>
-          <% end %>
-        <% end %>
-      <% else %>
-        <%= link_to book_collections_path(@book), data: {turbo_method: :post} do %>
-          <i class="fa-solid fa-plus"></i>
-        <% end %>
-      <% end %>
-    </div>
 
   <div class="background">
     <% if @book.cover_url %>
@@ -32,64 +15,109 @@
       <%= cl_image_tag @book.cover_img.key, class: "show-image" %>
     <% end %>
   </div>
+
+  <%# <div class="card-book-actions"> %>
+    <% if @collection && @collection.id%>
+      <button
+        value="<%= favorite_collection_path(@collection) %>"
+        data-turbo-method="patch"
+        type="submit"
+        class="btn btn-favorite"
+        data-action="click->book-content#stop_bubbling click->book-content#addFavorite">
+          <% if @collection.is_favorited %>
+            <i class="fa-solid fa-heart"></i>
+          <% else %>
+            <i class="fa-regular fa-heart"></i>
+          <% end %>
+      </button>
+      <button
+        value="<%= read_collection_path(@collection) %>"
+        data-turbo-method="patch"
+        type="submit"
+        class="btn btn-read"
+        data-action="click->book-content#stop_bubbling click->book-content#addAsRead">
+          <% if @collection.is_read %>
+            <i class="fa-regular fa-circle-check"></i>
+          <% else %>
+            <i class="fa-solid fa-circle-check"></i>
+          <% end %>
+          </button>
+    <% else %>
+      <button
+        value="<%= book_collections_path(@book) %>"
+        type="submit"
+        class="btn btn-favorite"
+        data-action="click->book-content#stop_bubbling click->book-content#addCollection">
+        <i class="fa-solid fa-plus"></i>
+      </button>
+    <% end %>
+  <%# </div> %>
+
 </div>
 
 <div class="container">
   <h2 class="card-title"><%= @book.title %></h2>
+  <hr class="short style-green" />
 
   <div class="row">
-    <h5 class="col-9">Auteur : <%= @book.author %></h5>
-    <div class="col-3">
-      <% if @book.serie %>
-        <span><%= @book.serie_number %>/<%= @book.serie.books_total %></span>
-      <% end %>
-    </div>
-  </div>
-
-  <div class="row">
-    <ul class="col-9">
+    <ul class="col-9 card-genres">
       <% @book.genres.each do |genre| %>
         <li class="badge style-green"><%= genre.name %></li>
       <% end %>
     </ul>
-    <% if @book.serie %>
-      <p class="col-3"><%= link_to @book.serie.name, serie_path(@book.serie) %></p>
-    <% end %>
   </div>
 
-  <p>Date de sortie : <%= @book.release %></p>
+  <h5 class="card-author">
+  <%# <i class="fa-solid fa-pen-nib"></i> %>
+  Auteur : <strong><%= @book.author %></strong></h5>
+  <div class="row">
+    <div class="col-9">
+      <h5 class="card-serie">
+      <%# <i class="fa-solid fa-book"></i> %>
+      Série : <strong><%= @book.serie.name %></strong></h5>
+    </div>
+    <div class="col-2 card-book-serie-number">
+      <% if @book.serie %>
+        <h5 class="card-serie-number"><%= @book.serie_number %></h5>
+        <h5 class="card-serie-tiret">/</h5>
+        <h5 class="card-serie-total"><%= @book.serie.books_total %></h5>
+      <% end %>
+    </div>
+  </div>
+  <%# <h6>Date de sortie : <%= @book.release </h6> %>
+
   <hr class="short style-green" />
 
+  <h5 class="card-serie-description"><strong>Description</strong></h5>
   <div class="book-description">
-    <h6>Description</h6>
     <p><%= @book.description %></p>
   </div>
 
   <% if @collection %>
     <!-- Actions -->
     <div class="actions">
-      <%= link_to '<button class="button size-sm style-danger">Supprimer</button>'.html_safe,
+      <%= link_to '<div class="btn btn-delete">Supprimer</div>'.html_safe,
       book_collection_path(@book.collections),
       data: { turbo_method: :delete, turbo_confirm: "Êtes-vous sûr?" } %>
     </div>
 
     <!-- Avis -->
-    <div class="comment">
-      <% if @collection.comment == "" %>
-        <button class="button open-modal" data-modal-target=".my-modal">Ajouter un commentaire</button>
-      <% else %>
-        <div class="comment-title-button">
-          <h6>Commentaire</h6>
-          <button class="button open-modal" data-modal-target=".my-modal">Editer</button>
-        </div>
-        <p><%= @collection.comment %></p>
-      <% end %>
-    </div>
+    <%# <div class="comment"> %>
+      <%# <% if @collection.comment == "" %>
+        <%# <button class="button open-modal" data-modal-target=".my-modal">Ajouter un commentaire</button> %>
+      <%# <% else %>
+        <%# <div class="comment-title-button"> %>
+          <%# <h6>Commentaire</h6> %>
+          <%# <button class="button open-modal" data-modal-target=".my-modal">Editer</button> %>
+        <%# </div> %>
+        <%# <p><%= @collection.comment </p> %>
+      <%# <% end %>
+    <%# </div> %>
 
   <% end %>
 </div>
 
-<% if @collection %>
+<%# <% if @collection  %>
 
   <!-- Avis Form -->
   <div class="modal my-modal" tabindex="-1" aria-labelledby="my-modal-title">
@@ -107,4 +135,4 @@
     </div>
   </div>
 
-<% end %>
+<%# <% end %>
