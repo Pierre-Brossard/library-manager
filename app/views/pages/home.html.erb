@@ -10,21 +10,29 @@
 
 <div class="home-card">
   <h4>Bienvenue  <strong><%= current_user.nickname %></strong> ! <br>
-  Il y a <strong><%= current_user.books.count %> livres</strong> dans ta bibliothèque :</h4>
+  <span style="color: grey;">Il y a <strong><%= current_user.books.count %> livres</strong> dans ta bibliothèque...</span></h4>
+</div>
+
+<div class="last-books settings">
+  <h2><i class="fa-solid fa-sliders home-icon-settings"></i> <span style="text-decoration: underline;
+                text-decoration-style: solid;
+                text-decoration-color: grey;
+                text-decoration-thickness: 0.4rem;
+                text-underline-offset: 0.1rem;">Détails</span></h2>
   <div class="home-card-collection">
-  </div>
-  <div class="home-card-collection-details">
-    <div class="roman-count">
-      <strong class='green-text'><%= current_user.books.where(book_type: 'Roman').count %> Roman</strong>(s)
-    </div>
-    <div class="manga-count">
-      <strong class='blue-text'><%= current_user.books.where(book_type: 'Manga').count %> Manga</strong>(s)
-    </div>
-      <div class="bd-count">
-    <strong class='red-text'><%= current_user.books.where(book_type: 'BD').count %> BD</strong>(s)
-    </div>
-      <div class="poesie-count">
-    <strong class='purple-text'><%= current_user.books.where(book_type: 'Poesie').count %> Poésie</strong>(s)
+    <div class="home-card-collection-details">
+      <div class="roman-count">
+        <strong class='green-text'><%= current_user.books.where(book_type: 'Roman').count %> Roman</strong>(s)
+      </div>
+      <div class="manga-count">
+        <strong class='blue-text'><%= current_user.books.where(book_type: 'Manga').count %> Manga</strong>(s)
+      </div>
+        <div class="bd-count">
+      <strong class='red-text'><%= current_user.books.where(book_type: 'BD').count %> BD</strong>(s)
+      </div>
+        <div class="poesie-count">
+      <strong class='purple-text'><%= current_user.books.where(book_type: 'Poesie').count %> Poésie</strong>(s)
+      </div>
     </div>
   </div>
 </div>
