@@ -2,9 +2,9 @@
 
   <div class="background">
     <% if @book.cover_url %>
-      <%= image_tag @book.cover_url, class: "show-image blur-image" %>
+      <%= image_tag @book.cover_url, class: "blur-image" %>
     <% elsif @book.cover_img.attached? %>
-      <%= cl_image_tag @book.cover_img.key, class: "show-image blur-image" %>
+      <%= cl_image_tag @book.cover_img.key, class: "blur-image" %>
     <% end %>
     <div class="overlay"></div>
   </div>
@@ -15,43 +15,44 @@
       <%= cl_image_tag @book.cover_img.key, class: "show-image" %>
     <% end %>
   </div>
+  <%= link_to :back, class: "btn btn-neutral-show btn-back-show" do %>
+    <i class="fa-solid fa-chevron-left"></i>
+  <% end %>
+  <% if @collection && @collection.id != nil %>
+    <button
+      value="<%= favorite_collection_path(@collection) %>"
+      data-turbo-method="patch"
+      type="submit"
+      class="btn btn-favorite btn-right-bottom-show"
+      data-action="click->book-content#addFavorite">
+        <% if @collection.is_favorited %>
+          <i class="fa-solid fa-heart"></i>
+        <% else %>
+          <i class="fa-regular fa-heart"></i>
+        <% end %>
+    </button>
+    <button
+      value="<%= read_collection_path(@collection) %>"
+      data-turbo-method="patch"
+      type="submit"
+      class="btn btn-read btn-right-top-show"
+      data-action="click->book-content#addAsRead">
+        <% if @collection.is_read %>
+          <i class="fa-solid fa-circle-check"></i>
+        <% else %>
+          <i class="fa-regular fa-circle-check"></i>
+        <% end %>
+        </button>
+  <% else %>
+    <button
+      value="<%= book_collections_path(@book) %>"
+      type="submit"
+      class="btn btn-neutral-show btn-right-top-show"
+      data-action="click->book-content#addCollection">
+      <i class="fa-solid fa-plus"></i>
+    </button>
+  <% end %>
 
-  <%# <div class="card-book-actions"> %>
-    <% if @collection && @collection.id%>
-      <button
-        value="<%= favorite_collection_path(@collection) %>"
-        data-turbo-method="patch"
-        type="submit"
-        class="btn btn-favorite"
-        data-action="click->book-content#stop_bubbling click->book-content#addFavorite">
-          <% if @collection.is_favorited %>
-            <i class="fa-solid fa-heart"></i>
-          <% else %>
-            <i class="fa-regular fa-heart"></i>
-          <% end %>
-      </button>
-      <button
-        value="<%= read_collection_path(@collection) %>"
-        data-turbo-method="patch"
-        type="submit"
-        class="btn btn-read"
-        data-action="click->book-content#stop_bubbling click->book-content#addAsRead">
-          <% if @collection.is_read %>
-            <i class="fa-solid fa-circle-check"></i>
-          <% else %>
-            <i class="fa-regular fa-circle-check"></i>
-          <% end %>
-          </button>
-    <% else %>
-      <button
-        value="<%= book_collections_path(@book) %>"
-        type="submit"
-        class="btn btn-add-collection"
-        data-action="click->book-content#stop_bubbling click->book-content#addCollection">
-        <i class="fa-solid fa-plus"></i>
-      </button>
-    <% end %>
-  <%# </div> %>
 
 </div>
 

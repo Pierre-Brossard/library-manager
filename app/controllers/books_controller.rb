@@ -2,7 +2,7 @@ class BooksController < ApplicationController
   before_action :set_book, only: [:show, :update]
 
   def show
-    @collection = Collection.find_by(book_id: @book.id)
+    @collection = Collection.find_by(book_id: @book.id, user: current_user)
 
     respond_to do |format|
       format.html

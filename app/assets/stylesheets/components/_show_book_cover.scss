@@ -46,40 +46,37 @@
 .show-image {
   object-fit: cover;
   border-radius: 1em;
+  object-position: center;
+  width: 165px;
+  height: 250px;
 }
 
-.btn-favorite-show {
+.btn-right-bottom-show {
   position: absolute;
   z-index: 3;
-  color: $red;
-  border: 2px solid $red;
-  box-shadow: inset 0 -2px 0px $red;
   bottom: 30px;
   right: 30px;
-
-  a {
-    color: $red;
-  }
 }
 
 .btn-back-show {
   position: absolute;
   z-index: 3;
-  color: $lightgrey;
-  border: 2px solid $lightgrey;
-  box-shadow: inset 0 -2px 0px $lightgrey;
   top: 30px;
   left: 30px;
 }
 
-.btn-not-read-show {
+.btn-right-top-show {
   position: absolute;
   z-index: 3;
-  color: $lightgrey;
-  border: 2px solid $lightgrey;
-  box-shadow: inset 0 -2px 0px $lightgrey;
   top: 30px;
   right: 30px;
+}
+
+.btn-neutral-show {
+  color: $grey;
+  border: 2px solid $grey;
+  box-shadow: inset 0 -2px 0px $grey;
+  background-color: $white;
 }
 
 // ________________________________
