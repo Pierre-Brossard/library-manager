@@ -2,6 +2,8 @@
   display: flex;
   flex-direction: column;
   background-color: $white;
+  // background-color: rgb(238, 255, 227);
+  // background-color: $greenwhite;
   border-radius: 0 0 1em 1em;
   box-shadow: 0 4px $green;
   margin-bottom: 1em;
@@ -17,7 +19,20 @@
     word-spacing: 0.1em;
     text-transform: none;
     margin: 0.6em 1em 1em 3.4em;
+
+    .card-serie-title {
+      font-size: 1em;
+      font-family: 'Barlow Condensed';
+      line-height: 1em;
+      font-weight: 700;
+      color: $grey;
+      text-transform: uppercase;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      white-space: nowrap;
+    }
   }
+
 
   .book {
     position: absolute;
