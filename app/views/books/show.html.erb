@@ -55,7 +55,7 @@
 
 </div>
 
-<div class="container">
+<div class="container" data-controller="book-details">
   <h2 class="card-title"><%= @book.title %></h2>
   <hr class="short style-green" />
 
@@ -95,45 +95,38 @@
   </div>
 
   <% if @collection %>
-    <!-- Actions -->
-    <div class="actions">
-      <%= link_to '<div class="btn btn-delete">Supprimer de ma collection</div>'.html_safe,
-      book_collection_path(@book.collections),
-      data: { turbo_method: :delete, turbo_confirm: "Êtes-vous sûr?" } %>
-    </div>
-
     <!-- Avis -->
-    <%# <div class="comment"> %>
-      <%# <% if @collection.comment == "" %>
-        <%# <button class="button open-modal" data-modal-target=".my-modal">Ajouter un commentaire</button> %>
-      <%# <% else %>
-        <%# <div class="comment-title-button"> %>
-          <%# <h6>Commentaire</h6> %>
-          <%# <button class="button open-modal" data-modal-target=".my-modal">Editer</button> %>
-        <%# </div> %>
-        <%# <p><%= @collection.comment </p> %>
-      <%# <% end %>
-    <%# </div> %>
-
+    <div class="comment">
+      <% if @collection.comment == "" %>
+        <button class="blue-btn" data-action="click->book-details#showModal">Ajouter un commentaire</button>
+      <% else %>
+        <div class="comment-title-button">
+          <h6>Commentaire</h6>
+          <button class="blue-btn" data-action="click->book-details#showModal"><i class="fa-solid fa-pen" style="color: #ffffff;"></i></button>
+        </div>
+        <p><%= @collection.comment %></p>
+       <% end %>
+    </div>
   <% end %>
-</div>
 
-<%# <% if @collection  %>
-
+  <% if @collection  %>
   <!-- Avis Form -->
-  <%# <div class="modal my-modal" tabindex="-1" aria-labelledby="my-modal-title">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="my-modal-title">Commentaire</h5>
-        <button type="button" class="close-modal close-button" data-modal-target=".my-modal" aria-label="Close">&times;</button>
+    <div class="comment-modal" data-book-details-target="modal" >
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Commentaire</h5>
+          <button type="button" class="close-modal close-button" data-action="click->book-details#hideModal" aria-label="Close">&times;</button>
+        </div>
+        <div class="modal-body">
+          <%= render 'partials/collections/collection_form', collection: Collection.find_by(book_id: @book.id) %>
+        </div>
       </div>
-      <div class="modal-body">
-        <%= render 'partials/collections/collection_form', collection: Collection.find_by(book_id: @book.id) %>
-      <%# </div> %>
-      <%# <div class="modal-footer"> %>
-        <%# <button class="button size-sm style-danger close-modal">Close</button> %>
-      <%# </div> %>
-    <%# </div> %>
-  <%# </div> %>
+    </div>
+  <% end %>
 
-<%# <% end %>
+  <div class="actions">
+    <%= link_to '<div class="btn btn-delete">Supprimer de ma collection</div>'.html_safe,
+    book_collection_path(@book.collections),
+    data: { turbo_method: :delete, turbo_confirm: "Êtes-vous sûr?" } %>
+  </div>
+</div>
