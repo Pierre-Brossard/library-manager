@@ -36,13 +36,13 @@
       </div>
 </div> %>
 
-<div class="container" data-controller="series-tabs">
+<%# <div class="container" data-controller="series-tabs"> %>
 
-  <div data-series-tabs-target="content" id="content-allSeries" style="display: block">
+  <%# <div data-series-tabs-target="content" id="content-allSeries" style="display: block">
      <%= render 'partials/series/list', series: @series %>
-  </div>
+  <%# </div> %>
 
-  <div data-series-tabs-target="content" id="content-userSeries" style="display: none">
+  <div data-series-tabs-target="content" id="content-userSeries" style="display: block">
     <% @user_books_series.group(:name).count.keys.each do |key| %>
       <% @seriesArray = [] %>
       <% @seriesArray << Serie.find_by(name: key) %>
