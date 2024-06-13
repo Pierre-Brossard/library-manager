@@ -55,6 +55,62 @@
   .red-text{
     color: $red;
   }
+
+  .home-text {
+    line-height: 1em;
+  }
+
+  .home-card-collection {
+
+  }
+
+  .home-card-collection-details {
+    display: flex;
+    width: 90%;
+    gap: 0.5em;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+
+    .roman-count,
+    .manga-count,
+    .bd-count,
+    .poesie-count {
+      padding: 0.3em 0.5em;
+      border-radius: 1em;
+      min-width: 120px;
+      text-align: center;
+    }
+
+    .roman-count {
+      color: $green;
+      background-color: rgba(50, 235, 50, 0.1);
+      border: 2px solid $green;
+      box-shadow: 0 3px 0 $green;
+    }
+
+    .manga-count {
+      color: $blue;
+      background-color: rgba(21, 162, 228, 0.1);
+      border: 2px solid $blue;
+      box-shadow: 0 3px 0 $blue;
+    }
+
+    .bd-count {
+      color: $red;
+      background-color: rgba(253, 60, 60, 0.1);
+      border: 2px solid $red;
+      box-shadow: 0 3px 0 $red;
+    }
+
+    .poesie-count {
+      color: $purple;
+      background-color: rgba(214, 27, 214, 0.1);
+      border: 2px solid $purple;
+      box-shadow: 0 3px 0 $purple;
+    }
+  }
 }
 
 .home-card:before {

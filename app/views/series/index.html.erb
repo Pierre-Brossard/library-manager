@@ -1,6 +1,7 @@
 <div class="title-card">
   <%= image_tag "BookBuddy_logo.svg", alt: "Logo BookBuddy", class: "book"%>
-  <h2 class="card-title">Séries</h2>
+  <h2 class="card-title">Mes séries</h2>
+</div>
   <%# <ul class="serie-tabs">
     <li>
       <a href="#" data-action="click->series-tabs#switchTabs" data-series-tabs-target="tab" data-target-id="content-allSeries">Toutes les séries</a>
@@ -9,7 +10,7 @@
       <a href="#" data-action="click->series-tabs#switchTabs" data-series-tabs-target="tab" data-target-id="content-userSeries">Mes séries</a>
     </li>
   </ul> %>
-  <div class="filter-box container">
+  <%# <div class="filter-box container">
       <div class="search-bar">
         <input
           type="text"
@@ -25,7 +26,6 @@
           <input  class="form-check-input"
                   name='my'
                   data-index-search-target='my'
-                  <%# data-action='input->index-search#search' %>
                   data-action="input->series-tabs#switchTabs"
                   data-series-tabs-target="tab"
                   data-target-id="content-userSeries"
@@ -34,8 +34,7 @@
                   checked>
         </div>
       </div>
-    </div>
-</div>
+</div> %>
 
 <div class="container" data-controller="series-tabs">
 

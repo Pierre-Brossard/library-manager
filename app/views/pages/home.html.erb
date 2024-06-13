@@ -9,17 +9,24 @@
 </div>
 
 <div class="home-card">
-  <h4>Bienvenue  <strong><%= current_user.nickname %></strong> !</h4>
-  Il y a <strong><%= current_user.books.count %></strong> livres dans ta bibliothèque :
-    <strong><%= current_user.books.read_books.count %></strong> sont
-  lus et
-    <strong><%= Book.all.favorite_books(true, current_user.id).count %></strong> sont favoris.
-    Tu as <strong class='green-text'><%= current_user.books.where(book_type: 'Roman').count %> romans</strong>,
-    <strong class='blue-text'><%= current_user.books.where(book_type: 'Manga').count %> manga</strong>
-  , <strong class='red-text'><%= current_user.books.where(book_type: 'BD').count %> bande-dessinées</strong> et
-    <strong class='purple-text'><%= current_user.books.where(book_type: 'Poesie').count %> recueils de
-  poésie</strong>.
-
+  <h4>Bienvenue  <strong><%= current_user.nickname %></strong> ! <br>
+  Il y a <strong><%= current_user.books.count %> livres</strong> dans ta bibliothèque :</h4>
+  <div class="home-card-collection">
+  </div>
+  <div class="home-card-collection-details">
+    <div class="roman-count">
+      <strong class='green-text'><%= current_user.books.where(book_type: 'Roman').count %> Roman</strong>(s)
+    </div>
+    <div class="manga-count">
+      <strong class='blue-text'><%= current_user.books.where(book_type: 'Manga').count %> Manga</strong>(s)
+    </div>
+      <div class="bd-count">
+    <strong class='red-text'><%= current_user.books.where(book_type: 'BD').count %> BD</strong>(s)
+    </div>
+      <div class="poesie-count">
+    <strong class='purple-text'><%= current_user.books.where(book_type: 'Poesie').count %> Poésie</strong>(s)
+    </div>
+  </div>
 </div>
 
 <div class="last-books">
