@@ -163,10 +163,25 @@
 .add-book {
   padding: 0.2em 1em;
   border-radius: 15px;
-  font-size: 1.3em;
+  font-size: 1.2em;
   font-weight: bold;
-  color: $white;
+  text-transform: uppercase;
+  color: $dark;
   border: 2px solid $darkgreen;
   box-shadow: 0 4px 0 $darkgreen;
   background-color: $green
+}
+
+.edit-book {
+  width: 60px;
+  height: 50px;
+  padding: 0.2em 0.5em;
+  border-radius: 15px;
+  font-size: 1.2em;
+  font-weight: bold;
+  text-transform: uppercase;
+  color: $darkgreen;
+  border: 2px solid $darkgreen;
+  box-shadow: 0 3px 0 $darkgreen;
+  background-color: $white
 }

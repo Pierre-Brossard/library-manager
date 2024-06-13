@@ -27,12 +27,12 @@ export default class extends Controller {
     event.preventDefault()
     if (this.formTarget.classList.contains('d-none')) {
       this.formTarget.classList.remove('d-none')
-      event.currentTarget.innerText = 'Cacher le formulaire'
-      event.currentTarget.classList.remove('mt-5')
+      event.currentTarget.innerText = 'Annuler'
+      // event.currentTarget.classList.remove('mt-5')
     } else {
       this.formTarget.classList.add("d-none");
       event.currentTarget.innerText = "Ajouter manuellement";
-      event.currentTarget.classList.add("mt-5");
+      // event.currentTarget.classList.add("mt-5");
     }
   }
 }

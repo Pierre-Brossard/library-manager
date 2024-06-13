@@ -7,10 +7,11 @@ export default class extends Controller {
   toggleForm() {
     if (this.formTarget.classList.contains("d-none")) {
       this.formTarget.classList.remove("d-none");
-      this.buttonTarget.innerText = "Cacher le formulaire";
+      this.buttonTarget.innerHTML = `<i class="fa-solid fa-xmark"></i>`;
     } else {
       this.formTarget.classList.add("d-none");
-      this.buttonTarget.innerText = "Mettre à jour";
+      this.buttonTarget.innerHTML = `<i class="fa-solid fa-pen"></i>`;
     }
-  }
+}
+
 }
