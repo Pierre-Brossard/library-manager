@@ -1,12 +1,12 @@
-<div class="card-close book-card d-flex flex-column">
-  <div class="d-flex w-100 justify-content-between align-items-center">
+<div class="card-close serie-card d-flex flex-column">
+  <div class="d-flex p-3 pb-0 w-100 justify-content-between align-items-center">
     <div>
       <p class="book-title"><%= serie.name %></p>
-      <p class='mb-0'><strong><%= serie.books_total %></strong> volumes - <%= serie.status%></p>
+      <p class='mb-0'><strong><%= serie.books_total %></strong> volumes - <span style="text-transform: uppercase; font-weight:bold; color: #2b70c9;"><%= serie.status%></span></p>
     </div>
     <div>
       <%= link_to serie_path(serie) do %>
-        <button class="btn btn-details"><i class="fa-solid fa-circle-info"></i></button>
+        <button class="btn btn-details">Voir la série</i></button>
       <% end %>
     </div>
   </div>
@@ -20,6 +20,4 @@
       <% end %>
     <% end %>
   </div>
-
-
 </div>

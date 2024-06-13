@@ -119,11 +119,12 @@
 }
 
 .last-books {
-  padding: 0.8em;
+  // padding: 0.8em;
   height: 400px;
 }
 
 .last-books h2 {
+  padding: 0.5em 0 0 0.8em;
   text-transform: uppercase;
   color: $black;
   font-size: 1.5em;
@@ -146,4 +147,5 @@
   flex-wrap: nowrap;
   gap: 0.8em;
   overflow-x: scroll;
+  padding: 0.8em;
 }
