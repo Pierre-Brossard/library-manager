@@ -29,19 +29,19 @@ hr {
 .description {
   margin: 1em 2em 2em 2em;
 
-  p{
-      font-size: 1.2em;
-      line-height: 1.1em;
-      font-weight: 500;
-      color: $dark;
-      text-align: center;
+  p {
+    font-size: 1.2em;
+    line-height: 1.1em;
+    font-weight: 500;
+    color: $dark;
+    text-align: center;
   }
 }
 .go-wrapper {
   text-align: center;
 
   .go {
-    font-family: 'Barlow Condensed', Arial, sans-serif;
+    font-family: "Barlow Condensed", Arial, sans-serif;
     text-transform: uppercase;
     padding: 10px 20px;
     margin: 1em;
@@ -51,11 +51,7 @@ hr {
     background-color: $green;
     box-shadow: 0 4px 0 $darkgreen;
     border: 2px solid $darkgreen;
-
-    // background-color: #8EBE21;
-    // box-shadow: 0 4px 0 $dark;
-    // border: 2px solid $dark;
-
+    color: $white;
     border-radius: 10px;
     cursor: pointer;
     transition: background-color 0.4s ease-in-out;
