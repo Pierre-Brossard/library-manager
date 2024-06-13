@@ -11,7 +11,7 @@
     </div>
   </div>
   <div class='serie-card-images'>
-    <% serie.books.each do |book| %>
+    <% serie.books.order(:serie_number).each do |book| %>
       <% if book.cover_url %>
         <%= image_tag book.cover_url, class:"serie-card-image #{ 'serie-card-image-not-owned' unless current_user.books.include?(book) }"%>
       <%# si le cover_img active storage contient l'image | créé à travers l'action create du controller %>
