@@ -41,6 +41,13 @@
   left: 0;
   width: 100vw;
   margin: 0;
+  z-index: 10;
+  color: $black;
+
+  #collection_comment {
+    color: $black;
+    height: 10rem;
+  }
 }
 
 .modal-content {
