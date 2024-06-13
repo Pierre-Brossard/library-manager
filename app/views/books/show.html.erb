@@ -37,16 +37,16 @@
         class="btn btn-read"
         data-action="click->book-content#stop_bubbling click->book-content#addAsRead">
           <% if @collection.is_read %>
-            <i class="fa-regular fa-circle-check"></i>
-          <% else %>
             <i class="fa-solid fa-circle-check"></i>
+          <% else %>
+            <i class="fa-regular fa-circle-check"></i>
           <% end %>
           </button>
     <% else %>
       <button
         value="<%= book_collections_path(@book) %>"
         type="submit"
-        class="btn btn-favorite"
+        class="btn btn-add-collection"
         data-action="click->book-content#stop_bubbling click->book-content#addCollection">
         <i class="fa-solid fa-plus"></i>
       </button>
