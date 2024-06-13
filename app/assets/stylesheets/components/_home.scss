@@ -20,8 +20,9 @@
 
 .header-user {
   i {
-    color: $lightgrey;
+    color: $darkgreen;
     font-size: 2em;
+    margin-right: 0.2em;
   }
 }
 
@@ -85,36 +86,36 @@
     .poesie-count {
       padding: 0.3em 0.5em;
       border-radius: 15px;
-      min-width: 160px;
+      flex: 1;
       text-align: center;
       font-size: 1.3em;
-      box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+      line-height: 1em;
     }
 
     .roman-count {
       color: $darkgreen;
-      background-color: rgba(50, 235, 50, 0.1);
+      background-color: rgba(50, 235, 50, 0.05);
       border: 2px solid $green;
       // box-shadow: 0 3px 0 $green;
     }
 
     .manga-count {
       color: $darkblue;
-      background-color: rgba(21, 162, 228, 0.1);
+      background-color: rgba(21, 162, 228, 0.05);
       border: 2px solid $blue;
       // box-shadow: 0 3px 0 $blue;
     }
 
     .bd-count {
       color: $darkred;
-      background-color: rgba(253, 60, 60, 0.1);
+      background-color: rgba(253, 60, 60, 0.05);
       border: 2px solid $red;
       // box-shadow: 0 3px 0 $red;
     }
 
     .poesie-count {
       color: $purple;
-      background-color: rgba(214, 27, 214, 0.1);
+      background-color: rgba(214, 27, 214, 0.05);
       border: 2px solid $purple;
       // box-shadow: 0 3px 0 $purple;
     }
