@@ -1,4 +1,4 @@
-<div class="card-close book-card" data-book-content-target="bookDefault">
+<div class="card-close book-card" data-book-content-target="bookDefault"  style="<%= 'background-color: #ededed;' if collection.nil? %>">
   <div class="book-img-close"><i class="fa-solid fa-book <%= book.book_type.downcase %>-icon"></i></div>
   <div class="book-info">
     <p class="book-title"><%= book.title %></p>
@@ -24,7 +24,7 @@
         <button
           value="<%= book_collections_path(book) %>"
           type="submit"
-          class="btn btn-favorite"
+          class="btn btn-add-collection"
           data-action="click->book-content#stop_bubbling click->book-content#addCollection">
           <i class="fa-solid fa-plus"></i>
         </button>
