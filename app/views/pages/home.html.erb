@@ -9,16 +9,17 @@
 </div>
 
 <div class="home-card">
-  <h4>Hello <strong><%= current_user.nickname %></strong>, bienvenue !</h4>
-  <%# ___________searh___________ %>
-  <%= link_to new_book_path do %>
-    <div class="home-card-search">
-      <div class="input-search">Rechercher un livre à ajouter...</div>
-      <div class="search-button"><i class="fa-solid fa-magnifying-glass"></i></div>
-      <div class="btn btn-codebar"><i class="fa-solid fa-barcode"></i></div>
-    </div>
-  <% end %>
-  <%# ___________searh___________ %>
+  <h4>Bienvenue  <strong><%= current_user.nickname %></strong> !</h4>
+  Il y a <strong><%= current_user.books.count %></strong> livres dans ta bibliothèque :
+    <strong><%= current_user.books.read_books.count %></strong> sont
+  lus et
+    <strong><%= Book.all.favorite_books(true, current_user.id).count %></strong> sont favoris.
+    Tu as <strong class='green-text'><%= current_user.books.where(book_type: 'Roman').count %> romans</strong>,
+    <strong class='blue-text'><%= current_user.books.where(book_type: 'Manga').count %> manga</strong>
+  , <strong class='red-text'><%= current_user.books.where(book_type: 'BD').count %> bande-dessinées</strong> et
+    <strong class='purple-text'><%= current_user.books.where(book_type: 'Poesie').count %> recueils de
+  poésie</strong>.
+
 </div>
 
 <div class="last-books">

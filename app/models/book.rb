@@ -22,6 +22,7 @@ class Book < ApplicationRecord
     is_favorited: favorite,
     user_id: user_id
   })}
+  scope :read_books, -> { where(collections: {is_read: 'true'}) }
 
   # PGSearch Methods
   include PgSearch::Model
