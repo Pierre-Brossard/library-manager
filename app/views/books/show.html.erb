@@ -1,4 +1,4 @@
-<div class="show-book-cover">
+<div class="show-book-cover" data-controller="book-content">
 
   <div class="background">
     <% if @book.cover_url %>
@@ -15,7 +15,7 @@
       <%= cl_image_tag @book.cover_img.key, class: "show-image" %>
     <% end %>
   </div>
-  <%= link_to :back, class: "btn btn-neutral-show btn-back-show" do %>
+  <%= link_to books_path, class: "btn btn-neutral-show btn-back-show" do %>
     <i class="fa-solid fa-chevron-left"></i>
   <% end %>
   <% if @collection && @collection.id != nil %>
@@ -119,7 +119,7 @@
           <button type="button" class="close-modal close-button" data-action="click->book-details#hideModal" aria-label="Close">&times;</button>
         </div>
         <div class="modal-body">
-          <%= render 'partials/collections/collection_form', collection: Collection.find_by(book_id: @book.id) %>
+          <%= render 'partials/collections/collection_form', collection: @collection %>
         </div>
       </div>
     </div>
