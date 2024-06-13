@@ -35,6 +35,7 @@ class BooksController < ApplicationController
     end
 
     @books = @books.includes(:serie, :cover_img_blob)
+    @books = @books.order(created_at: :desc)
     @genres = Genre.all
     respond_to do |format|
       format.html
