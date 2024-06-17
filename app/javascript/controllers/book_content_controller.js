@@ -20,11 +20,14 @@ export default class extends Controller {
   }
 
   addCollection(event){
-    fetch(event.currentTarget.value, { method: 'POST', headers: {"Accept": "text/plain"} })
+    fetch(event.currentTarget.value, {
+      method: "POST",
+      headers: { Accept: `text/${event.params.accept}` },
+    })
       .then((res) => res.text())
       .then((data) => {
-        this.element.outerHTML = data
-  })
+        this.element.outerHTML = data;
+      });
   }
 
   addAsRead(event){
