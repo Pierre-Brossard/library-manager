@@ -2,7 +2,7 @@ import { Controller } from "@hotwired/stimulus"
 
 // Connects to data-controller="book-content"
 export default class extends Controller {
-  static targets = ["bookDefault", "bookInfos"]
+  static targets = ["bookDefault", "bookInfos", "favButton"]
 
   visible() {
     this.bookInfosTarget.classList.toggle('d-none')
@@ -13,7 +13,9 @@ export default class extends Controller {
     fetch(event.currentTarget.value, { headers: {"Accept": "text/plain"} })
       .then((res) => res.text())
       .then((data) => {
-        this.element.outerHTML = data
+        this.favButtonTargets.forEach(favButton => {
+          favButton.outerHTML = data
+        });
   })
   }
 
@@ -26,10 +28,11 @@ export default class extends Controller {
   }
 
   addAsRead(event){
+    const readButton = event.currentTarget
     fetch(event.currentTarget.value, { headers: {"Accept": "text/plain"} })
       .then((res) => res.text())
       .then((data) => {
-        this.element.outerHTML = data
+        readButton.outerHTML = data
   })
   }
 
