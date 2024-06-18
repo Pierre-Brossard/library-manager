@@ -19,35 +19,18 @@
     <i class="fa-solid fa-chevron-left"></i>
   <% end %>
   <% if @collection && @collection.id != nil %>
-    <button
-      value="<%= favorite_collection_path(@collection) %>"
-      data-turbo-method="patch"
-      type="submit"
-      class="btn btn-favorite btn-right-bottom-show"
-      data-action="click->book-content#addFavorite">
-        <% if @collection.is_favorited %>
-          <i class="fa-solid fa-heart"></i>
-        <% else %>
-          <i class="fa-regular fa-heart"></i>
-        <% end %>
-    </button>
-    <button
-      value="<%= read_collection_path(@collection) %>"
-      data-turbo-method="patch"
-      type="submit"
-      class="btn btn-read btn-right-top-show"
-      data-action="click->book-content#addAsRead">
-        <% if @collection.is_read %>
-          <i class="fa-solid fa-circle-check"></i>
-        <% else %>
-          <i class="fa-regular fa-circle-check"></i>
-        <% end %>
-        </button>
+    <div class='btn-right-bottom-show'>
+      <%= render 'partials/collections/favorite_button', collection: @collection %>
+    </div>
+    <div class='btn-right-top-show'>
+      <%= render 'partials/collections/read_button', collection: @collection%>
+    </div>
   <% else %>
     <button
       value="<%= book_collections_path(@book) %>"
       type="submit"
       class="btn btn-neutral-show btn-right-top-show"
+      data-book-content-accept-param='html'
       data-action="click->book-content#addCollection">
       <i class="fa-solid fa-plus"></i>
     </button>

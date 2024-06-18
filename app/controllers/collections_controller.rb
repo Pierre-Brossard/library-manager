@@ -24,12 +24,11 @@ class CollectionsController < ApplicationController
   end
 
   def favorite
-    @book = @collection.book
     @collection.is_favorited = !@collection.is_favorited
     if @collection.save
       respond_to do |format|
-        format.html { redirect_to book_path(@book)}
-        format.text { render partial: 'partials/books/book_card', locals: {book: @collection.book, collection: @collection}, formats: [:html] }
+        format.html
+        format.text { render partial: 'partials/collections/favorite_button', locals: {collection: @collection}, formats: [:html] }
       end
     else
       render json: {error: 'temporary error message'}, status: :unprocessable_entity
@@ -43,7 +42,7 @@ class CollectionsController < ApplicationController
         format.html do
           render json: {message: 'The favorite status has been updated'}, status: :accepted
         end
-        format.text { render partial: 'partials/books/book_card', locals: {book: @collection.book, collection: @collection}, formats: [:html] }
+        format.text { render partial: 'partials/collections/read_button', locals: { collection: @collection }, formats: [:html] }
       end
     else
       render json: {error: 'temporary error message'}, status: :unprocessable_entity

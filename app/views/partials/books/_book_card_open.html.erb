@@ -29,35 +29,14 @@
             <button class="btn btn-details" data-action="click->book-content#stop_bubbling"><i class="fa-solid fa-circle-info"></i></button>
           <% end %>
           <% if collection && collection.id%>
-            <button
-              value="<%= favorite_collection_path(collection) %>"
-              data-turbo-method="patch"
-              type="submit"
-              class="btn btn-favorite"
-              data-action="click->book-content#stop_bubbling click->book-content#addFavorite">
-                <% if collection.is_favorited %>
-                  <i class="fa-solid fa-heart"></i>
-                <% else %>
-                  <i class="fa-regular fa-heart"></i>
-                <% end %>
-            </button>
-            <button
-              value="<%= read_collection_path(collection) %>"
-              data-turbo-method="patch"
-              type="submit"
-              class="btn btn-read"
-              data-action="click->book-content#stop_bubbling click->book-content#addAsRead">
-                <% if collection.is_read %>
-                  <i class="fa-solid fa-circle-check"></i>
-                <% else %>
-                  <i class="fa-regular fa-circle-check"></i>
-                <% end %>
-                </button>
+            <%= render 'partials/collections/favorite_button', collection: collection %>
+            <%= render 'partials/collections/read_button', collection: collection %>
           <% else %>
             <button
               value="<%= book_collections_path(book) %>"
               type="submit"
               class="btn btn-add-collection"
+              data-book-content-accept-param="plain"
               data-action="click->book-content#stop_bubbling click->book-content#addCollection click->serie#refresh">
               <i class="fa-solid fa-plus"></i>
             </button>
